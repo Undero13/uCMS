@@ -4,10 +4,11 @@
     "module": "esnext",
     "strict": true,
     "importHelpers": true,
-    "moduleResolution": "node",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "baseUrl": ".",
     "paths": {
       "http://*": ["../../../.deno/deps/http/*"],
