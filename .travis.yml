@@ -9,12 +9,12 @@ install:
 - rustup component add rustfmt
 - rustc --version
 - cargo --version
-- curl -fsSL https://deno.land/x/install/install.sh | sh
-- export DENO_INSTALL="/home/travis/.deno"
-- export PATH="$DENO_INSTALL/bin:$PATH"
 before_script:
  - cd client
  - npm ci
+ - curl -fsSL https://deno.land/x/install/install.sh | sh
+ - export DENO_INSTALL="/home/travis/.deno"
+ - export PATH="$DENO_INSTALL/bin:$PATH"
 script:
 #in frontend
 - npm run lint
@@ -23,5 +23,5 @@ script:
 #in backend
 - cd ../server
 - deno fmt server/*.ts
-- deno fmt server/**/*.ts
-- deno test server
+- /deno fmt server/**/*.ts
+- /home/${USER}/.deno/bin/deno test server
