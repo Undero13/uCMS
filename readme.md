@@ -1,3 +1,10 @@
+## Start
+- git clone
+- cd client
+- npm i
+- cd ..
+- ./start.sh
+
 ## Stop
   - kill ./start.sh process (ctrl + c)
 
