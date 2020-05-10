@@ -14,10 +14,11 @@ before_script:
  - cd client
  - npm ci
 script:
-- cd client
+#in frontend
 - npm run lint
 - npm run test
 - npm run build
+#in backend
 - cd ../server
 - /home/${USER}/.deno/bin/deno fmt server/*.ts
 - /home/${USER}/.deno/bin/deno fmt server/**/*.ts
