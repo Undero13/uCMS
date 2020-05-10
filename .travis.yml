@@ -22,6 +22,6 @@ script:
 - npm run build
 #in backend
 - cd ../server
-- /home/${USER}/.deno/bin/deno fmt server/*.ts
-- /home/${USER}/.deno/bin/deno fmt server/**/*.ts
-- /home/${USER}/.deno/bin/deno test server
+- deno fmt server/*.ts
+- deno fmt server/**/*.ts
+- deno test server
