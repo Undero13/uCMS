@@ -1,6 +1,13 @@
-import { serve } from "https://deno.land/std@v0.42.0/http/server.ts";
-const s = serve({ port: 8000 });
+import { Area, App } from 'https://deno.land/x/alosaur/src/mod.ts';
+import { ApiController } from './controllers/ApiController.ts'
 
-for await (const req of s) {
-  req.respond({ body: "Hello World\n" });
-}
+@Area({
+    controllers: [ApiController],
+})
+export class ApiArea {}
+
+const app = new App({
+    areas: [ApiArea],
+});
+
+app.listen(":3000");
