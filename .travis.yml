@@ -1,0 +1,25 @@
+sudo: false
+language: rust
+rust:
+  - 1.37.0
+install:
+- git checkout -- prebuilt
+- nvm install v12
+- nvm use --delete-prefix v12
+- node -v
+- rustup component add rustfmt
+- rustc --version
+- cargo --version
+- curl -fsSL https://deno.land/x/install/install.sh | sh
+before_script:
+ - cd client
+ - npm ci
+script:
+- cd client
+- npm run lint
+- npm run test
+- npm run build
+- cd ../server
+- /home/${USER}/.deno/bin/deno fmt server/*.ts
+- /home/${USER}/.deno/bin/deno fmt server/**/*.ts
+- /home/${USER}/.deno/bin/deno test server
