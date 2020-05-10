@@ -1,10 +1,10 @@
 {
   "name": "u-cms-client",
   "version": "1.0.0",
-  "description": "",
+  "description": "CMS using Deno and Vue 3",
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server -d",
     "build": "webpack --env.production",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "test": "jest"

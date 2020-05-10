@@ -1,15 +1,13 @@
-// webpack config
 const path = require('path');
 const WebpackBar = require('webpackbar');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const { VueLoaderPlugin } = require('vue-loader');
-
 module.exports = (env = {}) => ({
   context: path.resolve(__dirname, 'src'),
-  mode: env.production ? 'production' : 'development',
+  mode: process.env.production ? 'production' : 'development',
   entry: {
     app: './app.ts'
   },
@@ -48,7 +46,7 @@ module.exports = (env = {}) => ({
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
-            options: { hmr: !env.production }
+            options: { hmr: !process.env.production }
           },
           'css-loader'
         ]
