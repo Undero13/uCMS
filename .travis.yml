@@ -1,0 +1,25 @@
+sudo: false
+language: rust
+rust:
+  - 1.37.0
+install:
+- nvm install v12
+- nvm use --delete-prefix v12
+- node -v
+- rustup component add rustfmt
+- rustc --version
+- cargo --version
+- npx get-deno 
+before_script:
+ - cd client
+ - npm ci
+script:
+#in frontend
+- npm run lint
+- npm run test
+- npm run build
+#in backend
+# - cd ../server
+# - npx deno fmt server/*.ts
+# - npx deno fmt server/**/*.ts
+# - npx deno test server
