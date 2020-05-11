@@ -1,13 +1,8 @@
-import { Area, App } from 'https://deno.land/x/alosaur/src/mod.ts';
-import { ApiController } from './controllers/ApiController.ts'
-
-@Area({
-    controllers: [ApiController],
-})
-export class ApiArea {}
+import { App } from "https://deno.land/x/alosaur/src/mod.ts";
+import { UserArea } from "./area/UserArea.ts";
 
 const app = new App({
-    areas: [ApiArea],
+  areas: [UserArea],
 });
 
 app.listen(":3000");
