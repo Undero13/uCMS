@@ -1,15 +1,9 @@
 sudo: false
-language: rust
-rust:
-  - 1.37.0
+language: node_js
+node_js:
+  - 12
 install:
-- nvm install v12
-- nvm use --delete-prefix v12
 - node -v
-- rustup component add rustfmt
-- rustc --version
-- cargo --version
-- npx get-deno 
 before_script:
  - cd client
  - npm ci

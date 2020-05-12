@@ -1,3 +1,3 @@
-export const db = [
-  { login: "undero", password: "123" },
+export const users = [
+  { email: "admin@admin.com", password: "123" },
 ];
