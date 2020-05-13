@@ -7,13 +7,15 @@ export class AuthService {
     this.msg = "";
   }
 
-  public validateCredentials({ login = "", password = "" }): boolean {
-    if (!login || !password) {
+  public validateCredentials(
+    { login: userLogin = '', password = "" },
+  ): boolean {
+    if (!userLogin || !password) {
       this.msg = "empty.credentials";
       return !this.msg;
     }
 
-    const user = users.find(({ email }) => email === login);
+    const user = users.find(({ login }) => login === userLogin);
 
     if (user) {
       this.msg = user.password === password ? "" : "wrong.password";

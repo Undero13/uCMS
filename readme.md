@@ -6,9 +6,9 @@
 - ./start.sh
 
 ## Stop
-  - kill ./start.sh process (ctrl + c)
+  - ./stop.sh
 
-### Mine lib
+## Mine lib
 
 * Webpack 4
 * Typescript 3.8
@@ -18,15 +18,17 @@
 * Deno
 * Alosaur
 
-### Todos
+## Todos
 
  - Auth
  - Product
  - Blog
 
-### Test
-WIP
+## Test
+### Backend
+- cd server
+- deno test --allow-run --allow-net
 
-### License
+## License
 
 MIT

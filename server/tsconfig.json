@@ -3,18 +3,10 @@
     "target": "esnext",
     "module": "esnext",
     "strict": true,
-    "importHelpers": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "baseUrl": ".",
-    "paths": {
-      "http://*": ["../../../.deno/deps/http/*"],
-      "https://*": ["../../../.deno/deps/https/*"],
-      "*.ts": ["*"]
-    },
   }
 }
   
