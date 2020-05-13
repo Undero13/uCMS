@@ -1,3 +1,5 @@
-export const users = [
-  { email: "admin@admin.com", password: "123" },
+import { ApiUserCredentials } from "../model/ApiUserCredentials.ts";
+
+export const users: ApiUserCredentials[] = [
+  { login: "admin@admin.com", password: "123" },
 ];
