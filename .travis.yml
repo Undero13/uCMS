@@ -13,7 +13,7 @@ script:
 - npm run test
 - npm run build
 #in backend
-- cd ..
+# - cd ../
 - ./start.sh
 #- deno fmt server/*.ts
 #- deno fmt server/**/*.ts
