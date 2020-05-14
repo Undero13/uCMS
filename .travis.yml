@@ -5,8 +5,7 @@ node_js:
 install:
   - node -v
 before_script:
-  - sudo su
-  - ./install_deno.sh
+  - sudo ./install_deno.sh
   - ls -la
   - cd client
   - npm ci
