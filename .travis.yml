@@ -25,4 +25,5 @@ script:
   - chmod 777 start.sh
   - ./start.sh
   - cd server
+  - deno upgrade
   - deno test --allow-run --allow-net
