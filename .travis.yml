@@ -3,17 +3,17 @@ language: node_js
 node_js:
   - 12
 install:
-- node -v
-- curl -fsSL https://deno.land/x/install/install.sh | sh
-- which deno
+  - node -v
 before_script:
- - cd client
- - npm ci
+  - curl -fsSL https://deno.land/x/install/install.sh | sh
+  - ls -la $($HOME)/bin
+  - cd client
+  - npm ci
 script:
 #in frontend
-- npm run lint
-- npm run test
-- npm run build
+  - npm run lint
+  - npm run test
+  - npm run build
 #in backend
 # - cd ../
 # - ./start.sh
