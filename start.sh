@@ -1,7 +1,8 @@
 #!/bin/bash
+LC_CTYPE=en_US.utf8
 
 cd client
-nohup npm run start >../logs/frontend.out & cd ..
+npm run start > ../logs/frontend.log & cd ..
 cd server 
-/home/${USER}/.deno/bin/deno install --unstable --allow-read --allow-run -f https://deno.land/x/denon/denon.ts
-nohup denon index.ts >../logs/backend.out
+deno install --unstable --allow-read --allow-run -f https://deno.land/x/denon/denon.ts
+denon index.ts >../logs/backend.log

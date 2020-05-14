@@ -3,18 +3,22 @@ language: node_js
 node_js:
   - 12
 install:
-- node -v
+  - node -v
 before_script:
- - cd client
- - npm ci
+  - chmod 777 install_deno.sh
+  - ./install_deno.sh
+  - export DENO_INSTALL="/home/travis/build/Undero13/uCMS/.deno"
+  - export PATH="$DENO_INSTALL/bin:$PATH"
+  - cd client
+  - npm ci
 script:
 #in frontend
-- npm run lint
-- npm run test
-- npm run build
+  - npm run lint
+  - npm run test
+  - npm run build
 #in backend
-# - cd ../
-# - ./start.sh
-#- deno fmt server/*.ts
-#- deno fmt server/**/*.ts
-# - deno test --allow-run --allow-net
+- cd ../
+- ./start.sh
+- deno fmt server/*.ts
+- deno fmt server/**/*.ts
+- deno test --allow-run --allow-net
