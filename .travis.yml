@@ -17,8 +17,8 @@ script:
   - npm run test
   - npm run build
 #in backend
-- cd ../
-- ./start.sh
-- deno fmt server/*.ts
-- deno fmt server/**/*.ts
-- deno test --allow-run --allow-net
+  - cd ../
+  - ./start.sh
+  - deno fmt server/*.ts
+  - deno fmt server/**/*.ts
+  - deno test --allow-run --allow-net
