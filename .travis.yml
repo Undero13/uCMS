@@ -18,6 +18,8 @@ script:
   - npm run build
 #in backend
   - cd ../
+  - mkdir ./server/logs/backend.log
+  - mkdir ./client/logs/backend.log
   - chmod 777 start.sh
   - ./start.sh
   - cd server
