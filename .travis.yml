@@ -9,7 +9,6 @@ before_script:
   - ./install_deno.sh
   - export DENO_INSTALL="/home/travis/build/Undero13/uCMS/.deno"
   - export PATH="$DENO_INSTALL/bin:$PATH"
-  - deno -v
   - cd client
   - npm ci
 script:
@@ -18,8 +17,8 @@ script:
   - npm run test
   - npm run build
 #in backend
-# - cd ../
-# - ./start.sh
-# - deno fmt server/*.ts
-# - deno fmt server/**/*.ts
-# - deno test --allow-run --allow-net
+- cd ../
+- ./start.sh
+- deno fmt server/*.ts
+- deno fmt server/**/*.ts
+- deno test --allow-run --allow-net
