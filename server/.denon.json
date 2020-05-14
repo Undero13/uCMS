@@ -16,6 +16,8 @@
   ],
   "deno_args": [
     "--allow-net",
+    "--allow-read",
+    "--allow-write",
     "--config=tsconfig.json"
   ],
   "execute": {

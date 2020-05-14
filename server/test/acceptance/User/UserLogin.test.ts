@@ -8,7 +8,10 @@ Deno.test("[http] user login empty.credentials", async () => {
   const data = await response.json();
 
   assertEquals(response.status, 200);
-  assertEquals(data, { "status": false, "error": "empty.credentials" });
+  assertEquals(
+    data,
+    { "status": false, "error": "user.login.empty.credentials" },
+  );
 });
 
 Deno.test("[http] user login user.not.exist", async () => {
@@ -24,7 +27,7 @@ Deno.test("[http] user login user.not.exist", async () => {
   const data = await response.json();
 
   assertEquals(response.status, 200);
-  assertEquals(data, { "status": false, "error": "user.not.exist" });
+  assertEquals(data, { "status": false, "error": "user.login.not.exist" });
 });
 
 Deno.test("[http] user login wrong.password", async () => {
@@ -40,7 +43,7 @@ Deno.test("[http] user login wrong.password", async () => {
   const data = await response.json();
 
   assertEquals(response.status, 200);
-  assertEquals(data, { "status": false, "error": "wrong.password" });
+  assertEquals(data, { "status": false, "error": "user.login.wrong.password" });
 });
 
 Deno.test("[http] user correct login correct", async () => {
