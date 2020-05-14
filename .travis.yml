@@ -21,6 +21,4 @@ script:
   - chmod 777 start.sh
   - ./start.sh
   - cd server
-  - deno fmt server/*.ts
-  - deno fmt server/**/*.ts
   - deno test --allow-run --allow-net
