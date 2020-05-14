@@ -5,8 +5,8 @@ node_js:
 install:
   - node -v
 before_script:
-  - curl -fsSL https://deno.land/x/install/install.sh | sh
-  - deno -v
+  - ./install_deno.sh
+  - ls -la
   - cd client
   - npm ci
 script:
