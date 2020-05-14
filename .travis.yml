@@ -4,8 +4,8 @@ node_js:
   - 12
 install:
 - node -v
-- curl -fsSL https://github-production-release-asset-2e65be.s3.amazonaws.com/133442384/82fcd800-9567-11ea-8ecb-c6c01343a23e?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20200514%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200514T142016Z&X-Amz-Expires=300&X-Amz-Signature=5f6ecc61aa76baa3a8339537ad6173108a678e596bae6e70a9c8abb3225f182b&X-Amz-SignedHeaders=host&actor_id=0&repo_id=133442384&response-content-disposition=attachment%3B%20filename%3Ddeno-x86_64-unknown-linux-gnu.zip&response-content-type=application%2Foctet-stream
-- unzip *.zip
+- curl -fsSL https://deno.land/x/install/install.sh | sh
+- which deno
 before_script:
  - cd client
  - npm ci
