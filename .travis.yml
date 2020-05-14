@@ -23,7 +23,6 @@ script:
   - mkdir ./client/logs/
   - touch ./client/logs/frontend.log
   - chmod 777 start.sh
-  - deno upgrade
   - ./start.sh
   - cd server
   - deno test --allow-run --allow-net
