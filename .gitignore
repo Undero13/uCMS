@@ -1,3 +1,5 @@
 /client/node_modules
 client/dist
 logs
+client/logs
+server/logs

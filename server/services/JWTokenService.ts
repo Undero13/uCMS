@@ -26,6 +26,6 @@ export class JWTokenService {
   }
 
   public async validateJWToken(token: string) {
-   return !!await validateJwt(token, this.key, { isThrowing: false })
+    return !!await validateJwt(token, this.key, { isThrowing: false });
   }
 }

@@ -52,10 +52,8 @@ export class AuthService {
     return this.msg;
   }
 
-  // Tu biblioteka wali błedami z jakiegoś powodu - możliwe że env za długi
   public genPasswordHash(password: string) {
-    const salt = bcrypt.gensalt(environment.hashSalt);
-    return bcrypt.hashpw(password, salt);
+    return bcrypt.hashpw(password);
   }
 
   private validateEmail(email: string): boolean {

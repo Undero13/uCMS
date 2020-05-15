@@ -38,6 +38,7 @@ export class UserController {
   private register(body: ApiUserRegister) {
     if (this.authService.validateRegisterData(body)) {
       this.authService.genPasswordHash(body.password);
+
       return this.setResponse(true, "");
     }
 
