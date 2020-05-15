@@ -1,9 +1,10 @@
-import makeJwt, {
+import {
+  makeJwt,
   setExpiration,
   Jose,
   Payload,
-} from "https://deno.land/x/djwt/create.ts";
-import validateJwt from "https://deno.land/x/djwt/validate.ts";
+} from "https://deno.land/x/djwt@v0.9.0/create.ts";
+import { validateJwt } from "https://deno.land/x/djwt@v0.9.0/validate.ts";
 import { environment } from "../environment.ts";
 
 export class JWTokenService {
@@ -22,5 +23,9 @@ export class JWTokenService {
     const header: Jose = { alg: "HS256", typ: "JWT" };
 
     return makeJwt({ header, payload, key: this.key });
+  }
+
+  public async validateJWToken(token: string) {
+    return !!await validateJwt(token, this.key, { isThrowing: false });
   }
 }
