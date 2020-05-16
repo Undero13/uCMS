@@ -1,28 +1,17 @@
 sudo: false
 language: node_js
-node_js:
-  - 12
-install:
-  - node -v
+services:
+  - docker
 before_script:
-  - chmod 777 install_deno.sh
-  - ./install_deno.sh
-  - export DENO_INSTALL="/home/travis/build/Undero13/uCMS/.deno"
-  - export PATH="$DENO_INSTALL/bin:$PATH"
-  - cd client
-  - npm ci
+  - docker-compose up --build
 script:
 #in frontend
+  - docker exec -it node bash
   - npm run lint
   - npm run test
   - npm run build
+  - exit
 #in backend
-  - cd ../
-  - mkdir ./server/logs/
-  - touch ./server/logs/backend.log
-  - mkdir ./client/logs/
-  - touch ./client/logs/frontend.log
-  - chmod 777 start.sh
-  - ./start.sh
-  - cd server
+  - docker exec -it deno bash
   - deno test --allow-run --allow-net
+  - exit

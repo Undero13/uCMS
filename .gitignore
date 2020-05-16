@@ -3,3 +3,6 @@ client/dist
 logs
 client/logs
 server/logs
+rethinkdb_data
+.traefik
+traefik
