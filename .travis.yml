@@ -6,12 +6,8 @@ before_script:
   - docker-compose up --build -d
 script:
 #in frontend
-  - docker exec -it node bash
-  - npm run lint
-  - npm run test
-  - npm run build
-  - exit
+  - docker exec -t node bash -c "npm run lint"
+  - docker exec -t node bash -c "npm run test"
+  - docker exec -t node bash -c "npm run build"
 #in backend
-  - docker exec -it deno bash
-  - deno test --allow-run --allow-net
-  - exit
+  - docker exec -t deno bash -c "deno test --allow-run --allow-net"
