@@ -1,13 +1,13 @@
 sudo: false
 language: node_js
 services:
-  - docker
-before_script:
-  - docker-compose up --build -d
+  - docker  
 script:
+  - docker-compose up --build -d
 #in frontend
   - docker exec -t node bash -c "npm run lint"
   - docker exec -t node bash -c "npm run test"
   - docker exec -t node bash -c "npm run build"
 #in backend
   - docker exec -t deno bash -c "deno test --allow-run --allow-net"
+  - docker-compose down
