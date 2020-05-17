@@ -1,5 +1,5 @@
-sudo: false
-language: node_js
+sudo: true
+language: ruby
 services:
   - docker  
 script:
