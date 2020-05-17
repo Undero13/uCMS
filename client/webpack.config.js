@@ -89,7 +89,10 @@ module.exports = (env = {}) => ({
     index: './index.html',
     hot: true,
     stats: 'minimal',
+    port: 4200,
     quiet: true,
+    compress: true,
+    disableHostCheck: true,
     overlay: {
       warnings: true,
       errors: true

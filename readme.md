@@ -1,15 +1,12 @@
 ## Start
-- git clone
-- cd client
-- npm i
-- cd ..
-- ./start.sh
+- docker-compose up --build -d
 
 ## Stop
-  - ./stop.sh
+  - docker-compose down
 
-## Mine lib
+## Staff
 
+* Docker
 * Webpack 4
 * Typescript 3.8
 * Vue 3 beta 1
@@ -26,8 +23,12 @@
 
 ## Test
 ### Backend
+
 - cd server
 - deno test --allow-run --allow-net
+
+### Frontend
+
 
 ## License
 

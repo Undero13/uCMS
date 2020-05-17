@@ -1,0 +1,48 @@
+version: '3.7'
+
+services: 
+  deno:
+    working_dir: /server-app
+    container_name: deno
+    build: 
+      context: ./build/deno
+      args: 
+        - DENO_VERSION=v1.0.0-rc3
+    # command: "deno run --allow-net --allow-read --allow-write --config=tsconfig.json index.ts"
+    command: "denon index.ts"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.deno.rule=Host(`ucms.docker.localhost`) && PathPrefix(`/api`)"
+      - "traefik.http.services.deno.loadbalancer.server.port=3000"
+    volumes:
+      - ./server:/server-app
+  
+  rethinkdb:
+    image: rethinkdb:latest 
+    ports: 
+      - 8080:8080
+  
+  node:
+    working_dir: /app-client
+    container_name: node
+    build:
+      context: ./build/node
+    volumes:
+      - ./client:/app-client
+    environment: 
+      - NODE_ENV=development
+    labels:
+      - "traefik.enable=true" 
+      - "traefik.http.routers.node.rule=Host(`ucms.docker.localhost`) && PathPrefix(`/`)"
+      - "traefik.http.services.node.loadbalancer.server.port=4200"
+
+  proxy:
+    image: traefik:v2.2
+    container_name: proxy
+    command: --api.insecure=true --providers.docker
+    ports:
+      - "80:80"
+      - "5000:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
