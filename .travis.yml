@@ -5,7 +5,7 @@ services:
 script:
   - docker-compose up --build -d
 #in frontend
-  - docker exec -t node bash -c "ls -la"
+  - docker exec -t node bash -c "npm ci"
   - docker exec -t node bash -c "npm run lint"
   - docker exec -t node bash -c "npm run test"
   - docker exec -t node bash -c "npm run build"
