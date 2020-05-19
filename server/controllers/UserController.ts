@@ -1,10 +1,11 @@
 import {
   Controller,
   Post,
+  Get,
   Body,
   Injectable,
 } from "https://deno.land/x/alosaur/src/mod.ts";
-import { setCookie } from "https://deno.land/std/http/cookie.ts";
+import { setCookie, delCookie } from "https://deno.land/std/http/cookie.ts";
 import { environment } from "../environment.ts";
 import { ApiUserCredentials } from "../model/ApiUserCredentials.ts";
 import { ApiUserRegister } from "../model/ApiUserRegister.ts";
@@ -23,32 +24,42 @@ export class UserController {
   }
 
   @Post("/login") @Body()
-  private login(body: ApiUserCredentials) {
-    if (!this.authService.validateCredentials(body)) {
+  private async login(body: ApiUserCredentials) {
+    if (!await this.authService.validateCredentials(body)) {
       return this.setResponse(false, this.authService.getMessage());
     }
 
     const token = this.jwtService.makeJWToken(body.login);
-    setCookie({}, { name: this.cookieName, value: token });
+    setCookie({}, { name: this.cookieName, value: token, httpOnly: true });
 
-    return this.setResponse(true, "");
+    return this.setResponse(true);
   }
 
   @Post("/register") @Body()
-  private register(body: ApiUserRegister) {
+  private async register(body: ApiUserRegister) {
     if (this.authService.validateRegisterData(body)) {
-      this.authService.genPasswordHash(body.password);
-
-      return this.setResponse(true, "");
+      const id = await this.authService.createUser(body);
+      return this.setResponse(true, "", [id]);
     }
 
     return this.setResponse(false, this.authService.getMessage());
   }
 
-  private setResponse(status: boolean, error: string = "") {
+  @Get("/logout")
+  private logout() {
+    delCookie({}, this.cookieName);
+    return this.setResponse(true);
+  }
+
+  private setResponse(
+    status = false,
+    error = "",
+    extraParams: unknown[] = [],
+  ) {
     return {
       status,
       error,
+      extraParams,
     };
   }
 }

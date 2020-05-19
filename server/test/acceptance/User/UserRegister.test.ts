@@ -1,4 +1,4 @@
-import { assertEquals } from "https://deno.land/x/alosaur/src/package_test.ts";
+import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
 
 const ContentTypeJson = "application/json; charset=utf-8";
 const baseUrl = "http://localhost:3000/api/user/register";
@@ -10,13 +10,13 @@ Deno.test("[http] user.register.wrong.password", async () => {
   assertEquals(response.status, 200);
   assertEquals(
     data,
-    { "status": false, "error": "user.register.wrong.email" },
+    { "status": false, "error": "user.register.wrong.email", extraParams: [] },
   );
 });
 
 Deno.test("[http] user.register.wrong.password", async () => {
   const requestArgument = {
-    login: "admin@admin.com",
+    login: "admin2@admin.com",
     password: "fakePassword",
     repeatPassword: "fakePassword2",
   };
@@ -30,7 +30,11 @@ Deno.test("[http] user.register.wrong.password", async () => {
   assertEquals(response.status, 200);
   assertEquals(
     data,
-    { "status": false, "error": "user.register.wrong.password" },
+    {
+      "status": false,
+      "error": "user.register.wrong.password",
+      extraParams: [],
+    },
   );
 });
 
@@ -48,8 +52,7 @@ Deno.test("[http] user.register.ok", async () => {
   const data = await response.json();
 
   assertEquals(response.status, 200);
-  assertEquals(
-    data,
-    { "status": true, "error": "" },
-  );
+  assertEquals(data.status, true);
+  assertEquals(data.error, "");
+  assertEquals(!!data.extraParams.length, true);
 });

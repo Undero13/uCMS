@@ -18,7 +18,9 @@
     "--allow-net",
     "--allow-read",
     "--allow-write",
-    "--config=tsconfig.json"
+    "--config=tsconfig.json",
+    "--allow-plugin",
+    "--unstable"
   ],
   "execute": {
     ".js": [

@@ -1,11 +1,9 @@
 FROM node:12-slim
 
-WORKDIR /entrypoint
+WORKDIR /app-client
 
-COPY ./entrypoint.sh /entrypoint
+COPY ./client /app-client
 
-RUN chmod 775 /entrypoint/entrypoint.sh
+RUN npm ci
 
 ENV PORT=4200
-
-ENTRYPOINT ["sh", "/entrypoint/entrypoint.sh"]
