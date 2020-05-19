@@ -14,6 +14,7 @@
 * Vuex beta 1
 * Deno
 * Alosaur
+* djwt
 
 ## Todos
 
@@ -25,11 +26,11 @@
 ### Backend
 
 - cd server
-- deno test --allow-run --allow-net
+- deno test --allow-run --allow-read --allow-write --allow-net --unstable --allow-plugin
 
 ### Frontend
-
+- cd client
+- npm run test
 
 ## License
-
 MIT

@@ -3,6 +3,7 @@ client/dist
 logs
 client/logs
 server/logs
-rethinkdb_data
+server/test/.deno_plugins
+server/.deno_plugins
 .traefik
 traefik

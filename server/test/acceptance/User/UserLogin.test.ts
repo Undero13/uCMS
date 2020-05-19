@@ -1,4 +1,4 @@
-import { assertEquals } from "https://deno.land/x/alosaur/src/package_test.ts";
+import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
 
 const ContentTypeJson = "application/json; charset=utf-8";
 const baseUrl = "http://localhost:3000/api/user/login";
@@ -10,7 +10,11 @@ Deno.test("[http] user login empty.credentials", async () => {
   assertEquals(response.status, 200);
   assertEquals(
     data,
-    { "status": false, "error": "user.login.empty.credentials" },
+    {
+      "status": false,
+      "error": "user.login.empty.credentials",
+      extraParams: [],
+    },
   );
 });
 
@@ -27,7 +31,10 @@ Deno.test("[http] user login user.not.exist", async () => {
   const data = await response.json();
 
   assertEquals(response.status, 200);
-  assertEquals(data, { "status": false, "error": "user.login.not.exist" });
+  assertEquals(
+    data,
+    { "status": false, "error": "user.login.not.exist", extraParams: [] },
+  );
 });
 
 Deno.test("[http] user login wrong.password", async () => {
@@ -43,13 +50,16 @@ Deno.test("[http] user login wrong.password", async () => {
   const data = await response.json();
 
   assertEquals(response.status, 200);
-  assertEquals(data, { "status": false, "error": "user.login.wrong.password" });
+  assertEquals(
+    data,
+    { "status": false, "error": "user.login.wrong.password", extraParams: [] },
+  );
 });
 
 Deno.test("[http] user correct login correct", async () => {
   const requestArgument = {
     login: "admin@admin.com",
-    password: "123",
+    password: "adminPassword123",
   };
   const response = await fetch(baseUrl, {
     method: "POST",
@@ -59,5 +69,5 @@ Deno.test("[http] user correct login correct", async () => {
   const data = await response.json();
 
   assertEquals(response.status, 200);
-  assertEquals(data, { "status": true, "error": "" });
+  assertEquals(data, { "status": true, "error": "", extraParams: [] });
 });

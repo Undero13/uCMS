@@ -1,8 +1,7 @@
-import { users } from "../db/fakeDB.ts";
+import { UserModel } from "../db/UserModel.ts";
 import { ApiUserRegister } from "../model/ApiUserRegister.ts";
 import { ApiUserCredentials } from "../model/ApiUserCredentials.ts";
-import * as bcrypt from "https://deno.land/x/bcrypt/mod.ts";
-import { environment } from "../environment.ts";
+import * as bcrypt from "https://deno.land/x/bcrypt@v0.2.0/mod.ts";
 
 export class AuthService {
   private msg: string;
@@ -11,18 +10,22 @@ export class AuthService {
     this.msg = "";
   }
 
-  public validateCredentials(userData: ApiUserCredentials): boolean {
-    const { login: userLogin = '', password = "" } = userData;
+  public async validateCredentials(
+    userData: ApiUserCredentials,
+  ): Promise<boolean> {
+    const { login, password } = userData;
 
-    if (!userLogin || !password) {
+    if (!login || !password) {
       this.msg = "user.login.empty.credentials";
       return !this.msg;
     }
 
-    const user = users.find(({ login }) => login === userLogin);
+    const user = await UserModel.getUser(login);
 
     if (user) {
-      this.msg = user.password === password ? "" : "user.login.wrong.password";
+      this.msg = this.passwordVerify(password, user.password)
+        ? ""
+        : "user.login.wrong.password";
       return !this.msg;
     }
 
@@ -31,13 +34,9 @@ export class AuthService {
   }
 
   public validateRegisterData(userData: ApiUserRegister): boolean {
-    const {
-      login: userLogin = '',
-      password = "",
-      repeatPassword = "",
-    } = userData;
+    const { login, password, repeatPassword } = userData;
 
-    if (!this.validateEmail(userLogin)) {
+    if (!this.validateEmail(login)) {
       this.msg = "user.register.wrong.email";
       return false;
     } else if (!this.validatePassword(password, repeatPassword)) {
@@ -48,12 +47,21 @@ export class AuthService {
     return true;
   }
 
+  public async createUser(userData: ApiUserRegister): Promise<string> {
+    const { login, password } = userData;
+    return await UserModel.createUser(login, this.genPasswordHash(password));
+  }
+
   public getMessage(): string {
     return this.msg;
   }
 
   public genPasswordHash(password: string) {
-    return bcrypt.hashpw(password);
+    return bcrypt.hashSync(password);
+  }
+
+  private passwordVerify(password: string, hash: string): boolean {
+    return bcrypt.compareSync(password, hash);
   }
 
   private validateEmail(email: string): boolean {

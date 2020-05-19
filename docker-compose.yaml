@@ -17,24 +17,39 @@ services:
     volumes:
       - ./server:/server-app
   
-  rethinkdb:
-    image: rethinkdb:latest 
+  mongo:
+    image: mongo
+    restart: always
+    container_name: mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    ports:
+      - 27017:27017
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    restart: always
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: rootpassword
     ports: 
-      - 8080:8080
+      - 8081:8081
   
   node:
     working_dir: /app-client
     container_name: node
+    command: npm run start
     build:
-      context: ./build/node
-    volumes:
-      - ./client:/app-client
+      context: .
+      dockerfile: ./build/node/Dockerfile
     environment: 
       - NODE_ENV=development
     labels:
-      - "traefik.enable=true" 
-      - "traefik.http.routers.node.rule=Host(`ucms.docker.localhost`) && PathPrefix(`/`)"
-      - "traefik.http.services.node.loadbalancer.server.port=4200"
+      - "traefik.enable=true"
+      - "traefik.http.routers.node.rule=Host(`ucms.docker.localhost`)"
+      - "traefik.http.services.node.loadbalancer.server.port=4200" 
 
   proxy:
     image: traefik:v2.2
