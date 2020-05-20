@@ -13,9 +13,9 @@ client.connectWithUri(
 export const db = client.database("ucms");
 export const users = db.collection("users");
 
+//Create base user
 const count = await users.count({ login: { $eq: "admin@admin.com" } });
 
-//Create base user
 if (count < 1) {
   const insertId = await users.insertOne({
     login: "admin@admin.com",
