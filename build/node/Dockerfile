@@ -2,8 +2,7 @@ FROM node:12-slim
 
 WORKDIR /app-client
 
-COPY ./client /app-client
+COPY ./client/package.json /app-client
 
-RUN npm ci
+RUN npm install
 
-ENV PORT=4200

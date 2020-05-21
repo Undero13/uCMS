@@ -1,6 +1,6 @@
 export const environment = {
   jwtSecretKey: "pomrukiStraconegoKota",
-  jwtCookieName: "jwt-client-token",
+  jwtCookieName: "jwt-token-client",
   hashSalt: 46682,
   mongoUser: "root",
   mongoPassword: "rootpassword",
