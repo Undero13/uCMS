@@ -1,6 +1,6 @@
 FROM debian:jessie-slim
 
-ARG DENO_VERSION="v1.0.0-rc3"
+ARG DENO_VERSION="v1.0.1"
 
 WORKDIR /app
 
@@ -15,10 +15,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   && rm deno-x86_64-unknown-linux-gnu.zip
 
 
-RUN deno install -Af --unstable https://deno.land/x/denon/denon.ts
+RUN deno install -Af --unstable https://deno.land/x/denon@v1.9.2/denon.ts
 RUN chmod u+x /root/.deno/bin/denon
 
 RUN mv /root/.deno/bin/denon /usr/local/bin/denon
 
 
-# CMD [ "deno run --allow-net --allow-read --allow-write --config=tsconfig.json index.ts" ]

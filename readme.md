@@ -25,11 +25,11 @@
 ## Test
 ### Backend
 
-- cd server
+- docker exec -it deno bash
 - deno test --allow-run --allow-read --allow-write --allow-net --unstable --allow-plugin
 
 ### Frontend
-- cd client
+- docker exec -it node bash
 - npm run test
 
 ## License

@@ -1,12 +1,13 @@
 <template>
-  <img src="../public/image/logo.svg" alt="uCMS - login site" />
+  <object id="svg-object" data="images/logo.svg" type="image/svg+xml"></object>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
-  name: "Header"
+  name: "Header",
+  setup() {}
 });
 </script>
 

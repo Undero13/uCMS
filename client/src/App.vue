@@ -12,3 +12,13 @@ export default defineComponent({
 });
 </script>
 
+<style>
+:root {
+  --base-color: #4bd16f;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+</style>

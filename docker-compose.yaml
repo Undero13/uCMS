@@ -49,7 +49,10 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.node.rule=Host(`ucms.docker.localhost`)"
-      - "traefik.http.services.node.loadbalancer.server.port=4200" 
+      - "traefik.http.services.node.loadbalancer.server.port=4200"
+    volumes: 
+      - ./client:/app-client 
+      - /app-client/node_modules
 
   proxy:
     image: traefik:v2.2

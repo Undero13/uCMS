@@ -1,8 +1,10 @@
 <template>
-  <div>
-    <Header />
-    <LoginForm />
-  </div>
+  <main class="login">
+    <div class="login__form">
+      <Header />
+      <LoginForm />
+    </div>
+  </main>
 </template>
 
 <script lang="ts">
@@ -20,4 +22,17 @@ export default defineComponent({
 </script>
 
 <style>
+.login {
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.login__form {
+  border: 3px solid var(--base-color);
+  padding: 70px;
+  border-radius: 10px;
+}
 </style>
