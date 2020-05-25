@@ -1,5 +1,5 @@
 <template>
-  <object id="svg-object" data="images/logo.svg" type="image/svg+xml"></object>
+  <object class="header" id="svg-object" data="images/logo.svg" type="image/svg+xml"></object>
 </template>
 
 <script lang="ts">
@@ -11,5 +11,9 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style lang="scss">
+.header {
+  width: 100%;
+  margin-left: -20px;
+}
 </style>

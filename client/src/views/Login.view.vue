@@ -21,18 +21,19 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style lang="scss">
+@import "../vars.scss";
 .login {
   display: flex;
   flex-direction: column;
   height: 80vh;
   align-items: center;
   justify-content: center;
-}
 
-.login__form {
-  border: 3px solid var(--base-color);
-  padding: 70px;
-  border-radius: 10px;
+  &__form {
+    border: 3px solid $primary-color;
+    padding: 70px;
+    border-radius: 10px;
+  }
 }
 </style>
