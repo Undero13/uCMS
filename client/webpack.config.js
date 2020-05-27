@@ -64,7 +64,7 @@ module.exports = (env = {}) => ({
   resolve: {
     extensions: ['.ts', '.js', '.vue', '.json'],
     alias: {
-      'vue': '@vue/runtime-dom'
+      '@': path.resolve(__dirname, 'src')
     }
   },
   plugins: [
