@@ -3,11 +3,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref } from "@vue/runtime-dom";
 
 export default defineComponent({
-  name: "Header",
-  setup() {}
+  name: "Header"
 });
 </script>
 

@@ -1,4 +1,6 @@
-export const environment = {
+const environment = {
   jwtCookieName: "jwt-token-client",
-  apiUrl: "http://ucms.docker.localhost/api/"
-}
+  apiUrl: "http://ucms.docker.localhost/api/",
+};
+
+export default environment;

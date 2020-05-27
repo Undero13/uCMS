@@ -1,4 +1,5 @@
-import {createStore} from 'vuex'
+/* eslint-disable */
+import { createStore } from 'vuex';
 
 type Todo = {
     id: number,
@@ -11,7 +12,7 @@ type State = {
 }
 
 const state: State = {
-    todoList: []
+    todoList: [],
 };
 
 const mutations = {
@@ -24,15 +25,16 @@ const mutations = {
     },
     editTodo(state: State, todo: Todo) {
         const index = state.todoList.findIndex(
-            item => item.id === todo.id
+            (item) => item.id === todo.id,
         );
         state.todoList[index] = todo;
     },
     removeTodo(state: State, id: number) {
         state.todoList = state.todoList.filter(
-            item => item.id !== id
+            (item) => item.id !== id,
         );
-    }
+    },
 };
 
-export const store = createStore({ state, mutations });
+const store = createStore({ state, mutations });
+export default store;

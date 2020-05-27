@@ -15,8 +15,8 @@
           <span aria-hidden="true" class="fa fa-envelope"></span>
         </span>
       </div>
-      <p v-if="validationError.emptyLogin" class="help is-danger">Login is empty!</p>
-      <p v-if="validationError.notValidLogin" class="help is-danger">Login is not valid!</p>
+      <p v-if="validationError.emptyLogin" class="help login-help is-danger">Login is empty!</p>
+      <p v-if="validationError.notValidLogin" class="help login-help is-danger">Login is not valid!</p>
     </div>
 
     <div class="field">
@@ -34,7 +34,10 @@
           <span class="fa fa-unlock-alt" aria-hidden="true"></span>
         </span>
       </div>
-      <p v-if="validationError.emptyPassword" class="help is-danger">Login is empty!</p>
+      <p
+        v-if="validationError.emptyPassword"
+        class="help password-help is-danger"
+      >Password is empty!</p>
     </div>
     <div class="control">
       <button class="button is-ucms">Login</button>
@@ -43,10 +46,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from "vue";
-import { LoginFormData } from "../models/LoginFormData";
-import { AuthService } from "../services/AuthService";
-import { LoginFromErrors } from "../models/LoginForm";
+import AuthService from "@/services/AuthService/AuthService.ts";
+import { defineComponent, reactive } from "@vue/runtime-dom";
+import { LoginFormData } from "@/models/LoginForm.ts";
+import { LoginFromErrors } from "@/models/LoginForm.ts";
 
 export default defineComponent({
   name: "LoginForm",
@@ -62,7 +65,7 @@ export default defineComponent({
       notValidLogin: false
     });
 
-    function onSubmit() {
+    async function onSubmit() {
       const authService = new AuthService(form);
       const errors = authService.validateForm();
       const result = Object.values(errors).some(item => item === true);
@@ -74,7 +77,18 @@ export default defineComponent({
         return validationError;
       }
 
-      authService.loginRequest();
+      const { data, status } = await authService.loginRequest();
+
+      if (status === 200) {
+        if (!data.status) {
+          const msg = authService.changeCodeToMessage(data.error);
+          return this.$emit("showErrorMsg", msg);
+        }
+        this.$router.push({ name: "home" });
+      } else {
+        const msg = "Unexpected error, try later";
+        return this.$emit("showErrorMsg", msg);
+      }
     }
 
     return { form, validationError, onSubmit };
@@ -83,7 +97,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import "../vars";
+@import "@/vars.scss";
 .form {
   margin-top: 30px;
 

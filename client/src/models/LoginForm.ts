@@ -8,3 +8,12 @@ export interface LoginFromErrors {
   emptyPassword: boolean,
   notValidLogin: boolean
 }
+
+export interface LoginFormResponse {
+  status: number;
+  data: {
+    error: string,
+    status: boolean,
+    extraParams: Array<unknown>
+  }
+}
