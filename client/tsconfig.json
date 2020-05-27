@@ -8,6 +8,7 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "noImplicitThis": false,
     "sourceMap": true,
     "baseUrl": ".",
     "paths": {
@@ -28,7 +29,9 @@
       "@vue/compiler-ssr/dist/compiler-ssr",
       "@vue/reactivity/dist/reactivity",
       "@vue/runtime-core/dist/runtime-core",
-      "@vue/runtime-dom/dist/runtime-dom"
+      "@vue/runtime-dom/dist/runtime-dom",
+      "jest",
+      "node"
     ]
   },
   "include": [

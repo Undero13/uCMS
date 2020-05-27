@@ -51,12 +51,20 @@ module.exports = (env = {}) => ({
           'css-loader'
         ]
       },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader',
+        ],
+      },
     ],
   },
   resolve: {
     extensions: ['.ts', '.js', '.vue', '.json'],
     alias: {
-      'vue': '@vue/runtime-dom'
+      '@': path.resolve(__dirname, 'src')
     }
   },
   plugins: [

@@ -5,20 +5,20 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from "@vue/runtime-dom";
 
 export default defineComponent({
   name: "App"
 });
 </script>
 
-<style>
-:root {
-  --base-color: #4bd16f;
-}
+<style lang="scss">
+@import "../node_modules/bulma/bulma.sass";
+@import "./vars.scss";
 
-body {
-  margin: 0;
-  padding: 0;
+.is-ucms {
+  background-color: $primary-color;
+  border-color: transparent;
+  color: #fff;
 }
 </style>

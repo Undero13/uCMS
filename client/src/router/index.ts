@@ -1,7 +1,7 @@
-import {createRouter, createWebHistory, Router} from 'vue-router';
-import { AuthService } from '../services/AuthService'
-import Home from "../views/Home.view.vue";
-import Login from "../views/Login.view.vue";
+import { createRouter, createWebHistory, Router } from 'vue-router';
+import AuthService from '@/services/AuthService/AuthService';
+import Home from "@/views/Home/Home.view.vue";
+import Login from "@/views/Login/Login.view.vue";
 
 const routes = [
     {
@@ -19,13 +19,13 @@ const routes = [
     },
 ];
 
-export const router: Router = createRouter({
+const router: Router = createRouter({
     history: createWebHistory(),
-    routes
+    routes,
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(route => route.meta.requiresAuth)) {
+  if (to.matched.some((route) => route.meta.requiresAuth)) {
     if (AuthService.isLogged()) {
       next();
     } else {
@@ -33,5 +33,6 @@ router.beforeEach((to, from, next) => {
     }
   }
   next();
-})
+});
 
+export default router;
