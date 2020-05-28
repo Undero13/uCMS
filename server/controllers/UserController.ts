@@ -4,7 +4,7 @@ import {
   Get,
   Body,
   Injectable,
-} from "https://deno.land/x/alosaur/src/mod.ts";
+} from "https://deno.land/x/alosaur@v0.12.2/src/mod.ts";
 import { setCookie, delCookie } from "https://deno.land/std/http/cookie.ts";
 import { environment } from "../environment.ts";
 import { ApiUserCredentials } from "../model/ApiUserCredentials.ts";

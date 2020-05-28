@@ -12,6 +12,7 @@
 * Vue 3 beta 1
 * Vue-router alfa 9
 * Vuex beta 1
+* Jest
 * Deno
 * Alosaur
 * djwt
