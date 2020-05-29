@@ -1,7 +1,6 @@
-import { UserModel } from "../db/UserModel.ts";
-import { ApiUserRegister } from "../model/ApiUserRegister.ts";
-import { ApiUserCredentials } from "../model/ApiUserCredentials.ts";
+import { ApiUserRegister, ApiUserCredentials } from "../models/ApiUser.ts";
 import * as bcrypt from "https://deno.land/x/bcrypt@v0.2.1/mod.ts";
+import UserModel from "../db/UserModel.ts";
 
 export class AuthService {
   private msg: string;
@@ -34,13 +33,10 @@ export class AuthService {
   }
 
   public validateRegisterData(userData: ApiUserRegister): boolean {
-    const { login, password, repeatPassword } = userData;
+    const { login } = userData;
 
     if (!this.validateEmail(login)) {
       this.msg = "user.register.wrong.email";
-      return false;
-    } else if (!this.validatePassword(password, repeatPassword)) {
-      this.msg = "user.register.wrong.password";
       return false;
     }
 
@@ -48,15 +44,21 @@ export class AuthService {
   }
 
   public async createUser(userData: ApiUserRegister): Promise<string> {
-    const { login, password } = userData;
-    return await UserModel.createUser(login, this.genPasswordHash(password));
+    const { login } = userData;
+    const user = await UserModel.getUser(login);
+
+    if (user) {
+      throw Error("User already exists");
+    }
+
+    return await UserModel.createUser(login, this.genPasswordHash(login));
   }
 
   public getMessage(): string {
     return this.msg;
   }
 
-  public genPasswordHash(password: string) {
+  private genPasswordHash(password: string) {
     return bcrypt.hashSync(password);
   }
 

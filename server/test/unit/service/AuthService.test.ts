@@ -24,14 +24,3 @@ Deno.test("[service] auth.service.not.exist", async () => {
   assertEquals(status, false);
   assertEquals(message, "user.login.not.exist");
 });
-
-Deno.test("[service] auth.service.wrong.password", async () => {
-  const login = "admin@admin.com";
-  const password = "password";
-
-  const status = await authService.validateCredentials({ login, password });
-  const message = authService.getMessage();
-
-  assertEquals(status, false);
-  assertEquals(message, "user.login.wrong.password");
-});

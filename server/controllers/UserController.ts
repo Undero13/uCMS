@@ -7,10 +7,10 @@ import {
 } from "https://deno.land/x/alosaur@v0.14.0/src/mod.ts";
 import { setCookie, delCookie } from "https://deno.land/std/http/cookie.ts";
 import { environment } from "../environment.ts";
-import { ApiUserCredentials } from "../model/ApiUserCredentials.ts";
-import { ApiUserRegister } from "../model/ApiUserRegister.ts";
+import { ApiUserCredentials, ApiUserRegister } from "../models/ApiUser.ts";
 import { AuthService } from "../services/AuthService.ts";
-import { JWTokenService } from "../services/JWTokenService.ts";
+import JWTokenService from "../services/JWTokenService.ts";
+import UserModel from "../db/UserModel.ts";
 
 @Controller("/api/user") @Injectable()
 export class UserController {
@@ -19,6 +19,7 @@ export class UserController {
   constructor(
     private authService: AuthService,
     private jwtService: JWTokenService,
+    private userModel: UserModel,
   ) {
     this.cookieName = environment.jwtCookieName;
   }
@@ -37,16 +38,18 @@ export class UserController {
 
   @Post("/register") @Body()
   private async register(body: ApiUserRegister) {
-    if (this.authService.validateRegisterData(body)) {
-      const id = await this.authService.createUser(body);
-      return this.setResponse(true, "", [id]);
+    if (!this.authService.validateRegisterData(body)) {
+      return this.setResponse(false, this.authService.getMessage());
     }
 
-    return this.setResponse(false, this.authService.getMessage());
+    const id = await this.authService.createUser(body);
+    return this.setResponse(true, "", [id]);
   }
 
-  @Get("/logout")
-  private userList() {
+  @Get("/list")
+  private async userList() {
+    const userList = await this.userModel.getUserList();
+    return this.setResponse(true, "", userList);
   }
 
   @Get("/logout")
@@ -58,12 +61,12 @@ export class UserController {
   private setResponse(
     status = false,
     error = "",
-    extraParams: unknown[] = [],
+    data: unknown[] = [],
   ) {
     return {
       status,
       error,
-      extraParams,
+      data,
     };
   }
 }
