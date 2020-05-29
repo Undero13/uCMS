@@ -7,19 +7,17 @@
 ## Staff
 
 * Docker
-* Webpack 4
-* Typescript 3.8
-* Vue 3 beta 1
-* Vue-router alfa 9
-* Vuex beta 1
+* Webpack 
+* Typescript 
+* Vue 3 
+* Vue-router
+* Vuex
 * Jest
 * Deno
 * Alosaur
 * djwt
 
 ## Todos
-
- - Auth
  - Product
  - Blog
 

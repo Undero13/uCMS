@@ -1,4 +1,5 @@
 import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
+import UserHelper from "../Helpers/UserHelper.ts";
 
 const ContentTypeJson = "application/json; charset=utf-8";
 const baseUrl = "http://localhost:3000/api/user/register";
@@ -10,39 +11,17 @@ Deno.test("[http] user.register.wrong.password", async () => {
   assertEquals(response.status, 200);
   assertEquals(
     data,
-    { "status": false, "error": "user.register.wrong.email", extraParams: [] },
-  );
-});
-
-Deno.test("[http] user.register.wrong.password", async () => {
-  const requestArgument = {
-    login: "admin2@admin.com",
-    password: "fakePassword",
-    repeatPassword: "fakePassword2",
-  };
-  const response = await fetch(baseUrl, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(requestArgument),
-  });
-  const data = await response.json();
-
-  assertEquals(response.status, 200);
-  assertEquals(
-    data,
-    {
-      "status": false,
-      "error": "user.register.wrong.password",
-      extraParams: [],
-    },
+    { "status": false, "error": "user.register.wrong.email", data: [] },
   );
 });
 
 Deno.test("[http] user.register.ok", async () => {
+  await UserHelper.removeUser("admin@admin.com");
+
   const requestArgument = {
     login: "admin@admin.com",
-    password: "fakePassword123",
-    repeatPassword: "fakePassword123",
+    password: "adminPassword123",
+    repeatPassword: "adminPassword123",
   };
   const response = await fetch(baseUrl, {
     method: "POST",
@@ -54,5 +33,5 @@ Deno.test("[http] user.register.ok", async () => {
   assertEquals(response.status, 200);
   assertEquals(data.status, true);
   assertEquals(data.error, "");
-  assertEquals(!!data.extraParams.length, true);
+  assertEquals(!!data.data.length, true);
 });

@@ -1,4 +1,4 @@
-import AuthService from "./AuthService";
+import AuthService from "./AuthService.service";
 
 describe('validate credentials', () => {
     test('validate is empty', () => {

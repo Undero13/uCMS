@@ -1,6 +1,6 @@
 FROM debian:jessie-slim
 
-ARG DENO_VERSION="v1.0.1"
+ARG DENO_VERSION="v1.0.2"
 ARG DENON_VERSION="v1.9.2"
 
 WORKDIR /app
