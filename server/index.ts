@@ -1,4 +1,4 @@
-import { App } from "https://deno.land/x/alosaur@v0.12.2/src/mod.ts";
+import { App } from "https://deno.land/x/alosaur@v0.14.0/src/mod.ts";
 import { UserArea } from "./area/UserArea.ts";
 
 const app = new App({

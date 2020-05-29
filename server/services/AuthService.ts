@@ -1,7 +1,7 @@
 import { UserModel } from "../db/UserModel.ts";
 import { ApiUserRegister } from "../model/ApiUserRegister.ts";
 import { ApiUserCredentials } from "../model/ApiUserCredentials.ts";
-import * as bcrypt from "https://deno.land/x/bcrypt@v0.2.0/mod.ts";
+import * as bcrypt from "https://deno.land/x/bcrypt@v0.2.1/mod.ts";
 
 export class AuthService {
   private msg: string;
