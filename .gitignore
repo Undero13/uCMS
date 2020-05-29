@@ -7,3 +7,4 @@ server/test/.deno_plugins
 server/.deno_plugins
 .traefik
 traefik
+**.vscode

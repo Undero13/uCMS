@@ -46,6 +46,10 @@ export class UserController {
   }
 
   @Get("/logout")
+  private userList() {
+  }
+
+  @Get("/logout")
   private logout() {
     delCookie({}, this.cookieName);
     return this.setResponse(true);

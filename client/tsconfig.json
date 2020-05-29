@@ -22,6 +22,9 @@
       "dom.iterable",
       "scripthost"
     ],
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
     "types": [
       "@vue/compiler-core/dist/compiler-core",
       "@vue/compiler-dom/dist/compiler-dom",

@@ -1,6 +1,6 @@
 import cookie from 'browser-cookies';
 import environment from '@/environment.ts';
-import { LoginFormData, LoginFromErrors, LoginFormResponse } from '@/models/LoginForm.ts';
+import { LoginFormData, LoginFromErrors, LoginFormResponse } from '@/models/LoginForm.model.ts';
 import axios from 'axios';
 import qs from 'querystring';
 

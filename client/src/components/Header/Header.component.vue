@@ -1,18 +1,5 @@
-<template>
-  <object class="header" id="svg-object" data="images/logo.svg" type="image/svg+xml"></object>
-</template>
+<style lang="scss" src="./Header.component.scss"></style>
+<template src="./Header.component.html"></template>
+<script lang="ts" src="./Header.component.ts"></script>
 
-<script lang="ts">
-import { defineComponent, ref } from "@vue/runtime-dom";
 
-export default defineComponent({
-  name: "Header"
-});
-</script>
-
-<style lang="scss">
-.header {
-  width: 100%;
-  margin-left: -20px;
-}
-</style>
