@@ -7,10 +7,10 @@ export default class CookieService {
   }
 
   public static setToken(token: string) {
-    cookie.set(environment.jwtCookieName, token)
+    cookie.set(environment.jwtCookieName, token);
   }
 
   public static deleteToken() {
-    cookie.erase(environment.jwtCookieName)
+    cookie.erase(environment.jwtCookieName);
   }
 }

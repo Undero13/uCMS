@@ -5,6 +5,7 @@ import qs from 'querystring';
 
 export default class AuthService {
   private login: string;
+
   private password: string;
 
   constructor(data: LoginFormData) {
