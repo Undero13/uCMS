@@ -7,7 +7,8 @@
     "start": "webpack-dev-server -d --host 0.0.0.0",
     "build": "webpack --env.production",
     "lint": "eslint src -c .eslintrc.js",
-    "test": "jest --passWithNoTests "
+    "test": "jest --passWithNoTests",
+    "generate": "node_modules/vue-generator/generate.js"
   },
   "author": "Patryk Loter",
   "license": "ISC",
@@ -53,6 +54,7 @@
     "ts-jest": "^26.0.0",
     "ts-loader": "^6.2.2",
     "typescript": "^3.9.3",
+    "vue-generator": "git+https://github.com/Undero13/vue-generator.git",
     "vue-jest": "5.0.0-alpha.0",
     "vue-loader": "^16.0.0-beta.2",
     "webpack": "^4.43.0",
