@@ -19,6 +19,6 @@ const count = await users.count({ login: { $eq: "admin@admin.com" } });
 if (count < 1) {
   const insertId = await users.insertOne({
     login: "admin@admin.com",
-    password: "$2a$10$leu0jbftmzlUpt4M/OS76eom5z8HKIFGrF1jNecnGdVUj3Tt7gu2G",
+    password: "$2a$10$ygFLYW2tj5/GIcCwAE8BZesEYrUa7VYgqRog6N4gXpSF4ceVRuNKa",
   });
 }

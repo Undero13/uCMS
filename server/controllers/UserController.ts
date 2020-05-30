@@ -5,7 +5,6 @@ import {
   Body,
   Injectable,
 } from "https://deno.land/x/alosaur@v0.14.0/src/mod.ts";
-import { setCookie, delCookie } from "https://deno.land/std/http/cookie.ts";
 import { environment } from "../environment.ts";
 import { ApiUserCredentials, ApiUserRegister } from "../models/ApiUser.ts";
 import { AuthService } from "../services/AuthService.ts";
@@ -31,9 +30,7 @@ export class UserController {
     }
 
     const token = this.jwtService.makeJWToken(body.login);
-    setCookie({}, { name: this.cookieName, value: token, httpOnly: true });
-
-    return this.setResponse(true);
+    return this.setResponse(true, "", [{ token }]);
   }
 
   @Post("/register") @Body()
@@ -50,12 +47,6 @@ export class UserController {
   private async userList() {
     const userList = await this.userModel.getUserList();
     return this.setResponse(true, "", userList);
-  }
-
-  @Get("/logout")
-  private logout() {
-    delCookie({}, this.cookieName);
-    return this.setResponse(true);
   }
 
   private setResponse(

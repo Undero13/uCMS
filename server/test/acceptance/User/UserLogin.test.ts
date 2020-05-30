@@ -56,10 +56,10 @@ Deno.test("[http] user login wrong.password", async () => {
   );
 });
 
-Deno.test("[http] user correct login correct", async () => {
+Deno.test("[http] user correct login", async () => {
   const requestArgument = {
     login: "admin@admin.com",
-    password: "adminPassword123",
+    password: "admin@admin.com",
   };
   const response = await fetch(baseUrl, {
     method: "POST",
@@ -69,5 +69,7 @@ Deno.test("[http] user correct login correct", async () => {
   const data = await response.json();
 
   assertEquals(response.status, 200);
-  assertEquals(data, { "status": true, "error": "", data: [] });
+  assertEquals(data.status, true);
+  assertEquals(data.error, "");
+  assertEquals(!!data.data[0].token, true);
 });

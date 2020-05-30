@@ -20,8 +20,6 @@ Deno.test("[http] user.register.ok", async () => {
 
   const requestArgument = {
     login: "admin@admin.com",
-    password: "adminPassword123",
-    repeatPassword: "adminPassword123",
   };
   const response = await fetch(baseUrl, {
     method: "POST",

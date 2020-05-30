@@ -1,6 +1,7 @@
 import AuthService from "@/services/AuthService/AuthService.service.ts";
 import { defineComponent, reactive } from "@vue/runtime-dom";
 import { LoginFormData , LoginFromErrors } from "@/models/LoginForm.model.ts";
+import CookieService from '@/services/CookieService/CookieService.service';
 
 
 export default defineComponent({
@@ -38,6 +39,8 @@ export default defineComponent({
           return this.$emit("showErrorMsg", msg);
         }
 
+        const { token } = data.data[0];
+        CookieService.setToken(token);
         return this.$router.push({ name: "home" });
       }
 

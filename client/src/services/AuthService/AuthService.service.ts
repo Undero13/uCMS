@@ -1,4 +1,3 @@
-import cookie from 'browser-cookies';
 import environment from '@/environment.ts';
 import { LoginFormData, LoginFromErrors, LoginFormResponse } from '@/models/LoginForm.model.ts';
 import axios from 'axios';
@@ -6,16 +5,11 @@ import qs from 'querystring';
 
 export default class AuthService {
   private login: string;
-
   private password: string;
 
   constructor(data: LoginFormData) {
     this.login = data.login;
     this.password = data.password;
-  }
-
-  public static isLogged(): boolean {
-    return !!cookie.get(environment.jwtCookieName);
   }
 
   public validateForm(): LoginFromErrors {

@@ -14,6 +14,6 @@ export interface LoginFormResponse {
   data: {
     error: string,
     status: boolean,
-    data: Array<unknown>
+    data: Array<any>
   }
 }

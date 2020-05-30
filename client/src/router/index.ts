@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, Router } from 'vue-router';
-import AuthService from '@/services/AuthService/AuthService.service';
+import CookieService from '@/services/CookieService/CookieService.service';
 import Home from "@/views/Home/Home.view.vue";
 import Login from "@/views/Login/Login.view.vue";
 
@@ -26,7 +26,7 @@ const router: Router = createRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some((route) => route.meta.requiresAuth)) {
-    if (AuthService.isLogged()) {
+    if (CookieService.isLogged()) {
       next();
     } else {
       next({ path: '/login' });
