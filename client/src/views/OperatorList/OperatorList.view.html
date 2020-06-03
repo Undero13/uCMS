@@ -1,0 +1,8 @@
+<Navigation />
+
+<template v-if="operatorList">
+  <OperatorListTable :operatorList="operatorList" />
+</template>
+<template v-else>
+  <div class="is-loading"></div>
+</template>

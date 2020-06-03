@@ -1,0 +1,11 @@
+.table-container {
+  margin-top:2em;
+
+  .table {
+    width: 100%;
+
+    &__caption {
+      font-size: 2rem;
+    }
+  }
+}
