@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, Router } from 'vue-router';
 import CookieService from '@/services/CookieService/CookieService.service';
 import Home from "@/views/Home/Home.view.vue";
 import Login from "@/views/Login/Login.view.vue";
+import OperatorList from "@/views/OperatorList/OperatorList.view.vue";
 
 const routes = [
     {
@@ -16,6 +17,14 @@ const routes = [
       path: '/login',
       component: Login,
       name: 'login',
+    },
+    {
+      path: '/operator-list',
+      component: OperatorList,
+      name: 'operatorList',
+      meta: {
+        requiresAuth: true,
+      },
     },
 ];
 

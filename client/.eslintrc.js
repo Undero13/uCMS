@@ -18,6 +18,7 @@ module.exports = {
     "@typescript-eslint/camelcase": "off",
     "semi": [2, "always"],
     "import/extensions": "off",
-    "class-methods-use-this": "off"
+    "class-methods-use-this": "off",
+    "no-return-assign": "off"
   }
 };
