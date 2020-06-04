@@ -1,5 +1,7 @@
 ## Start
 - docker-compose up --build -d
+- docker exec -it deno bash
+- deno run --allow-all --unstable generateData.ts
 
 ## Stop
   - docker-compose down
@@ -8,6 +10,7 @@
 
 * Docker
 * Webpack 
+* MongoDB
 * Typescript 
 * Vue 3 
 * Vue-router

@@ -4,7 +4,7 @@ import {
   Get,
   Body,
   Injectable,
-} from "https://deno.land/x/alosaur@v0.14.0/src/mod.ts";
+} from "https://deno.land/x/alosaur@v0.17.0/mod.ts";
 import { environment } from "../environment.ts";
 import { ApiUserCredentials, ApiUserRegister } from "../models/ApiUser.ts";
 import { AuthService } from "../services/AuthService.ts";
