@@ -55,7 +55,7 @@
     "ts-loader": "^6.2.2",
     "typescript": "^3.9.3",
     "vue-generator": "git+https://github.com/Undero13/vue-generator.git",
-    "vue-jest": "5.0.0-alpha.0",
+    "vue-jest": "^5.0.0-alpha.0",
     "vue-loader": "^16.0.0-beta.2",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
