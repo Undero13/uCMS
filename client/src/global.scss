@@ -1,0 +1,50 @@
+@import "../node_modules/bulma/bulma.sass";
+@import "./vars.scss";
+
+.is-ucms {
+  background-color: $primary-color;
+  border-color: transparent;
+  color: #fff;
+  transition: background-color 0.2s;
+
+  &:hover {
+    color: #fff;
+    background-color: darken($primary-color, 10);
+  }
+}
+
+.is-loading {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  vertical-align: text-bottom;
+  border: 0.25em solid $primary-color;
+  border-right-color: transparent;
+  border-radius: 50%;
+  -webkit-animation: spinner-border 0.75s linear infinite;
+  animation: spinner 0.75s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.overlay {
+  overflow: hidden;
+
+  ::after {
+    content: "";
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.13);
+    top: 0;
+    left: 0;
+    z-index: 10000;
+  }
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}

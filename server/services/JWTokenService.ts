@@ -3,8 +3,8 @@ import {
   setExpiration,
   Jose,
   Payload,
-} from "https://deno.land/x/djwt@v0.9.0/create.ts";
-import { validateJwt } from "https://deno.land/x/djwt@v0.9.0/validate.ts";
+  validateJwt,
+} from "../deno_modules.ts";
 import { environment } from "../environment.ts";
 
 export default class JWTokenService {

@@ -8,7 +8,6 @@ services:
       context: ./build/deno
       args: 
         - DENO_VERSION=v1.0.0-rc3
-    # command: "deno run --allow-net --allow-read --allow-write --config=tsconfig.json index.ts"
     command: "denon index.ts"
     labels:
       - "traefik.enable=true"

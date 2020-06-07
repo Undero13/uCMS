@@ -1,4 +1,4 @@
-import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
+import { assertEquals } from "../../../deno_modules.ts";
 import UserHelper from "../Helpers/UserHelper.ts";
 
 const ContentTypeJson = "application/json; charset=utf-8";

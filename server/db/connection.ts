@@ -1,4 +1,4 @@
-import { MongoClient } from "https://deno.land/x/mongo@v0.7.0/mod.ts";
+import { MongoClient } from "../deno_modules.ts";
 import { environment } from "../environment.ts";
 
 const { mongoUser, mongoPassword, mongoPort } = environment;
