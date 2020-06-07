@@ -10,6 +10,6 @@ test("it can be mount", () => {
 test("it have two children", () => {
   const wrapper = shallowMount(Login);
 
-  expect(wrapper.html().includes("<header-stub>")).toBeTruthy();
+  expect(wrapper.html().includes("<logo-stub>")).toBeTruthy();
   expect(wrapper.html().includes("<login-form-stub>")).toBeTruthy();
 });
