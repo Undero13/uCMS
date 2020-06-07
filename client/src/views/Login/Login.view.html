@@ -1,6 +1,6 @@
 <main class="login">
   <div class="login__form">
-    <Header></Header>
+    <header></header>
     <LoginForm @showErrorMsg="setMessage($event)"></LoginForm>
     <Notification v-if="msg" :msg="msg" :type="'error'"></Notification>
   </div>

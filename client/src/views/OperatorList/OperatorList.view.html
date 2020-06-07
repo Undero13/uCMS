@@ -4,7 +4,7 @@
   <button class="button is-ucms" @click="showModal = true">
     Add new operator
   </button>
-  <Table :data="operatorList"></Table>
+  <table :data="operatorList"></table>
 </template>
 <template v-else>
   <div class="is-loading"></div>
@@ -16,6 +16,6 @@
   </template>
 
   <template v-slot:body>
-    <p style="color:red;font-size:60px">TEST</p>
+    <p style="color: red; font-size: 60px;">TEST</p>
   </template>
 </Modal>

@@ -4,7 +4,7 @@ export default defineComponent({
   name: "Modal",
   setup() {
     const overlay = ref(true);
-    onUnmounted(() => overlay.value = false);
+    onUnmounted(() => (overlay.value = false));
 
     function modalClose() {
       return this.$emit("modalClose");
@@ -12,7 +12,7 @@ export default defineComponent({
 
     return {
       overlay,
-      modalClose
+      modalClose,
     };
   },
 });

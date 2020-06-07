@@ -1,14 +1,14 @@
-@import '@/vars.scss';
+@import "@/vars.scss";
 
 .overlay {
   position: absolute;
   width: 100vw;
   height: 100vh;
-  background-color:$overlay-background;
+  background-color: $overlay-background;
   top: 0;
   left: 0;
   z-index: 100;
-  transition: opacity .1s;
+  transition: opacity 0.1s;
   transform: translateY(0);
   opacity: 1;
 }

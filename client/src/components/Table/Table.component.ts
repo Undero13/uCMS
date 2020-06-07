@@ -5,7 +5,7 @@ export default defineComponent({
   props: {
     data: {
       type: Object,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 });

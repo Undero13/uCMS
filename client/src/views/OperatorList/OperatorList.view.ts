@@ -3,7 +3,7 @@ import Navigation from "@/components/Navigation/Navigation.component.vue";
 import Table from "@/components/Table/Table.component.vue";
 import Modal from "@/components/Modal/Modal.component.vue";
 import storeOperator from "@/store/operator/store.ts";
-import { OperatorTable } from '@/models/Operators.model';
+import { OperatorTable } from "@/models/Operators.model";
 
 export default defineComponent({
   name: "OperatorList",
@@ -19,11 +19,11 @@ export default defineComponent({
     onBeforeMount(() => {
       storeOperator.dispatch("fetchOperators");
       setTimeout(
-        () => (
-          operatorList.value = {
+        () =>
+          (operatorList.value = {
             caption: "Operator List",
             headers: ["ID", "e-mail"],
-            rows: storeOperator.getters.getOperatorList
+            rows: storeOperator.getters.getOperatorList,
           }),
         1000
       );
