@@ -38,21 +38,6 @@ input {
   left: 50%;
 }
 
-.overlay {
-  overflow: hidden;
-
-  ::after {
-    content: "";
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.13);
-    top: 0;
-    left: 0;
-    z-index: 10000;
-  }
-}
-
 @keyframes spinner {
   to {
     transform: rotate(360deg);

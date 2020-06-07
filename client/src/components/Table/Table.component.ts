@@ -1,10 +1,10 @@
 import { defineComponent } from "@vue/runtime-dom";
 
 export default defineComponent({
-  name: "OperatorListTable",
+  name: "Table",
   props: {
-    operatorList: {
-      type: Array,
+    data: {
+      type: Object,
       required: true,
     },
   },

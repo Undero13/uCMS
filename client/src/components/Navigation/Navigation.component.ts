@@ -1,11 +1,11 @@
 import { defineComponent, ref } from "@vue/runtime-dom";
-import Header from "@/components/Header/Header.component.vue";
+import Logo from "@/components/Logo/Logo.component.vue";
 import List from "@/components/List/List.component.vue";
 
 export default defineComponent({
   name: "Navigation",
   components: {
-    Header,
+    Logo,
     List,
   },
   setup() {

@@ -1,0 +1,36 @@
+@import "@/vars.scss";
+
+.overlay {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: $overlay-background;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  transition: opacity 0.1s;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.inactive {
+  transform: translateY(-100vh);
+  opacity: 0;
+}
+
+.modal.u-modal {
+  display: block;
+  z-index: 1000;
+  transform: translateY(40%);
+
+  .modal-content {
+    background-color: #fff;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+  }
+
+  .modal-card-head {
+    background: $primary-color;
+    text-transform: uppercase;
+  }
+}

@@ -1,15 +1,21 @@
 <Navigation></Navigation>
 
 <template v-if="operatorList">
-  <button class="button is-ucms" @click="showOperatorModal">
+  <button class="button is-ucms" @click="showModal = true">
     Add new operator
   </button>
-  <OperatorListTable :operatorList="operatorList"></OperatorListTable>
+  <table :data="operatorList"></table>
 </template>
 <template v-else>
   <div class="is-loading"></div>
 </template>
 
-<Modal v-if="showModal">
-  some-text
+<Modal v-if="showModal" @modalClose="showModal = false">
+  <template v-slot:header>
+    <p class="modal-card-title">Add new operator</p>
+  </template>
+
+  <template v-slot:body>
+    <p style="color: red; font-size: 60px;">TEST</p>
+  </template>
 </Modal>
