@@ -1,9 +1,9 @@
-export type ApiUserCredentials = {
+export type UserCredentials = {
   login: string;
   password: string;
 };
 
-export type ApiUserRegister = {
+export type UserRegister = {
   login: string;
   password?: string;
   repeatPassword?: string;

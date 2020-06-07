@@ -1,12 +1,12 @@
 import { users } from "./connection.ts";
-import { ApiUserCredentials } from "../models/ApiUser.ts";
+import { UserCredentials } from "../models/ApiUser.ts";
 import { UserDbRecord } from "../models/ApiUser.ts";
-import { uuid } from "https://deno.land/x/uuid@v0.1.2/mod.ts";
+import { uuid } from "../deno_modules.ts";
 
 export default class UserModel {
   public static async getUser(
     userLogin: string,
-  ): Promise<ApiUserCredentials | null> {
+  ): Promise<UserCredentials | null> {
     return await users.findOne({ login: { $eq: userLogin } });
   }
 

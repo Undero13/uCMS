@@ -1,5 +1,5 @@
 import { AuthService } from "../../../services/AuthService.ts";
-import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
+import { assertEquals } from "../../../deno_modules.ts";
 
 const authService = new AuthService();
 

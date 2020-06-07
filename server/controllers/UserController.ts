@@ -1,30 +1,20 @@
-import {
-  Controller,
-  Post,
-  Get,
-  Body,
-  Injectable,
-} from "https://deno.land/x/alosaur@v0.17.0/mod.ts";
-import { environment } from "../environment.ts";
-import { ApiUserCredentials, ApiUserRegister } from "../models/ApiUser.ts";
+import { Controller, Post, Get, Body, Injectable } from "../deno_modules.ts";
+import { UserCredentials, UserRegister } from "../models/ApiUser.ts";
+import { Response, ResponseData } from "../models/ApiResponse.ts";
 import { AuthService } from "../services/AuthService.ts";
 import JWTokenService from "../services/JWTokenService.ts";
 import UserModel from "../db/UserModel.ts";
 
 @Controller("/api/user") @Injectable()
-export class UserController {
-  private cookieName: string;
-
+export class UserController implements Response {
   constructor(
     private authService: AuthService,
     private jwtService: JWTokenService,
     private userModel: UserModel,
-  ) {
-    this.cookieName = environment.jwtCookieName;
-  }
+  ) {}
 
   @Post("/login") @Body()
-  private async login(body: ApiUserCredentials) {
+  private async login(body: UserCredentials) {
     if (!await this.authService.validateCredentials(body)) {
       return this.setResponse(false, this.authService.getMessage());
     }
@@ -34,7 +24,7 @@ export class UserController {
   }
 
   @Post("/register") @Body()
-  private async register(body: ApiUserRegister) {
+  private async register(body: UserRegister) {
     if (!this.authService.validateRegisterData(body)) {
       return this.setResponse(false, this.authService.getMessage());
     }
@@ -44,20 +34,12 @@ export class UserController {
   }
 
   @Get("/list")
-  private async userList() {
+  private async getList() {
     const userList = await this.userModel.getUserList();
     return this.setResponse(true, "", userList);
   }
 
-  private setResponse(
-    status = false,
-    error = "",
-    data: unknown[] = [],
-  ) {
-    return {
-      status,
-      error,
-      data,
-    };
+  setResponse(status = false, error = "", data: unknown[] = []): ResponseData {
+    return { status, error, data };
   }
 }

@@ -1,4 +1,4 @@
-import { Area } from "https://deno.land/x/alosaur@v0.17.0/mod.ts";
+import { Area } from "../deno_modules.ts";
 import { UserController } from "../controllers/UserController.ts";
 
 @Area({

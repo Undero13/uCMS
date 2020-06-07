@@ -1,4 +1,4 @@
-import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
+import { assertEquals } from "../../../deno_modules.ts";
 
 const ContentTypeJson = "application/json; charset=utf-8";
 const baseUrl = "http://localhost:3000/api/user/list";

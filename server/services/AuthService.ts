@@ -1,5 +1,5 @@
-import { ApiUserRegister, ApiUserCredentials } from "../models/ApiUser.ts";
-import * as bcrypt from "https://deno.land/x/bcrypt@v0.2.1/mod.ts";
+import { UserRegister, UserCredentials } from "../models/ApiUser.ts";
+import { bcrypt } from "../deno_modules.ts";
 import UserModel from "../db/UserModel.ts";
 
 export class AuthService {
@@ -10,7 +10,7 @@ export class AuthService {
   }
 
   public async validateCredentials(
-    userData: ApiUserCredentials,
+    userData: UserCredentials,
   ): Promise<boolean> {
     const { login, password } = userData;
 
@@ -32,7 +32,7 @@ export class AuthService {
     return !this.msg;
   }
 
-  public validateRegisterData(userData: ApiUserRegister): boolean {
+  public validateRegisterData(userData: UserRegister): boolean {
     const { login } = userData;
 
     if (!this.validateEmail(login)) {
@@ -43,7 +43,7 @@ export class AuthService {
     return true;
   }
 
-  public async createUser(userData: ApiUserRegister): Promise<string> {
+  public async createUser(userData: UserRegister): Promise<string> {
     const { login } = userData;
     const user = await UserModel.getUser(login);
 
