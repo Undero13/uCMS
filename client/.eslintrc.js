@@ -19,5 +19,7 @@ module.exports = {
     "comma-dangle": "off",
     "operator-linebreak": "off",
     "@typescript-eslint/quotes": "off",
+    "@typescript-eslint/indent": "off",
+    "implicit-arrow-linebreak": "off",
   },
 };

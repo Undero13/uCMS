@@ -19,11 +19,12 @@ export default defineComponent({
     onBeforeMount(() => {
       storeOperator.dispatch("fetchOperators");
       setTimeout(
-        () => (operatorList.value = {
-          caption: "Operator List",
-          headers: ["ID", "e-mail"],
-          rows: storeOperator.getters.getOperatorList,
-        }),
+        () =>
+          (operatorList.value = {
+            caption: "Operator List",
+            headers: ["ID", "e-mail"],
+            rows: storeOperator.getters.getOperatorList,
+          }),
         1000
       );
     });
