@@ -1,0 +1,18 @@
+<div class="table-container">
+<table class="table is-striped">
+  <template v-if="data.caption">
+    <caption class="table__caption">{{data.caption}}</caption>
+  </template>
+  <thead>
+    <tr>
+      <th v-for="header in data.headers">{{header}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr v-for="row in data.rows">
+      <td>{{ row.id }}</td>
+      <td>{{ row.login }}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
