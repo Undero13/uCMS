@@ -3,6 +3,6 @@ export interface State {
 }
 
 export interface Operator {
-  id: string,
-  login: string
+  id: string;
+  login: string;
 }

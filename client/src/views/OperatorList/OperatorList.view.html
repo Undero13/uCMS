@@ -1,13 +1,14 @@
-<Navigation />
+<Navigation></Navigation>
 
 <template v-if="operatorList">
-  <button class="button is-ucms" @click="showOperatorModal">Add new operator</button>
-  <OperatorListTable :operatorList="operatorList" />
+  <button class="button is-ucms" @click="showOperatorModal">
+    Add new operator
+  </button>
+  <OperatorListTable :operatorList="operatorList"></OperatorListTable>
 </template>
 <template v-else>
   <div class="is-loading"></div>
 </template>
-
 
 <Modal v-if="showModal">
   some-text

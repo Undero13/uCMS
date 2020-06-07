@@ -1,36 +1,36 @@
-import { createRouter, createWebHistory, Router } from 'vue-router';
-import CookieService from '@/services/CookieService/CookieService.service';
+import { createRouter, createWebHistory, Router } from "vue-router";
+import CookieService from "@/services/CookieService/CookieService.service";
 import Home from "@/views/Home/Home.view.vue";
 import Login from "@/views/Login/Login.view.vue";
 import OperatorList from "@/views/OperatorList/OperatorList.view.vue";
 
 const routes = [
-    {
-      path: '/',
-      component: Home,
-      name: 'home',
-      meta: {
-        requiresAuth: true,
-      },
+  {
+    path: "/",
+    component: Home,
+    name: "home",
+    meta: {
+      requiresAuth: true,
     },
-    {
-      path: '/login',
-      component: Login,
-      name: 'login',
+  },
+  {
+    path: "/login",
+    component: Login,
+    name: "login",
+  },
+  {
+    path: "/operator-list",
+    component: OperatorList,
+    name: "operatorList",
+    meta: {
+      requiresAuth: true,
     },
-    {
-      path: '/operator-list',
-      component: OperatorList,
-      name: 'operatorList',
-      meta: {
-        requiresAuth: true,
-      },
-    },
+  },
 ];
 
 const router: Router = createRouter({
-    history: createWebHistory(),
-    routes,
+  history: createWebHistory(),
+  routes,
 });
 
 router.beforeEach((to, from, next) => {
@@ -38,7 +38,7 @@ router.beforeEach((to, from, next) => {
     if (CookieService.isLogged()) {
       next();
     } else {
-      next({ path: '/login' });
+      next({ path: "/login" });
     }
   }
   next();

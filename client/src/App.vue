@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-view />
+    <router-view></router-view>
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 import { defineComponent } from "@vue/runtime-dom";
 
 export default defineComponent({
-  name: "App"
+  name: "App",
 });
 </script>
 

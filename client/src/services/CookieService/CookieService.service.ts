@@ -1,5 +1,5 @@
-import cookie from 'browser-cookies';
-import environment from '@/environment.ts';
+import cookie from "browser-cookies";
+import environment from "@/environment.ts";
 
 export default class CookieService {
   public static isLogged(): boolean {

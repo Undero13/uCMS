@@ -1,7 +1,11 @@
-import environment from '@/environment.ts';
-import { LoginFormData, LoginFromErrors, LoginFormResponse } from '@/models/LoginForm.model.ts';
-import axios from 'axios';
-import qs from 'querystring';
+import environment from "@/environment.ts";
+import {
+  LoginFormData,
+  LoginFromErrors,
+  LoginFormResponse,
+} from "@/models/LoginForm.model.ts";
+import axios from "axios";
+import qs from "querystring";
 
 export default class AuthService {
   private login: string;
@@ -47,7 +51,7 @@ export default class AuthService {
 
     const config = {
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
+        "Content-Type": "application/x-www-form-urlencoded",
       },
     };
     const res = await axios.post(url, qs.stringify(credentials), config);
@@ -55,13 +59,13 @@ export default class AuthService {
   }
 
   public changeCodeToMessage(code: string) {
-    let msg = '';
+    let msg = "";
 
-    if (code === 'user.login.empty.credentials') {
+    if (code === "user.login.empty.credentials") {
       msg = "Login and password are required!";
-    } else if (code === 'user.login.not.exist') {
+    } else if (code === "user.login.not.exist") {
       msg = "User not exist!";
-    } else if (code === 'user.login.wrong.password') {
+    } else if (code === "user.login.wrong.password") {
       msg = "Password is not correct!";
     }
 

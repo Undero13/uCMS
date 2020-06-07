@@ -1,15 +1,15 @@
-const path = require('path');
-const WebpackBar = require('webpackbar');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const { VueLoaderPlugin } = require('vue-loader');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const path = require("path");
+const WebpackBar = require("webpackbar");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const { VueLoaderPlugin } = require("vue-loader");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = (env = {}) => ({
-  context: path.resolve(__dirname, 'src'),
-  mode: process.env.production ? 'production' : 'development',
+  context: path.resolve(__dirname, "src"),
+  mode: process.env.production ? "production" : "development",
   entry: {
-    app: './app.ts'
+    app: "./app.ts",
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -20,12 +20,12 @@ module.exports = (env = {}) => ({
     rules: [
       {
         test: /\.vue$/,
-        use: 'vue-loader'
+        use: "vue-loader",
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: "babel-loader"
+        loader: "babel-loader",
       },
       {
         test: /\.ts$/,
@@ -33,79 +33,74 @@ module.exports = (env = {}) => ({
         use: [
           {
             loader: "babel-loader",
-            options: { babelrc: true }
+            options: { babelrc: true },
           },
           {
             loader: "ts-loader",
-            options: { appendTsSuffixTo: [/\.vue$/] }
-          }
-        ]
+            options: { appendTsSuffixTo: [/\.vue$/] },
+          },
+        ],
       },
       {
         test: /\.css$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
-            options: { hmr: !process.env.production }
+            options: { hmr: !process.env.production },
           },
-          'css-loader'
-        ]
+          "css-loader",
+        ],
       },
       {
         test: /\.s[ac]ss$/i,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader',
-        ],
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
     ],
   },
   resolve: {
-    extensions: ['.ts', '.js', '.vue', '.json'],
+    extensions: [".ts", ".js", ".vue", ".json"],
     alias: {
-      '@': path.resolve(__dirname, 'src')
-    }
+      "@": path.resolve(__dirname, "src"),
+    },
   },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: './public/index.html'
+      template: "./public/index.html",
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].css'
+      filename: "[name].css",
     }),
     new WebpackBar(),
     new VueLoaderPlugin(),
   ],
   optimization: {
-    runtimeChunk: 'single',
+    runtimeChunk: "single",
     splitChunks: {
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all'
-        }
-      }
-    }
+          name: "vendors",
+          chunks: "all",
+        },
+      },
+    },
   },
-  devtool: 'source-map',
+  devtool: "source-map",
   devServer: {
-    contentBase: path.join(__dirname, 'src/public'),
+    contentBase: path.join(__dirname, "src/public"),
     publicPath: process.env.BASE_URL,
-    index: './index.html',
+    index: "./index.html",
     hot: true,
-    stats: 'minimal',
+    stats: "minimal",
     port: 4200,
     quiet: true,
     compress: true,
     disableHostCheck: true,
     overlay: {
       warnings: true,
-      errors: true
+      errors: true,
     },
     historyApiFallback: true,
   },
 });
-

@@ -4,9 +4,9 @@ export default defineComponent({
   name: "Modal",
   setup() {
     watchEffect(() => {
-      document.body.classList.add('overlay');
+      document.body.classList.add("overlay");
     });
 
-    onUnmounted(() => document.body.classList.remove('overlay'));
+    onUnmounted(() => document.body.classList.remove("overlay"));
   },
 });

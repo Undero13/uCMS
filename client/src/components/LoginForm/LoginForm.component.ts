@@ -1,8 +1,7 @@
 import AuthService from "@/services/AuthService/AuthService.service.ts";
 import { defineComponent, reactive } from "@vue/runtime-dom";
-import { LoginFormData , LoginFromErrors } from "@/models/LoginForm.model.ts";
-import CookieService from '@/services/CookieService/CookieService.service';
-
+import { LoginFormData, LoginFromErrors } from "@/models/LoginForm.model.ts";
+import CookieService from "@/services/CookieService/CookieService.service";
 
 export default defineComponent({
   name: "LoginForm",

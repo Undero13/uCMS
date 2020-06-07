@@ -1,15 +1,25 @@
 @import "../node_modules/bulma/bulma.sass";
 @import "./vars.scss";
 
+a,
+button,
+input {
+  &:focus {
+    outline-color: rgb(16, 16, 16);
+  }
+}
+
 .is-ucms {
   background-color: $primary-color;
   border-color: transparent;
   color: #fff;
   transition: background-color 0.2s;
+  border: 0;
 
   &:hover {
     color: #fff;
     background-color: darken($primary-color, 10);
+    border: 0;
   }
 }
 
