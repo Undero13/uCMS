@@ -1,0 +1,29 @@
+<li v-if="item.type === 'link'" :class="item.classItem">
+  <ItemLink v-for="link in item.links" :data="link"></ItemLink>
+</li>
+
+<li v-if="item.type === 'item'" :class="item.classItem">
+  {{ item.content }}
+</li>
+
+<li
+  v-if="item.type === 'dropdown'"
+  :class="item.classItem"
+  class="has-dropdown is-hoverable"
+  @mouseover="showDropdown = true"
+  @mouseout="showDropdown = false"
+>
+  <button
+    class="button-menu"
+    aria-haspopup="true"
+    :aria-expanded="showDropdown"
+    @keydown.enter="showDropdown = !showDropdown"
+  >
+    {{ item.content }}
+  </button>
+  <ul class="navbar-dropdown" :class="{active: showDropdown}">
+    <li v-for="link in item.links">
+      <ItemLink :data="link"></ItemLink>
+    </li>
+  </ul>
+</li>
