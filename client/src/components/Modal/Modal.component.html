@@ -1,3 +1,17 @@
-<div>
-  <slot></slot>
+<div :class="{inactive: !overlay}" class="overlay"></div>
+
+<div class="modal u-modal">
+  <div class="modal-content">
+    <header class="modal-card-head">
+      <slot name="header"></slot>
+      <button class="delete" aria-label="close" @click="modalClose"></button>
+    </header>
+    <div class="modal-card-body">
+      <slot name="body"></slot>
+    </div>
+    <footer class="modal-card-foot">
+      <button class="button is-ucms">Save</button>
+      <button class="button" @click="modalClose">Cancel</button>
+    </footer>
+  </div>
 </div>

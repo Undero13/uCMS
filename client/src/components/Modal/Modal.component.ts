@@ -1,12 +1,18 @@
-import { defineComponent, watchEffect, onUnmounted } from "@vue/runtime-dom";
+import { defineComponent, ref, onUnmounted } from "@vue/runtime-dom";
 
 export default defineComponent({
   name: "Modal",
   setup() {
-    watchEffect(() => {
-      document.body.classList.add("overlay");
-    });
+    const overlay = ref(true);
+    onUnmounted(() => overlay.value = false);
 
-    onUnmounted(() => document.body.classList.remove("overlay"));
+    function modalClose() {
+      return this.$emit("modalClose");
+    }
+
+    return {
+      overlay,
+      modalClose
+    };
   },
 });
