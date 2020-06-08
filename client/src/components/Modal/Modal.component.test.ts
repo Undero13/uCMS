@@ -1,8 +1,17 @@
 import { shallowMount } from "@vue/test-utils";
+import { h } from '@vue/runtime-dom';
 import Modal from "./Modal.component.vue";
 
-test("it can be mount", () => {
-  const wrapper = shallowMount(Modal);
+describe("modal component", () => {
+  const slots = {
+    header: h('h1', {}, 'Test title'),
+    body: h('p', {}, 'Test desc'),
+  };
+  const wrapper = shallowMount(Modal, { slots });
 
-  expect(wrapper).toBeInstanceOf(Object);
+  test('it can be mounted', () => expect(wrapper).toBeInstanceOf(Object));
+  test('it can set slot', () => {
+    expect(wrapper.find('.modal-card-head').text()).toBe('Test title');
+    expect(wrapper.find('.modal-card-body').text()).toBe('Test desc');
+  });
 });

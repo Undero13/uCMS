@@ -14,8 +14,7 @@
     </thead>
     <tbody>
       <tr v-for="row in data.rows">
-        <td>{{ row.id }}</td>
-        <td>{{ row.login }}</td>
+        <td v-for="attr in row">{{ attr }}</td>
       </tr>
     </tbody>
   </table>

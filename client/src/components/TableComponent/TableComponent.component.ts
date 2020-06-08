@@ -1,7 +1,7 @@
 import { defineComponent } from "@vue/runtime-dom";
 
 export default defineComponent({
-  name: "Table",
+  name: "TableComponent",
   props: {
     data: {
       type: Object,

@@ -4,7 +4,7 @@
   <button class="button is-ucms" @click="showModal = true">
     Add new operator
   </button>
-  <table :data="operatorList"></table>
+  <TableComponent :data="operatorList"></TableComponent>
 </template>
 <template v-else>
   <div class="is-loading"></div>

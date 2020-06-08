@@ -1,6 +1,6 @@
 import { defineComponent, onBeforeMount, ref } from "@vue/runtime-dom";
 import Navigation from "@/components/Navigation/Navigation.component.vue";
-import Table from "@/components/Table/Table.component.vue";
+import TableComponent from "@/components/TableComponent/TableComponent.component.vue";
 import Modal from "@/components/Modal/Modal.component.vue";
 import storeOperator from "@/store/operator/store.ts";
 import { OperatorTable } from "@/models/Operators.model";
@@ -9,7 +9,7 @@ export default defineComponent({
   name: "OperatorList",
   components: {
     Navigation,
-    Table,
+    TableComponent,
     Modal,
   },
   setup() {
