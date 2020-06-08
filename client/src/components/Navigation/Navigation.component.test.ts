@@ -72,9 +72,12 @@ const testData = {
 
 describe("Navigation component", () => {
   const wrapper = shallowMount(Navigation, {
-    data() { return { testData }; }
+    data() {
+      return { testData };
+    },
   });
 
-  test('it can be mount', () => expect(wrapper).toBeInstanceOf(Object));
-  test('it can render logo', () => expect(wrapper.find('logo-stub').exists()).toBeTruthy());
+  test("it can be mount", () => expect(wrapper).toBeInstanceOf(Object));
+  test("it can render logo", () =>
+    expect(wrapper.find("logo-stub").exists()).toBeTruthy());
 });
