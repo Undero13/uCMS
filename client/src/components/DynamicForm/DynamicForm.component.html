@@ -1,0 +1,43 @@
+<form novalidate>
+  <div class="field" v-for="field in fields">
+    <label class="label" :for="field.name">{{ field.label }}</label>
+    <div class="control">
+      <input
+        :name="field.name"
+        :id="field.name"
+        :type="field.type"
+        :class="field.class"
+        :placeholder="field.placeholder"
+        v-if="checkType(field.type, 'input')"
+        @blur="validate($event ,field.name)"
+        @focus="clearErrorMsg"
+      />
+
+      <textarea
+        :id="field.name"
+        :placeholder="field.placeholder"
+        :class="field.class"
+        :name="field.name"
+        class="textarea"
+        v-if="checkType(field.type, 'textarea')"
+        @blur="validate($event, field.name)"
+        @focus="clearErrorMsg"
+      ></textarea>
+
+      <div class="select" v-if="checkType(field.type, 'select')">
+        <select
+          :id="field.name"
+          :class="field.class"
+          :name="field.name"
+          @blur="validate($event, field.name)"
+          @focus="clearErrorMsg"
+        >
+          <option v-for="option in field.options">{{ option.name }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div v-if="errorsMsg.length > 0">
+    <p v-for="error in errorsMsg" class="help is-danger">{{ error }}</p>
+  </div>
+</form>
