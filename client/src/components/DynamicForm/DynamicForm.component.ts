@@ -15,7 +15,7 @@ export default defineComponent({
 
     const changeErrorCodeToMsg = (errorsCode: string[]) =>
       errorsCode.forEach((code) => {
-        const messagerInstance:any = messager;
+        const messagerInstance: any = messager;
         errorsMsg.value.push(messagerInstance.default[code]);
       });
 
