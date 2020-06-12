@@ -1,4 +1,4 @@
-<form novalidate>
+<form ref="formElement" novalidate @submit.prevent="onSubmit">
   <div class="field" v-for="field in fields">
     <label class="label" :for="field.name">{{ field.label }}</label>
     <div class="control">
@@ -37,7 +37,12 @@
       </div>
     </div>
   </div>
-  <div v-if="errorsMsg.length > 0">
+  <div v-if="errorsMsg.length > 0" class="help-wrapper">
     <p v-for="error in errorsMsg" class="help is-danger">{{ error }}</p>
   </div>
+  <footer class="modal-card-foot">
+    <button :disabled="errorsMsg.length > 0" class="button is-ucms">
+      Save
+    </button>
+  </footer>
 </form>

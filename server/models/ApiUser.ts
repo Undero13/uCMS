@@ -5,8 +5,6 @@ export type UserCredentials = {
 
 export type UserRegister = {
   login: string;
-  password?: string;
-  repeatPassword?: string;
 };
 
 export type UserDbRecord = {

@@ -3,6 +3,7 @@ import CookieService from "@/services/CookieService/CookieService.service";
 import Home from "@/views/Home/Home.view.vue";
 import Login from "@/views/Login/Login.view.vue";
 import OperatorList from "@/views/OperatorList/OperatorList.view.vue";
+import OperatorAccount from "@/views/OperatorAccount/OperatorAccount.view.vue";
 
 const routes = [
   {
@@ -22,6 +23,14 @@ const routes = [
     path: "/operator-list",
     component: OperatorList,
     name: "operatorList",
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/operator-account",
+    component: OperatorAccount,
+    name: "OperatorAccount",
     meta: {
       requiresAuth: true,
     },
