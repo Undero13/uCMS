@@ -12,3 +12,9 @@ export type UserDbRecord = {
   login: string;
   password: string;
 };
+
+export type UserResetPassword = {
+  token: string;
+  password: string;
+  remindPassword: string;
+};

@@ -1,5 +1,9 @@
 import { Controller, Post, Get, Body, Injectable } from "../deno_modules.ts";
-import { UserCredentials, UserRegister } from "../models/ApiUser.ts";
+import {
+  UserCredentials,
+  UserRegister,
+  UserResetPassword,
+} from "../models/ApiUser.ts";
 import { Response, ResponseData } from "../models/ApiResponse.ts";
 import { AuthService } from "../services/AuthService.ts";
 import JWTokenService from "../services/JWTokenService.ts";
@@ -31,6 +35,30 @@ export class UserController implements Response {
 
     const id = await this.authService.createUser(body);
     return this.setResponse(true, "", [id]);
+  }
+
+  @Post("/reset-password") @Body()
+  private async resetPassword(body: UserResetPassword) {
+    const { token, password, remindPassword } = body;
+    const tokenValid = await this.jwtService.validateJWToken(token);
+    const passwordValid = this.authService.validatePassword(
+      password,
+      remindPassword,
+    );
+
+    let success = false;
+
+    if (tokenValid && passwordValid) {
+      const { payload } = await this.jwtService.decodeJWT(token);
+
+      success = await this.authService.setPassword(
+        (<any> payload).user,
+        password,
+      );
+    }
+
+    const error = success ? "" : "user.password.not.saved";
+    return this.setResponse(success, error);
   }
 
   @Get("/list")
