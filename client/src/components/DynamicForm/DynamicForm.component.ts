@@ -12,16 +12,27 @@ export default defineComponent({
   },
   setup(props: any) {
     const errorsMsg: Ref<string[]> = ref([]);
+    const formElement = ref(undefined);
 
-    const changeErrorCodeToMsg = (errorsCode: string[]) =>
+    function onSubmit() {
+      const form = formElement.value;
+      const formData = new FormData(form);
+
+      this.$emit("formSubmit", Object.fromEntries(formData));
+    }
+
+    function changeErrorCodeToMsg(errorsCode: string[]) {
       errorsCode.forEach((code) => {
         const messagerInstance: any = messager;
         errorsMsg.value.push(messagerInstance.default[code]);
       });
+    }
 
-    const clearErrorMsg = () => (errorsMsg.value = []);
+    function clearErrorMsg() {
+      errorsMsg.value = [];
+    }
 
-    const validate = (event: BlurEvent, inputName: string) => {
+    function validate(event: BlurEvent, inputName: string) {
       const { value } = event.target;
       const validateErrorsCode: string[] = [];
       const fields: FormField[] = [...props.fields];
@@ -37,9 +48,9 @@ export default defineComponent({
       });
 
       changeErrorCodeToMsg(validateErrorsCode);
-    };
+    }
 
-    const checkType = (fieldType: string, inputType: string) => {
+    function checkType(fieldType: string, inputType: string) {
       const fields: any = {
         input: [
           "text",
@@ -60,12 +71,14 @@ export default defineComponent({
       }
 
       return false;
-    };
+    }
 
     return {
       checkType,
       validate,
+      onSubmit,
       errorsMsg,
+      formElement,
       clearErrorMsg,
     };
   },

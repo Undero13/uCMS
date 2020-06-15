@@ -8,11 +8,18 @@ export interface Operator {
 }
 
 export interface OperatorTable {
-  value:
-    | {
-        caption: string;
-        headers: string[];
-        rows: Operator[];
-      }
-    | boolean;
+  value: {
+    caption?: string;
+    headers?: string[];
+    rows?: Operator[];
+  };
+}
+
+export interface OperatorCreateData {
+  email: string;
+}
+
+export interface OperatorResponse {
+  status: boolean;
+  error: string;
 }

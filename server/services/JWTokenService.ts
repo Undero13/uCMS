@@ -4,6 +4,7 @@ import {
   Jose,
   Payload,
   validateJwt,
+  parseAndDecode,
 } from "../deno_modules.ts";
 import { environment } from "../environment.ts";
 
@@ -17,7 +18,7 @@ export default class JWTokenService {
   public makeJWToken(user: string): string {
     const payload: Payload = {
       iss: "joe",
-      exp: setExpiration(new Date().getTime() + 60000),
+      exp: setExpiration(new Date().getTime() + 6000000000),
       user,
     };
     const header: Jose = { alg: "HS256", typ: "JWT" };
@@ -27,5 +28,9 @@ export default class JWTokenService {
 
   public async validateJWToken(token: string): Promise<boolean> {
     return !!await validateJwt(token, this.key, { isThrowing: false });
+  }
+
+  public async decodeJWT(token: string) {
+    return await parseAndDecode(token);
   }
 }

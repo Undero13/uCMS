@@ -10,5 +10,5 @@ Deno.test("[http] user list success", async () => {
   assertEquals(response.status, 200);
   assertEquals(status, true);
   assertEquals(error, "");
-  assertEquals(data[0].login, "admin@admin.com");
+  assertEquals(!!data.length, true);
 });

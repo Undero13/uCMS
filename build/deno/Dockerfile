@@ -1,6 +1,6 @@
 FROM debian:jessie-slim
 
-ARG DENO_VERSION="v1.0.5"
+ARG DENO_VERSION="v1.1.0"
 ARG DENON_VERSION="v1.9.2"
 
 WORKDIR /app
@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   && rm deno-x86_64-unknown-linux-gnu.zip
 
 
-RUN deno install -Af --allow-read --allow-run --allow-write --unstable https://deno.land/x/denon@${DENON_VERSION}/denon.ts
+RUN deno install --allow-read --allow-run --allow-write --allow-net -f --unstable https://deno.land/x/denon@${DENON_VERSION}/denon.ts
 RUN chmod u+x /root/.deno/bin/denon
 
 RUN mv /root/.deno/bin/denon /usr/local/bin/denon

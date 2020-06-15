@@ -4,7 +4,7 @@ import UserHelper from "../Helpers/UserHelper.ts";
 const ContentTypeJson = "application/json; charset=utf-8";
 const baseUrl = "http://localhost:3000/api/user/register";
 
-Deno.test("[http] user.register.wrong.password", async () => {
+Deno.test("[http] user.register.wrong.email", async () => {
   const response = await fetch(baseUrl, { method: "POST" });
   const data = await response.json();
 

@@ -1,4 +1,5 @@
 {
   "required": "Value is required!",
-  "isEmail": "Email is incorrect!"
+  "isEmail": "Email is incorrect!",
+  "isPassword": "Password is incorrect"
 }

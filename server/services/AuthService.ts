@@ -54,8 +54,23 @@ export class AuthService {
     return await UserModel.createUser(login, this.genPasswordHash(login));
   }
 
+  public async setPassword(login: string, password: string): Promise<boolean> {
+    const hash = this.genPasswordHash(password);
+    return await UserModel.setPassword(login, hash);
+  }
+
   public getMessage(): string {
     return this.msg;
+  }
+
+  public validatePassword(password: string, repeatPassword: string): boolean {
+    const pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+    return !!(pattern.test(password) && password === repeatPassword);
+  }
+
+  private validateEmail(email: string): boolean {
+    const pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+    return pattern.test(email);
   }
 
   private genPasswordHash(password: string) {
@@ -64,15 +79,5 @@ export class AuthService {
 
   private passwordVerify(password: string, hash: string): boolean {
     return bcrypt.compareSync(password, hash);
-  }
-
-  private validateEmail(email: string): boolean {
-    const pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
-    return pattern.test(email);
-  }
-
-  private validatePassword(password: string, repeatPassword: string): boolean {
-    const pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
-    return !!(pattern.test(password) && password === repeatPassword);
   }
 }

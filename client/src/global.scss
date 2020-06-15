@@ -16,6 +16,11 @@ input {
   transition: background-color 0.2s;
   border: 0;
 
+  &[disabled] {
+    background-color: $primary-color;
+    border-color: transparent;
+  }
+
   &:hover {
     color: #fff;
     background-color: darken($primary-color, 10);

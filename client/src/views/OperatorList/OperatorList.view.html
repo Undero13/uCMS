@@ -1,6 +1,7 @@
 <Navigation></Navigation>
+<Notification v-if="msg" :msg="msg" :type="'error'"></Notification>
 
-<template v-if="operatorList">
+<template v-if="!loading">
   <button class="button is-ucms" @click="showModal = true">
     Add new operator
   </button>
@@ -16,6 +17,9 @@
   </template>
 
   <template v-slot:body>
-    <DynamicForm :fields="formFields"></DynamicForm>
+    <DynamicForm
+      :fields="formFields"
+      @formSubmit="createOperator($event)"
+    ></DynamicForm>
   </template>
 </Modal>

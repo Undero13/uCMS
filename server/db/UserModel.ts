@@ -34,4 +34,20 @@ export default class UserModel {
     }));
     return mappedUserList;
   }
+
+  public static async setPassword(
+    login: string,
+    password: string,
+  ): Promise<boolean> {
+    const { matchedCount, modifiedCount, upsertedId } = await users.updateOne(
+      { login: { $eq: login } },
+      { $set: { password } },
+    );
+
+    if (matchedCount === modifiedCount) {
+      return true;
+    }
+
+    return false;
+  }
 }
