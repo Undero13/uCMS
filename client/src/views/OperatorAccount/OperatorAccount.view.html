@@ -4,11 +4,16 @@
 <section class="section">
   <div class="container">
     <h1 class="title">User Profile</h1>
-    <button @click="showPasswordChangeModal = true">Change user password</button>
+    <button @click="showPasswordChangeModal = true">
+      Change user password
+    </button>
   </div>
 </section>
 
-<Modal v-if="showPasswordChangeModal" @modalClose="showPasswordChangeModal = false">
+<Modal
+  v-if="showPasswordChangeModal"
+  @modalClose="showPasswordChangeModal = false"
+>
   <template v-slot:header>
     <p class="modal-card-title">Change user password</p>
   </template>

@@ -37,7 +37,11 @@ export default class OperatorService {
     return msg;
   }
 
-  public static async changePassword(token:string | null, password: string, remindPassword: string) {
+  public static async changePassword(
+    token: string | null,
+    password: string,
+    remindPassword: string
+  ) {
     const url = `${environment.apiUrl}user/reset-password`;
     const config = {
       headers: {
@@ -46,7 +50,9 @@ export default class OperatorService {
     };
 
     const resParam = qs.stringify({
-      token, password, remindPassword
+      token,
+      password,
+      remindPassword,
     });
 
     const { status, data } = await axios.post(url, resParam, config);
