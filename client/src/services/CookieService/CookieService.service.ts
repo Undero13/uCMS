@@ -6,6 +6,10 @@ export default class CookieService {
     return !!cookie.get(environment.jwtCookieName);
   }
 
+  public static getJWToken(): string|null {
+    return cookie.get(environment.jwtCookieName);
+  }
+
   public static setToken(token: string) {
     cookie.set(environment.jwtCookieName, token);
   }

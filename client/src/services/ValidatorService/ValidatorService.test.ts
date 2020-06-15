@@ -9,4 +9,8 @@ describe("validator service", () => {
     expect(ValidatorService.isEmail("test")).toBeFalsy());
   test("value is email - correct value", () =>
     expect(ValidatorService.isEmail("test@test.com")).toBeTruthy());
+  test("value is password - bad value", () =>
+    expect(ValidatorService.isPassword("test")).toBeFalsy());
+  test("value is password - correct value", () =>
+    expect(ValidatorService.isPassword("fakePassword123")).toBeTruthy());
 });

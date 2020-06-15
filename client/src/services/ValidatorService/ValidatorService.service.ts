@@ -8,4 +8,10 @@ export default class ValidatorService {
 
     return pattern.test(value);
   }
+
+  static isPassword(value: string) {
+    const pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+
+    return pattern.test(value);
+  }
 }

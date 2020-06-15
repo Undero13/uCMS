@@ -36,4 +36,22 @@ export default class OperatorService {
 
     return msg;
   }
+
+  public static async changePassword(token:string | null, password: string, remindPassword: string) {
+    const url = `${environment.apiUrl}user/reset-password`;
+    const config = {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    };
+
+    const resParam = qs.stringify({
+      token, password, remindPassword
+    });
+
+    const { status, data } = await axios.post(url, resParam, config);
+
+    if (!status) throw Error("Cannot get data from api");
+    return data;
+  }
 }
