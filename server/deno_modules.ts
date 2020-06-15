@@ -5,7 +5,8 @@ export {
   Body,
   Injectable,
   Area,
-} from "https://deno.land/x/alosaur@v0.17.0/mod.ts";
+  App,
+} from "https://deno.land/x/alosaur@v0.19.0/mod.ts";
 
 export {
   makeJwt,
