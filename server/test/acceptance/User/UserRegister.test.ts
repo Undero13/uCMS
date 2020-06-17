@@ -11,7 +11,12 @@ Deno.test("[http] user.register.wrong.email", async () => {
   assertEquals(response.status, 200);
   assertEquals(
     data,
-    { "status": false, "error": "user.register.wrong.email", data: [] },
+    {
+      "status": false,
+      "error": "user.register.wrong.email",
+      data: [],
+      pageCount: 0,
+    },
   );
 });
 

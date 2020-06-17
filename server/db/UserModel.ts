@@ -23,9 +23,10 @@ export default class UserModel {
     });
   }
 
-  public async getUserList() {
+  public async getUserList(limit: number, skip: number) {
     const userList: UserDbRecord[] = await users.find(
       { login: { $ne: null } },
+      { limit, skip },
     );
 
     const mappedUserList = userList.map((user) => ({
@@ -33,6 +34,14 @@ export default class UserModel {
       login: user.login,
     }));
     return mappedUserList;
+  }
+
+  public async getUserCount() {
+    const count = await users.count(
+      { login: { $ne: null } },
+    );
+
+    return count;
   }
 
   public static async setPassword(

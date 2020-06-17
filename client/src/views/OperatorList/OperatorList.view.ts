@@ -3,6 +3,7 @@ import Navigation from "@/components/Navigation/Navigation.component.vue";
 import Notification from "@/components/Notification/Notification.component.vue";
 import TableComponent from "@/components/TableComponent/TableComponent.component.vue";
 import Modal from "@/components/Modal/Modal.component.vue";
+import Pagination from "@/components/Pagination/Pagination.component.vue";
 import storeOperator from "@/store/operator/store.ts";
 import DynamicForm from "@/components/DynamicForm/DynamicForm.component.vue";
 import { OperatorTable, OperatorCreateData } from "@/models/Operators.model";
@@ -16,11 +17,13 @@ export default defineComponent({
     Navigation,
     Notification,
     TableComponent,
+    Pagination,
     Modal,
     DynamicForm,
   },
   setup() {
     const operatorList: OperatorTable = ref({});
+    const pageCount = ref(0);
     const loading = ref(true);
     const showModal = ref(false);
     const msg = ref("");
@@ -42,6 +45,7 @@ export default defineComponent({
           rows: storeOperator.getters.getOperatorList,
         };
 
+        pageCount.value = storeOperator.getters.getPageCount;
         loading.value = false;
       }, 1000);
     }
@@ -67,6 +71,7 @@ export default defineComponent({
     return {
       operatorList,
       createOperator,
+      pageCount,
       formFields,
       showModal,
       loading,

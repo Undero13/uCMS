@@ -15,6 +15,7 @@ module.exports = {
     "import/extensions": "off",
     "class-methods-use-this": "off",
     "no-return-assign": "off",
+    "no-restricted-globals": ["error", "event", "fdescribe"],
     //prettier work
     "comma-dangle": "off",
     "operator-linebreak": "off",

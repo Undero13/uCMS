@@ -1,5 +1,6 @@
 export {
   Controller,
+  QueryParam,
   Post,
   Get,
   Body,

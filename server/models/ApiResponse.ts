@@ -2,6 +2,7 @@ export type ResponseData = {
   status: boolean;
   error: string;
   data: unknown[];
+  pageCount: number;
 };
 
 export interface Response {
@@ -9,5 +10,6 @@ export interface Response {
     status?: boolean,
     error?: string,
     data?: unknown[],
+    pageCount?: number,
   ): ResponseData;
 }
