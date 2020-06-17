@@ -10,17 +10,17 @@ export default defineComponent({
     },
   },
   setup(props) {
-    function getParam(name: string): number|null {
+    function getParam(name: string): number | null {
       const url = new URL(location.href);
       const params = new URLSearchParams(url.search);
-      const param = params.get(name) ?? '';
+      const param = params.get(name) ?? "";
 
       return param ? parseInt(param, 10) : null;
     }
 
-    const limit:number = getParam('limit') ?? 10;
-    let skip:number = getParam('skip') ?? 0;
-    const curentPage: Ref<number> = ref((skip / limit) + 1);
+    const limit: number = getParam("limit") ?? 10;
+    let skip: number = getParam("skip") ?? 0;
+    const curentPage: Ref<number> = ref(skip / limit + 1);
 
     function changePage(pageNumber: number) {
       if (pageNumber > props.page) {
@@ -43,7 +43,7 @@ export default defineComponent({
 
     return {
       curentPage,
-      changePage
+      changePage,
     };
   },
 });
