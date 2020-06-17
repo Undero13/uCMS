@@ -22,6 +22,6 @@ Deno.test("[http] user.resetpassword.valid", async () => {
   assertEquals(response.status, 200);
   assertEquals(
     data,
-    { status: true, error: "", data: [] },
+    { status: true, error: "", data: [], pageCount: 0 },
   );
 });

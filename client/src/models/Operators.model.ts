@@ -1,5 +1,6 @@
 export interface State {
   operators: Operator[];
+  pageCount: number;
 }
 
 export interface Operator {

@@ -14,6 +14,7 @@ Deno.test("[http] user login empty.credentials", async () => {
       "status": false,
       "error": "user.login.empty.credentials",
       data: [],
+      pageCount: 0,
     },
   );
 });
@@ -33,7 +34,12 @@ Deno.test("[http] user login user.not.exist", async () => {
   assertEquals(response.status, 200);
   assertEquals(
     data,
-    { "status": false, "error": "user.login.not.exist", data: [] },
+    {
+      "status": false,
+      "error": "user.login.not.exist",
+      data: [],
+      pageCount: 0,
+    },
   );
 });
 
@@ -52,7 +58,12 @@ Deno.test("[http] user login wrong.password", async () => {
   assertEquals(response.status, 200);
   assertEquals(
     data,
-    { "status": false, "error": "user.login.wrong.password", data: [] },
+    {
+      "status": false,
+      "error": "user.login.wrong.password",
+      data: [],
+      pageCount: 0,
+    },
   );
 });
 

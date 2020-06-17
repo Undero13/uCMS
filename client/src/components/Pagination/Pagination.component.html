@@ -1,0 +1,20 @@
+<div v-if="page > 1" class="pagination is-centered" aria-label="pagination">
+  <button class="pagination-previous" @click="changePage(curentPage - 1)">
+    Previous
+  </button>
+  <button class="pagination-next" @click="changePage(curentPage + 1)">
+    Next page
+  </button>
+  <ul class="pagination-list">
+    <li v-for="i in page">
+      <button
+        @click="changePage(i)"
+        class="pagination-link"
+        :class="{'is-current':curentPage === i}"
+        :title="'Goto page ' + i"
+      >
+        {{ i }}
+      </button>
+    </li>
+  </ul>
+</div>

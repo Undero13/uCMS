@@ -21,6 +21,10 @@ const routes = [
   },
   {
     path: "/operator-list",
+    query: {
+      limit: 10,
+      skip: 0,
+    },
     component: OperatorList,
     name: "operatorList",
     meta: {

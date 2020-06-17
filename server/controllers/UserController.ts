@@ -1,4 +1,11 @@
-import { Controller, Post, Get, Body, Injectable } from "../deno_modules.ts";
+import {
+  Controller,
+  QueryParam,
+  Post,
+  Get,
+  Body,
+  Injectable,
+} from "../deno_modules.ts";
 import {
   UserCredentials,
   UserRegister,
@@ -61,13 +68,27 @@ export class UserController implements Response {
     return this.setResponse(success, error);
   }
 
-  @Get("/list")
-  private async getList() {
-    const userList = await this.userModel.getUserList();
-    return this.setResponse(true, "", userList);
+  @Get("/list") @QueryParam("skip") @QueryParam("limit")
+  private async getList(limit: string = "10", skip: string = "0") {
+    const limitInt = parseInt(limit, 10);
+    const skipInt = parseInt(skip, 10);
+
+    const userList = await this.userModel.getUserList(limitInt, skipInt);
+    const userCount = await this.userModel.getUserCount();
+    return this.setResponse(
+      true,
+      "",
+      userList,
+      Math.ceil(userCount / limitInt),
+    );
   }
 
-  setResponse(status = false, error = "", data: unknown[] = []): ResponseData {
-    return { status, error, data };
+  setResponse(
+    status = false,
+    error = "",
+    data: unknown[] = [],
+    pageCount: number = 0,
+  ): ResponseData {
+    return { status, error, data, pageCount };
   }
 }
