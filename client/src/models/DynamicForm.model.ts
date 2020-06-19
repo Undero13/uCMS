@@ -19,6 +19,7 @@ export interface FormField {
 
 export interface CustomTarger extends EventTarget {
   value: string;
+  name: string;
 }
 
 export interface BlurEvent extends Event {

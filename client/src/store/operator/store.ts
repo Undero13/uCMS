@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { createStore } from "vuex";
@@ -5,6 +6,7 @@ import { State as StateWrapper, Operator } from "@/models/Operators.model.ts";
 import environment from "@/environment.ts";
 import axios from "axios";
 import router from "@/router/index.ts";
+import qs from "querystring";
 
 const state: StateWrapper = {
   operators: [],
@@ -22,6 +24,12 @@ const mutations = {
   FETCH_PAGECOUNT(prevState: StateWrapper, pageCount: number) {
     prevState.pageCount = pageCount;
   },
+
+  SET_OPERATORS(prevState: StateWrapper, data: Operator[]) {
+    prevState.operators = {
+      ...data,
+    };
+  }
 };
 
 const getters = {
@@ -40,6 +48,36 @@ const actions = {
     storeOperator.commit("FETCH_OPERATORS", data.data);
     storeOperator.commit("FETCH_PAGECOUNT", data.pageCount);
   },
+
+  async searchOperatorsSearch(_e:any, param: Object):Promise<any> {
+    const [key] = Object.keys(param);
+    let [value] = Object.values(param);
+    value = value.trim();
+
+    if (!value) {
+      return storeOperator.dispatch('fetchOperators');
+    }
+
+    const args:any = {};
+    const config = {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    };
+
+    switch (key) {
+      case 'ID': args.id = value; break;
+      case 'e-mail': args.login = value; break;
+      default: throw Error('Search is invalid');
+    }
+
+    const url = `${environment.apiUrl}user/search`;
+    const { status, data } = await axios.post(url, qs.stringify(args), config);
+
+    if (!status) throw Error('Something wrong. Please try later');
+
+    storeOperator.commit("SET_OPERATORS", data.data);
+  }
 };
 
 const storeOperator = createStore({

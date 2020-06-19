@@ -9,7 +9,6 @@ import qs from "querystring";
 
 export default class AuthService {
   private login: string;
-
   private password: string;
 
   constructor(data: LoginFormData) {
@@ -58,7 +57,7 @@ export default class AuthService {
     return res;
   }
 
-  public changeCodeToMessage(code: string) {
+  public changeCodeToMessage(code: string): string {
     let msg = "";
 
     if (code === "user.login.empty.credentials") {

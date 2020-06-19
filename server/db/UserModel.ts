@@ -23,6 +23,22 @@ export default class UserModel {
     });
   }
 
+  public async getUserByData(data: Object) {
+    const [key] = Object.keys(data);
+    const [value] = Object.values(data);
+
+    const userList: UserDbRecord[] = await users.find(
+      { [key]: { $eq: value } },
+    );
+
+    const mappedUserList = userList.map((user) => ({
+      id: user.id,
+      login: user.login,
+    }));
+
+    return mappedUserList;
+  }
+
   public async getUserList(limit: number, skip: number) {
     const userList: UserDbRecord[] = await users.find(
       { login: { $ne: null } },

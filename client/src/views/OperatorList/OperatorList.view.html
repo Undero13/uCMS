@@ -5,7 +5,7 @@
   <button class="button is-ucms" @click="showModal = true">
     Add new operator
   </button>
-  <TableComponent :data="operatorList"></TableComponent>
+  <TableComponent :data="operatorList" @setSearch="onSearch"></TableComponent>
   <Pagination :page="pageCount"></Pagination>
 </template>
 <template v-else>

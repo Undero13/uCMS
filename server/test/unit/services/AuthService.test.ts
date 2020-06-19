@@ -24,3 +24,12 @@ Deno.test("[service] auth.service.not.exist", async () => {
   assertEquals(status, false);
   assertEquals(message, "user.login.not.exist");
 });
+
+Deno.test("[service] auth.service.credentials.valid", async () => {
+  const login = "admin@admin.com";
+  const password = "admin@admin.com";
+
+  const status = await authService.validateCredentials({ login, password });
+
+  assertEquals(status, true);
+});
