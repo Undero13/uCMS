@@ -9,9 +9,9 @@ export interface Operator {
 }
 
 export interface OperatorTable {
-    caption?: string;
-    headers?: string[];
-    rows?: Operator[];
+  caption?: string;
+  headers?: string[];
+  rows?: Operator[];
 }
 
 export interface OperatorCreateData {

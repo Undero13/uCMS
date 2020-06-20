@@ -1,25 +1,25 @@
 import { defineComponent } from "@vue/runtime-dom";
-import { BlurEvent } from '@/models/DynamicForm.model';
+import { BlurEvent } from "@/models/DynamicForm.model";
 
 export default defineComponent({
   name: "TableRowFilter",
   props: {
     name: {
-      type: String
-    }
+      type: String,
+    },
   },
   setup() {
     function onChange(e: BlurEvent) {
       const { name, value } = e.target;
       const search = {
-        [name]: value
+        [name]: value,
       };
 
-      this.$emit('onSearch', search);
+      this.$emit("onSearch", search);
     }
 
     return {
-      onChange
+      onChange,
     };
-  }
+  },
 });

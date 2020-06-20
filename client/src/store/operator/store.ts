@@ -29,7 +29,7 @@ const mutations = {
     prevState.operators = {
       ...data,
     };
-  }
+  },
 };
 
 const getters = {
@@ -49,16 +49,16 @@ const actions = {
     storeOperator.commit("FETCH_PAGECOUNT", data.pageCount);
   },
 
-  async searchOperatorsSearch(_e:any, param: Object):Promise<any> {
+  async searchOperatorsSearch(_e: any, param: Object): Promise<any> {
     const [key] = Object.keys(param);
     let [value] = Object.values(param);
     value = value.trim();
 
     if (!value) {
-      return storeOperator.dispatch('fetchOperators');
+      return storeOperator.dispatch("fetchOperators");
     }
 
-    const args:any = {};
+    const args: any = {};
     const config = {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -66,18 +66,23 @@ const actions = {
     };
 
     switch (key) {
-      case 'ID': args.id = value; break;
-      case 'e-mail': args.login = value; break;
-      default: throw Error('Search is invalid');
+      case "ID":
+        args.id = value;
+        break;
+      case "e-mail":
+        args.login = value;
+        break;
+      default:
+        throw Error("Search is invalid");
     }
 
     const url = `${environment.apiUrl}user/search`;
     const { status, data } = await axios.post(url, qs.stringify(args), config);
 
-    if (!status) throw Error('Something wrong. Please try later');
+    if (!status) throw Error("Something wrong. Please try later");
 
     storeOperator.commit("SET_OPERATORS", data.data);
-  }
+  },
 };
 
 const storeOperator = createStore({

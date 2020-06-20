@@ -22,6 +22,10 @@ module.exports = {
     "@typescript-eslint/quotes": "off",
     "@typescript-eslint/indent": "off",
     "implicit-arrow-linebreak": "off",
-    "lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }]
+    "lines-between-class-members": [
+      "error",
+      "always",
+      { exceptAfterSingleLine: true },
+    ],
   },
 };

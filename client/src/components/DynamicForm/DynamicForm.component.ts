@@ -12,7 +12,7 @@ export default defineComponent({
   },
   setup(props: any) {
     const errorsMsg: Ref<string[]> = ref([]);
-    const formElement:Ref<HTMLFormElement|undefined> = ref(undefined);
+    const formElement: Ref<HTMLFormElement | undefined> = ref(undefined);
 
     function onSubmit() {
       const form = formElement.value;
@@ -51,7 +51,7 @@ export default defineComponent({
     }
 
     function checkType(fieldType: string, inputType: string): boolean {
-      const fields:any = {
+      const fields: any = {
         input: [
           "text",
           "email",
