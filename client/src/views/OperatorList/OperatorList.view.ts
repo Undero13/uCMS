@@ -1,4 +1,4 @@
-import { defineComponent, onBeforeMount, ref } from "@vue/runtime-dom";
+import { defineComponent, onBeforeMount, ref, Ref } from "@vue/runtime-dom";
 import Navigation from "@/components/Navigation/Navigation.component.vue";
 import Notification from "@/components/Notification/Notification.component.vue";
 import TableComponent from "@/components/TableComponent/TableComponent.component.vue";
@@ -22,7 +22,7 @@ export default defineComponent({
     DynamicForm,
   },
   setup() {
-    const operatorList: OperatorTable = ref({});
+    const operatorList: Ref<OperatorTable> = ref({});
     const pageCount = ref(0);
     const loading = ref(true);
     const showModal = ref(false);
@@ -50,6 +50,14 @@ export default defineComponent({
       }, 1000);
     }
 
+    function onSearch(e: Object) {
+      loading.value = true;
+      storeOperator
+        .dispatch("searchOperatorsSearch", e)
+        .then(() => loadData())
+        .catch((err) => (msg.value = err.message));
+    }
+
     async function createOperator(data: OperatorCreateData) {
       const { status, error } = await OperatorService.create(data);
 
@@ -58,19 +66,24 @@ export default defineComponent({
       } else {
         showModal.value = false;
         loading.value = true;
-        storeOperator.dispatch("fetchOperators");
-        loadData();
+        storeOperator
+          .dispatch("fetchOperators")
+          .then(() => loadData())
+          .catch((err) => (msg.value = err.message));
       }
     }
 
     onBeforeMount(() => {
-      storeOperator.dispatch("fetchOperators");
-      loadData();
+      storeOperator
+        .dispatch("fetchOperators")
+        .then(() => loadData())
+        .catch((err) => (msg.value = err.message));
     });
 
     return {
       operatorList,
       createOperator,
+      onSearch,
       pageCount,
       formFields,
       showModal,

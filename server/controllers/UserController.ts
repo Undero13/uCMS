@@ -83,6 +83,13 @@ export class UserController implements Response {
     );
   }
 
+  @Post("/search") @Body()
+  private async getSearchList(body: Object) {
+    const userList = await this.userModel.getUserByData(body);
+
+    return this.setResponse(true, "", userList);
+  }
+
   setResponse(
     status = false,
     error = "",

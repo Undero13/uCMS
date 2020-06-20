@@ -43,6 +43,13 @@ input {
   left: 50%;
 }
 
+.visual-hidden {
+  position: absolute;
+  top: -999em;
+  left: -999em;
+  font-size: 0;
+}
+
 @keyframes spinner {
   to {
     transform: rotate(360deg);
