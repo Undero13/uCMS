@@ -5,9 +5,13 @@ test("it can be mount", () => {
   const operatorList = {
     caption: "Operator List",
     headers: ["ID", "e-mail"],
-    rows: { id: 'test', login: "test@test.pl" },
+    rows: { id: "test", login: "test@test.pl" },
   };
 
-  const wrapper = shallowMount(OperatorList, { data() { return { operatorList }; } });
+  const wrapper = shallowMount(OperatorList, {
+    data() {
+      return { operatorList };
+    },
+  });
   expect(wrapper).toBeInstanceOf(Object);
 });
