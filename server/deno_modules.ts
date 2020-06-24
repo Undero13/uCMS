@@ -5,9 +5,12 @@ export {
   Get,
   Body,
   Injectable,
+  HttpError,
+  Context,
   Area,
   App,
-} from "https://deno.land/x/alosaur@v0.19.0/mod.ts";
+  Content,
+} from "https://deno.land/x/alosaur@v0.19.3/mod.ts";
 
 export {
   makeJwt,

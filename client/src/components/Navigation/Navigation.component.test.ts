@@ -78,6 +78,8 @@ describe("Navigation component", () => {
   });
 
   test("it can be mount", () => expect(wrapper).toBeInstanceOf(Object));
+  test("it cab render list", () =>
+    expect(wrapper.find("list-stub").exists()).toBeTruthy());
   test("it can render logo", () =>
     expect(wrapper.find("logo-stub").exists()).toBeTruthy());
 });
