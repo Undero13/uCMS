@@ -5,5 +5,6 @@ export const usersData = [
     "id": uuid(),
     "login": "admin@admin.com",
     "password": "$2a$10$ygFLYW2tj5/GIcCwAE8BZesEYrUa7VYgqRog6N4gXpSF4ceVRuNKa",
+    "permission": ["operator", "product"],
   },
 ];

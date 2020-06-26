@@ -5,11 +5,14 @@ export {
   Get,
   Body,
   Injectable,
+  Cookie,
   HttpError,
   Context,
   Area,
   App,
   Content,
+  HookTarget,
+  UseHook,
 } from "https://deno.land/x/alosaur@v0.19.3/mod.ts";
 
 export {

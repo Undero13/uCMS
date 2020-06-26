@@ -3,7 +3,7 @@ import UserHelper from "../Helpers/UserHelper.ts";
 
 const baseUrl = "http://localhost:3000/api/user/reset-password";
 
-Deno.test("[http] user.resetpassword.valid", async () => {
+Deno.test("[http] user.reset.password.valid", async () => {
   const user = await UserHelper.createRandomUser();
 
   const requestArgument = {

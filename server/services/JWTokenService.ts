@@ -7,6 +7,8 @@ import {
   parseAndDecode,
 } from "../deno_modules.ts";
 import { environment } from "../environment.ts";
+import { Jwt } from "../models/ApiJwtToken.ts";
+import UserModel from "../db/UserModel.ts";
 
 export default class JWTokenService {
   private key: string;
@@ -15,11 +17,14 @@ export default class JWTokenService {
     this.key = environment.jwtSecretKey;
   }
 
-  public makeJWToken(user: string): string {
+  public async makeJWToken(user: string): Promise<string> {
+    const permission = await UserModel.getUserPermission(user);
+
     const payload: Payload = {
       iss: "joe",
       exp: setExpiration(new Date().getTime() + 6000000000),
       user,
+      permission,
     };
     const header: Jose = { alg: "HS256", typ: "JWT" };
 
@@ -27,10 +32,10 @@ export default class JWTokenService {
   }
 
   public async validateJWToken(token: string): Promise<boolean> {
-    return !!await validateJwt(token, this.key, { isThrowing: false });
+    return !!await validateJwt(token, this.key, { isThrowing: true });
   }
 
-  public async decodeJWT(token: string) {
-    return await parseAndDecode(token);
+  public async decodeJWT(token: string): Promise<Jwt> {
+    return <any> await parseAndDecode(token);
   }
 }

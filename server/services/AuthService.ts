@@ -1,6 +1,11 @@
-import { UserRegister, UserCredentials } from "../models/ApiUser.ts";
+import {
+  UserRegister,
+  UserCredentials,
+  UserPermission,
+} from "../models/ApiUser.ts";
 import { bcrypt } from "../deno_modules.ts";
 import UserModel from "../db/UserModel.ts";
+import { environment } from "../environment.ts";
 
 export class AuthService {
   private msg: string;
@@ -41,6 +46,25 @@ export class AuthService {
     }
 
     return true;
+  }
+
+  public async setPermission(data: UserPermission) {
+    const { login, permission } = data;
+    const user = await UserModel.getUser(login);
+
+    if (user) {
+      const permissionArray = permission.split(",");
+
+      const existingPermission = permissionArray.filter((name) =>
+        environment.permissionList.includes(name)
+      );
+
+      UserModel.setPermission(login, existingPermission);
+      return true;
+    }
+
+    this.msg = "user.not.exist";
+    return false;
   }
 
   public async createUser(userData: UserRegister): Promise<string> {

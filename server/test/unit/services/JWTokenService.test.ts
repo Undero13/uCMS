@@ -5,7 +5,7 @@ const jwTokenService = new JWTokenService();
 
 Deno.test("[service] jwt.service.empty.credentials", async () => {
   const user = "admin@admin.com";
-  const token = jwTokenService.makeJWToken(user);
+  const token = await jwTokenService.makeJWToken(user);
 
   assertEquals(!!token, true);
 
