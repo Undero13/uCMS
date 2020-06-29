@@ -15,6 +15,6 @@ export default class UserHelper {
     await authService.createUser(
       { login },
     );
-    return { login, token: jwTokenService.makeJWToken(login) };
+    return { login, token: await jwTokenService.makeJWToken(login) };
   }
 }

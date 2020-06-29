@@ -21,16 +21,18 @@ Deno.test("[http] user.register.wrong.email", async () => {
 });
 
 Deno.test("[http] user.register.ok", async () => {
-  await UserHelper.removeUser("admin@admin.com");
-
+  await UserHelper.removeUser("admin2@admin.com");
   const requestArgument = {
-    login: "admin@admin.com",
+    login: "admin2@admin.com",
   };
   const response = await fetch(baseUrl, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(requestArgument),
   });
+
   const data = await response.json();
 
   assertEquals(response.status, 200);

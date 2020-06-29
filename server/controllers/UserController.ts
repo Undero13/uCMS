@@ -5,16 +5,19 @@ import {
   Get,
   Body,
   Injectable,
+  UseHook,
 } from "../deno_modules.ts";
 import {
   UserCredentials,
   UserRegister,
   UserResetPassword,
+  UserPermission,
 } from "../models/ApiUser.ts";
 import { Response, ResponseData } from "../models/ApiResponse.ts";
 import { AuthService } from "../services/AuthService.ts";
 import JWTokenService from "../services/JWTokenService.ts";
 import UserModel from "../db/UserModel.ts";
+import { PermissionHooks } from "../hooks/PermissionHooks.ts";
 
 @Controller("/api/user") @Injectable()
 export class UserController implements Response {
@@ -30,11 +33,13 @@ export class UserController implements Response {
       return this.setResponse(false, this.authService.getMessage());
     }
 
-    const token = this.jwtService.makeJWToken(body.login);
+    const token = await this.jwtService.makeJWToken(body.login);
     return this.setResponse(true, "", [{ token }]);
   }
 
-  @Post("/register") @Body()
+  @UseHook(PermissionHooks, "operator")
+  @Post("/register")
+  @Body()
   private async register(body: UserRegister) {
     if (!this.authService.validateRegisterData(body)) {
       return this.setResponse(false, this.authService.getMessage());
@@ -75,6 +80,7 @@ export class UserController implements Response {
 
     const userList = await this.userModel.getUserList(limitInt, skipInt);
     const userCount = await this.userModel.getUserCount();
+
     return this.setResponse(
       true,
       "",
@@ -83,14 +89,21 @@ export class UserController implements Response {
     );
   }
 
+  @UseHook(PermissionHooks, "operator")
+  @Post("/permission")
+  @Body()
+  private async setPermission(body: UserPermission) {
+    const status = await this.authService.setPermission(body);
+    return this.setResponse(status, this.authService.getMessage());
+  }
+
   @Post("/search") @Body()
   private async getSearchList(body: Object) {
     const userList = await this.userModel.getUserByData(body);
-
     return this.setResponse(true, "", userList);
   }
 
-  setResponse(
+  public setResponse(
     status = false,
     error = "",
     data: unknown[] = [],

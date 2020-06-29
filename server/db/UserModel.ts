@@ -20,6 +20,7 @@ export default class UserModel {
       id,
       login,
       password,
+      permission: [],
     });
   }
 
@@ -58,6 +59,21 @@ export default class UserModel {
     );
 
     return count;
+  }
+
+  public static async getUserPermission(login: string): Promise<string[]> {
+    const userData = await users.findOne(
+      { login: { $eq: login } },
+    );
+
+    return userData.permission;
+  }
+
+  public static async setPermission(login: string, permission: string[]) {
+    const { matchedCount, modifiedCount, upsertedId } = await users.updateOne(
+      { login: { $eq: login } },
+      { $set: { permission } },
+    );
   }
 
   public static async setPassword(

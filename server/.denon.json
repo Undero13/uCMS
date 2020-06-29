@@ -15,11 +15,8 @@
     "./"
   ],
   "deno_args": [
-    "--allow-net",
-    "--allow-read",
-    "--allow-write",
+    "--allow-all",
     "--config=tsconfig.json",
-    "--allow-plugin",
     "--unstable"
   ],
   "execute": {
