@@ -4,7 +4,6 @@
     "module": "esnext",
     "strict": true,
     "esModuleInterop": true,
-    "sourceMap": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
   }

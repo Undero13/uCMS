@@ -7,8 +7,9 @@ services:
     build: 
       context: ./build/deno
       args: 
-        - DENO_VERSION=v1.0.0-rc3
-    command: "denon index.ts"
+        - DENO_VERSION=v1.1.2
+        - DENON_VERSION=v2.2.0
+    command: "denon start"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.deno.rule=Host(`ucms.docker.localhost`) && PathPrefix(`/api`)"

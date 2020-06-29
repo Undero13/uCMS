@@ -4,12 +4,12 @@ services:
   - docker  
 script:
   - docker-compose up --build -d
-  - docker exec -t deno bash -c "deno run --allow-all --unstable generateData.ts"
+  - docker exec -t deno bash -c "denon generate"
 #in frontend
   - docker exec -t node sh -c "npm run check"
   - docker exec -t node sh -c "npm run test"
   - docker exec -t node sh -c "npm run build"
 #in backend
   - docker exec -t deno bash -c "deno fmt --check"
-  - docker exec -t deno bash -c "deno test --allow-all --unstable"
+  - docker exec -t deno bash -c "denon test "
   - docker-compose down

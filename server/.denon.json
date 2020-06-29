@@ -1,34 +1,35 @@
 {
-  "files": [
-    "index.ts"
-  ],
-  "quiet": false,
-  "debug": true,
-  "fullscreen": true,
-  "extensions": [
-    ".js",
-    ".ts",
-    ".json"
-  ],
-  "interval": 500,
-  "watch": [
-    "./"
-  ],
-  "deno_args": [
-    "--allow-all",
-    "--config=tsconfig.json",
-    "--unstable"
-  ],
-  "execute": {
-    ".js": [
-      "deno",
-      "run"
-    ],
-    ".ts": [
-      "deno",
-      "run"
-    ]
-  },
-  "fmt": true,
-  "test": false
+  "scripts": {
+    "start": {
+      "cmd": "index.ts",
+      "desc": "Run backend app",
+      "tsconfig": "tsconfig.json",
+      "unstable": true,
+      "watcher": {
+        "interval": 500
+      },
+      "allow": [
+        "all"
+      ],
+      "logger": {
+        "debug": true
+      },
+      "fmt": true
+    },
+    "generate": {
+      "cmd": "generateData.ts",
+      "desc": "Genetare fake data for app",
+      "unstable": true,
+      "watch": false,
+      "tsconfig": "tsconfig.json",
+      "allow": [
+        "all"
+      ]
+    },
+    "test": {
+      "cmd": "deno test --allow-all --unstable",
+      "desc": "Run backend test",
+      "watch": false
+    }
+  }
 }
