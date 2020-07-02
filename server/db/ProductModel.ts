@@ -8,7 +8,7 @@ export default class ProductModel {
   }
 
   public async getProductCount() {
-    const count = await products.count({ login: { $ne: null } });
+    const count = await products.count({ id: { $ne: null } });
     return count;
   }
 }
