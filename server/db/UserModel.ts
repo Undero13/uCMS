@@ -8,10 +8,8 @@ export default class UserModel {
     return await users.findOne({ login: { $eq: userLogin } });
   }
 
-  public async getUserByData(data: Object) {
-    const [key] = Object.keys(data);
-    const [value] = Object.values(data);
-
+  public async getUserByData(url: string) {
+    const [key, value] = url.substring(url.lastIndexOf("?") + 1).split('=');
     const userList: UserDbRecord[] = await users.find({ [key]: { $eq: value } });
 
     const mappedUserList = userList.map(user => ({
