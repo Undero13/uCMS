@@ -73,10 +73,10 @@ export class UserController implements Response {
 
     return this.setResponse(true, "", userList, Math.ceil(userCount / limitInt));
   }
-  
+
   @Req()
   @Get("/search")
-  private async getSearchList({ url }: { url:string }) {
+  private async getSearchList({ url }: { url: string }) {
     const userList = await this.userModel.getUserByData(url);
     return this.setResponse(true, "", userList);
   }

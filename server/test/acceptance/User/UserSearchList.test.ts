@@ -8,7 +8,7 @@ Deno.test("[http] user search list success", async () => {
   };
   const response = await fetch(`${baseUrl}?login=admin@admin.com`, {
     method: "GET",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json" }
   });
   const { status, error, data, pageCount } = await response.json();
 

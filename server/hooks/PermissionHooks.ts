@@ -17,7 +17,7 @@ export class PermissionHooks implements HookTarget<State, PayloadType> {
       return;
     }
 
-    const token = context.request.headers.get('Authorization');
+    const token = context.request.headers.get("Authorization");
     const permission = await this.getPermission(token);
     const haveAccess = !!permission?.includes(payload);
 
@@ -27,7 +27,7 @@ export class PermissionHooks implements HookTarget<State, PayloadType> {
     }
   }
 
-  private async getPermission(token: string|null) {
+  private async getPermission(token: string | null) {
     if (!token) {
       return;
     }

@@ -9,7 +9,7 @@ export default class UserModel {
   }
 
   public async getUserByData(url: string) {
-    const [key, value] = url.substring(url.lastIndexOf("?") + 1).split('=');
+    const [key, value] = url.substring(url.lastIndexOf("?") + 1).split("=");
     const userList: UserDbRecord[] = await users.find({ [key]: { $eq: value } });
     const mappedUserList = userList.map(user => ({
       id: user.id,
