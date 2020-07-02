@@ -10,12 +10,12 @@ import {
 import { Response, ResponseData } from "../models/ApiResponse.ts";
 import { PermissionHooks } from "../hooks/PermissionHooks.ts";
 
-@UseHook(PermissionHooks, "product")
+//@UseHook(PermissionHooks, "product")
 @Controller("/api/product")
 @Injectable()
 export class ProductController implements Response {
   @Get("/list")
-  private async login() {
+  private async getList() {
     return "text";
   }
 

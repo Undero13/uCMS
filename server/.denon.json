@@ -8,13 +8,10 @@
       "watcher": {
         "interval": 500
       },
-      "allow": [
-        "all"
-      ],
+      "allow": ["all"],
       "logger": {
         "debug": true
-      },
-      "fmt": true
+      }
     },
     "generate": {
       "cmd": "generateData.ts",
@@ -22,9 +19,22 @@
       "unstable": true,
       "watch": false,
       "tsconfig": "tsconfig.json",
-      "allow": [
-        "all"
-      ]
+      "allow": ["all"]
+    },
+    "lint": {
+      "cmd": "deno run https://raw.githubusercontent.com/eankeen/deno-prettier/wip/migrate-to-new-deno-apis/main.ts --print-width=140 --check . --ignore deno_modules.ts",
+      "desc": "Lint application",
+      "unstable": true,
+      "watch": false,
+      "tsconfig": "tsconfig.json",
+      "allow": ["all"]
+    },
+    "lint-fix": {
+      "cmd": "deno run https://raw.githubusercontent.com/eankeen/deno-prettier/wip/migrate-to-new-deno-apis/main.ts --print-width=140 --write . --ignore deno_modules.ts",
+      "desc": "Lint fix application file",
+      "unstable": true,
+      "tsconfig": "tsconfig.json",
+      "allow": ["all"]
     },
     "test": {
       "cmd": "deno test --allow-all --unstable",

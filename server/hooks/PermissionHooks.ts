@@ -28,6 +28,10 @@ export class PermissionHooks implements HookTarget<State, PayloadType> {
   }
 
   private async getPermission(token: string) {
+    if (!token) {
+      return;
+    }
+
     const jwtService = new JWTokenService();
     const { payload } = await jwtService.decodeJWT(token);
     return payload?.permission;
