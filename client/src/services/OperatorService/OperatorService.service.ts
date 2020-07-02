@@ -2,6 +2,7 @@ import axios from "axios";
 import environment from "@/environment";
 import qs from "querystring";
 import { OperatorResponse } from "@/models/Operators.model";
+import CookieService from '../CookieService/CookieService.service';
 
 export default class OperatorService {
   public static async create({
@@ -14,6 +15,7 @@ export default class OperatorService {
     const config = {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `${CookieService.getJWToken()}`
       },
     };
 
@@ -46,6 +48,7 @@ export default class OperatorService {
     const config = {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `${CookieService.getJWToken()}`
       },
     };
 
@@ -55,7 +58,7 @@ export default class OperatorService {
       remindPassword,
     });
 
-    const { status, data } = await axios.post(url, resParam, config);
+    const { status, data } = await axios.patch(url, resParam, config);
 
     if (!status) throw Error("Cannot get data from api");
     return data;

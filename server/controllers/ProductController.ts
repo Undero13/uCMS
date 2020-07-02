@@ -1,9 +1,9 @@
-import { Controller, QueryParam, Post, Get, Body, Injectable, UseHook } from "../deno_modules.ts";
+import { Controller, QueryParam, Get, Injectable, UseHook } from "../deno_modules.ts";
 import { Response, ResponseData } from "../models/ApiResponse.ts";
 import { PermissionHooks } from "../hooks/PermissionHooks.ts";
 import ProductModel from "../db/ProductModel.ts";
 
-//@UseHook(PermissionHooks, "product")
+@UseHook(PermissionHooks, "product")
 @Controller("/api/product")
 @Injectable()
 export class ProductController implements Response {

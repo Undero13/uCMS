@@ -6,6 +6,7 @@ import {
 } from "@/models/LoginForm.model.ts";
 import axios from "axios";
 import qs from "querystring";
+import CookieService from '../CookieService/CookieService.service';
 
 export default class AuthService {
   private login: string;
@@ -51,6 +52,7 @@ export default class AuthService {
     const config = {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `${CookieService.getJWToken()}`
       },
     };
     const res = await axios.post(url, qs.stringify(credentials), config);

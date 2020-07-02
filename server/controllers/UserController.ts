@@ -1,4 +1,4 @@
-import { Controller, QueryParam, Post, Get, Body, Injectable, UseHook } from "../deno_modules.ts";
+import { Controller, QueryParam, Post, Get, Patch, Body, Req, Injectable, UseHook } from "../deno_modules.ts";
 import { UserCredentials, UserRegister, UserResetPassword, UserPermission } from "../models/ApiUser.ts";
 import { Response, ResponseData } from "../models/ApiResponse.ts";
 import { AuthService } from "../services/AuthService.ts";
@@ -34,7 +34,7 @@ export class UserController implements Response {
     return this.setResponse(true, "", [id]);
   }
 
-  @Post("/reset-password")
+  @Patch("/reset-password")
   @Body()
   private async resetPassword(body: UserResetPassword) {
     const { token, password, remindPassword } = body;
@@ -54,7 +54,7 @@ export class UserController implements Response {
   }
 
   @UseHook(PermissionHooks, "operator")
-  @Post("/permission")
+  @Patch("/permission")
   @Body()
   private async setPermission(body: UserPermission) {
     const status = await this.authService.setPermission(body);
@@ -74,10 +74,10 @@ export class UserController implements Response {
     return this.setResponse(true, "", userList, Math.ceil(userCount / limitInt));
   }
 
-  @Post("/search")
-  @Body()
-  private async getSearchList(body: Object) {
-    const userList = await this.userModel.getUserByData(body);
+  @Get("/search")
+  @Req()
+  private async getSearchList({ url }: { url:string }) {
+    const userList = await this.userModel.getUserByData(url);
     return this.setResponse(true, "", userList);
   }
 

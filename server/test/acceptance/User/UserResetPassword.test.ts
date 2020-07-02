@@ -12,7 +12,7 @@ Deno.test("[http] user.reset.password.valid", async () => {
     remindPassword: "testPassword1234"
   };
   const response = await fetch(baseUrl, {
-    method: "POST",
+    method: "PATCH",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(requestArgument)
   });

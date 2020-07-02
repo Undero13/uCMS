@@ -17,7 +17,7 @@ export class PermissionHooks implements HookTarget<State, PayloadType> {
       return;
     }
 
-    const token = this.getTokenFromCookie(context.request);
+    const token = context.request.headers.get('Authorization');
     const permission = await this.getPermission(token);
     const haveAccess = !!permission?.includes(payload);
 
@@ -27,7 +27,7 @@ export class PermissionHooks implements HookTarget<State, PayloadType> {
     }
   }
 
-  private async getPermission(token: string) {
+  private async getPermission(token: string|null) {
     if (!token) {
       return;
     }
@@ -35,10 +35,5 @@ export class PermissionHooks implements HookTarget<State, PayloadType> {
     const jwtService = new JWTokenService();
     const { payload } = await jwtService.decodeJWT(token);
     return payload?.permission;
-  }
-
-  private getTokenFromCookie(req: any): string {
-    const cookie = getCookies(req);
-    return cookie[environment.jwtCookieName];
   }
 }
