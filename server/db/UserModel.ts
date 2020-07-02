@@ -8,17 +8,6 @@ export default class UserModel {
     return await users.findOne({ login: { $eq: userLogin } });
   }
 
-  public static async createUser(login: string, password: string): Promise<string> {
-    const id = uuid();
-
-    return await users.insertOne({
-      id,
-      login,
-      password,
-      permission: []
-    });
-  }
-
   public async getUserByData(data: Object) {
     const [key] = Object.keys(data);
     const [value] = Object.values(data);
@@ -45,14 +34,23 @@ export default class UserModel {
 
   public async getUserCount() {
     const count = await users.count({ login: { $ne: null } });
-
     return count;
   }
 
   public static async getUserPermission(login: string): Promise<string[]> {
     const userData = await users.findOne({ login: { $eq: login } });
-
     return userData.permission;
+  }
+
+  public static async createUser(login: string, password: string): Promise<string> {
+    const id = uuid();
+
+    return await users.insertOne({
+      id,
+      login,
+      password,
+      permission: []
+    });
   }
 
   public static async setPermission(login: string, permission: string[]) {

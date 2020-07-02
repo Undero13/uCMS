@@ -53,6 +53,14 @@ export class UserController implements Response {
     return this.setResponse(success, error);
   }
 
+  @UseHook(PermissionHooks, "operator")
+  @Post("/permission")
+  @Body()
+  private async setPermission(body: UserPermission) {
+    const status = await this.authService.setPermission(body);
+    return this.setResponse(status, this.authService.getMessage());
+  }
+
   @Get("/list")
   @QueryParam("skip")
   @QueryParam("limit")
@@ -64,14 +72,6 @@ export class UserController implements Response {
     const userCount = await this.userModel.getUserCount();
 
     return this.setResponse(true, "", userList, Math.ceil(userCount / limitInt));
-  }
-
-  @UseHook(PermissionHooks, "operator")
-  @Post("/permission")
-  @Body()
-  private async setPermission(body: UserPermission) {
-    const status = await this.authService.setPermission(body);
-    return this.setResponse(status, this.authService.getMessage());
   }
 
   @Post("/search")
