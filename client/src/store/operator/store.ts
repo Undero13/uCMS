@@ -5,8 +5,8 @@ import { createStore } from "vuex";
 import { State as StateWrapper, Operator } from "@/models/Operators.model.ts";
 import environment from "@/environment.ts";
 import router from "@/router/index.ts";
-import CookieService from '@/services/CookieService/CookieService.service';
-import AxiosService from '@/services/AxiosService/AxiosService.service';
+import CookieService from "@/services/CookieService/CookieService.service";
+import AxiosService from "@/services/AxiosService/AxiosService.service";
 
 const state: StateWrapper = {
   operators: [],
@@ -74,11 +74,11 @@ const actions = {
     const config = {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: `${CookieService.getJWToken()}`
+        Authorization: `${CookieService.getJWToken()}`,
       },
       params: {
-        ...args
-      }
+        ...args,
+      },
     };
 
     const url = `${environment.apiUrl}user/search`;

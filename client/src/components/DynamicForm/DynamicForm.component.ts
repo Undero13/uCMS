@@ -79,7 +79,7 @@ export default defineComponent({
       onSubmit,
       clearErrorMsg,
       errorsMsg,
-      formElement
+      formElement,
     };
   },
 });
