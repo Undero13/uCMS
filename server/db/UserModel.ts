@@ -11,7 +11,6 @@ export default class UserModel {
   public async getUserByData(url: string) {
     const [key, value] = url.substring(url.lastIndexOf("?") + 1).split('=');
     const userList: UserDbRecord[] = await users.find({ [key]: { $eq: value } });
-
     const mappedUserList = userList.map(user => ({
       id: user.id,
       login: user.login
@@ -22,11 +21,11 @@ export default class UserModel {
 
   public async getUserList(limit: number, skip: number) {
     const userList: UserDbRecord[] = await users.find({ login: { $ne: null } }, { limit, skip });
-
     const mappedUserList = userList.map(user => ({
       id: user.id,
       login: user.login
     }));
+
     return mappedUserList;
   }
 

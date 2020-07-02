@@ -46,7 +46,6 @@ export class AuthService {
 
     if (user) {
       const permissionArray = permission.split(",");
-
       const existingPermission = permissionArray.filter(name => environment.permissionList.includes(name));
 
       UserModel.setPermission(login, existingPermission);

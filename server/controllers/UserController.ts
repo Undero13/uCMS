@@ -6,13 +6,13 @@ import JWTokenService from "../services/JWTokenService.ts";
 import UserModel from "../db/UserModel.ts";
 import { PermissionHooks } from "../hooks/PermissionHooks.ts";
 
-@Controller("/api/user")
 @Injectable()
+@Controller("/api/user")
 export class UserController implements Response {
   constructor(private authService: AuthService, private jwtService: JWTokenService, private userModel: UserModel) {}
 
-  @Post("/login")
   @Body()
+  @Post("/login")
   private async login(body: UserCredentials) {
     if (!(await this.authService.validateCredentials(body))) {
       return this.setResponse(false, this.authService.getMessage());
@@ -22,9 +22,9 @@ export class UserController implements Response {
     return this.setResponse(true, "", [{ token }]);
   }
 
-  @UseHook(PermissionHooks, "operator")
-  @Post("/register")
   @Body()
+  @Post("/register")
+  @UseHook(PermissionHooks, "operator")
   private async register(body: UserRegister) {
     if (!this.authService.validateRegisterData(body)) {
       return this.setResponse(false, this.authService.getMessage());
@@ -34,8 +34,8 @@ export class UserController implements Response {
     return this.setResponse(true, "", [id]);
   }
 
-  @Patch("/reset-password")
   @Body()
+  @Patch("/reset-password")
   private async resetPassword(body: UserResetPassword) {
     const { token, password, remindPassword } = body;
     const tokenValid = await this.jwtService.validateJWToken(token);
@@ -53,9 +53,9 @@ export class UserController implements Response {
     return this.setResponse(success, error);
   }
 
-  @UseHook(PermissionHooks, "operator")
-  @Patch("/permission")
   @Body()
+  @Patch("/permission")
+  @UseHook(PermissionHooks, "operator")
   private async setPermission(body: UserPermission) {
     const status = await this.authService.setPermission(body);
     return this.setResponse(status, this.authService.getMessage());
@@ -73,9 +73,9 @@ export class UserController implements Response {
 
     return this.setResponse(true, "", userList, Math.ceil(userCount / limitInt));
   }
-
-  @Get("/search")
+  
   @Req()
+  @Get("/search")
   private async getSearchList({ url }: { url:string }) {
     const userList = await this.userModel.getUserByData(url);
     return this.setResponse(true, "", userList);

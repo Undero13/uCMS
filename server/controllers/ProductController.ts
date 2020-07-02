@@ -3,9 +3,9 @@ import { Response, ResponseData } from "../models/ApiResponse.ts";
 import { PermissionHooks } from "../hooks/PermissionHooks.ts";
 import ProductModel from "../db/ProductModel.ts";
 
-@UseHook(PermissionHooks, "product")
-@Controller("/api/product")
 @Injectable()
+@Controller("/api/product")
+@UseHook(PermissionHooks, "product")
 export class ProductController implements Response {
   constructor(private productModel: ProductModel) {}
 
