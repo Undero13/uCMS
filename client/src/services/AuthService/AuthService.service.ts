@@ -4,9 +4,8 @@ import {
   LoginFromErrors,
   LoginFormResponse,
 } from "@/models/LoginForm.model.ts";
-import axios from "axios";
 import qs from "querystring";
-import CookieService from '../CookieService/CookieService.service';
+import AxiosService from '../AxiosService/AxiosService.service';
 
 export default class AuthService {
   private login: string;
@@ -49,13 +48,7 @@ export default class AuthService {
       password: this.password,
     };
 
-    const config = {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: `${CookieService.getJWToken()}`
-      },
-    };
-    const res = await axios.post(url, qs.stringify(credentials), config);
+    const res = await AxiosService.post(url, qs.stringify(credentials));
     return res;
   }
 

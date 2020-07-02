@@ -77,9 +77,9 @@ export default defineComponent({
       checkType,
       validate,
       onSubmit,
-      errorsMsg,
-      formElement,
       clearErrorMsg,
+      errorsMsg,
+      formElement
     };
   },
 });

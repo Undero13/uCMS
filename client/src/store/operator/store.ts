@@ -4,10 +4,9 @@
 import { createStore } from "vuex";
 import { State as StateWrapper, Operator } from "@/models/Operators.model.ts";
 import environment from "@/environment.ts";
-import axios from "axios";
 import router from "@/router/index.ts";
-import qs from "querystring";
 import CookieService from '@/services/CookieService/CookieService.service';
+import AxiosService from '@/services/AxiosService/AxiosService.service';
 
 const state: StateWrapper = {
   operators: [],
@@ -42,14 +41,7 @@ const actions = {
   async fetchOperators() {
     const { limit = 10, skip = 0 } = router.currentRoute.value.query;
     const url = `${environment.apiUrl}user/list?limit=${limit}&skip=${skip}`;
-    const config = {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: `${CookieService.getJWToken()}`
-      }
-    };
-
-    const { status, data } = await axios.get(url, config);
+    const { status, data } = await AxiosService.get(url);
 
     if (!status) throw Error("Cannot get data from api");
 
@@ -90,7 +82,7 @@ const actions = {
     };
 
     const url = `${environment.apiUrl}user/search`;
-    const { status, data } = await axios.get(url, config);
+    const { status, data } = await AxiosService.get(url, config);
 
     if (!status) throw Error("Something wrong. Please try later");
 
