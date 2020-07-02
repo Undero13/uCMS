@@ -10,6 +10,6 @@ script:
   - docker exec -t node sh -c "npm run test"
   - docker exec -t node sh -c "npm run build"
 #in backend
-  - docker exec -t deno bash -c "deno fmt --check"
+  - docker exec -t deno bash -c "denon lint"
   - docker exec -t deno bash -c "denon test "
   - docker-compose down

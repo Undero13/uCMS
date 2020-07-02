@@ -9,28 +9,25 @@ Deno.test("[http] user.register.wrong.email", async () => {
   const data = await response.json();
 
   assertEquals(response.status, 200);
-  assertEquals(
-    data,
-    {
-      "status": false,
-      "error": "user.register.wrong.email",
-      data: [],
-      pageCount: 0,
-    },
-  );
+  assertEquals(data, {
+    status: false,
+    error: "user.register.wrong.email",
+    data: [],
+    pageCount: 0
+  });
 });
 
 Deno.test("[http] user.register.ok", async () => {
   await UserHelper.removeUser("admin2@admin.com");
   const requestArgument = {
-    login: "admin2@admin.com",
+    login: "admin2@admin.com"
   };
   const response = await fetch(baseUrl, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json"
     },
-    body: JSON.stringify(requestArgument),
+    body: JSON.stringify(requestArgument)
   });
 
   const data = await response.json();

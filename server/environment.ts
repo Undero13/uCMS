@@ -6,5 +6,5 @@ export const environment = {
   mongoUser: "root",
   mongoPassword: "rootpassword",
   mongoPort: 27017,
-  permissionList: ["operator", "product"],
+  permissionList: ["operator", "product"]
 };

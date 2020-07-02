@@ -6,10 +6,5 @@ export type ResponseData = {
 };
 
 export interface Response {
-  setResponse(
-    status?: boolean,
-    error?: string,
-    data?: unknown[],
-    pageCount?: number,
-  ): ResponseData;
+  setResponse(status?: boolean, error?: string, data?: unknown[], pageCount?: number): ResponseData;
 }

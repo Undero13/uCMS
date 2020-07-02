@@ -1,4 +1,3 @@
 import { product } from "./connection.ts";
 
-export default class ProductModel {
-}
+export default class ProductModel {}

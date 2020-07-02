@@ -1,8 +1,4 @@
-import {
-  UserRegister,
-  UserCredentials,
-  UserPermission,
-} from "../models/ApiUser.ts";
+import { UserRegister, UserCredentials, UserPermission } from "../models/ApiUser.ts";
 import { bcrypt } from "../deno_modules.ts";
 import UserModel from "../db/UserModel.ts";
 import { environment } from "../environment.ts";
@@ -14,9 +10,7 @@ export class AuthService {
     this.msg = "";
   }
 
-  public async validateCredentials(
-    userData: UserCredentials,
-  ): Promise<boolean> {
+  public async validateCredentials(userData: UserCredentials): Promise<boolean> {
     const { login, password } = userData;
 
     if (!login || !password) {
@@ -27,9 +21,7 @@ export class AuthService {
     const user = await UserModel.getUser(login);
 
     if (user) {
-      this.msg = this.passwordVerify(password, user.password)
-        ? ""
-        : "user.login.wrong.password";
+      this.msg = this.passwordVerify(password, user.password) ? "" : "user.login.wrong.password";
       return !this.msg;
     }
 
@@ -55,9 +47,7 @@ export class AuthService {
     if (user) {
       const permissionArray = permission.split(",");
 
-      const existingPermission = permissionArray.filter((name) =>
-        environment.permissionList.includes(name)
-      );
+      const existingPermission = permissionArray.filter(name => environment.permissionList.includes(name));
 
       UserModel.setPermission(login, existingPermission);
       return true;

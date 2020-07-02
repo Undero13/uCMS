@@ -6,7 +6,7 @@ import { uuid } from "https://deno.land/x/uuid@v0.1.2/mod.ts";
 export const productsData: any[] = [];
 export const faker = new Faker({
   locales: { en_US, en },
-  locale: "en_US",
+  locale: "en_US"
 });
 
 const iteration = 100;
@@ -20,12 +20,9 @@ for (let i = 0; i < iteration; i++) {
     attributes: {
       material: faker.commerce.productMaterial(),
       color: faker.commerce.color(),
-      weight: Math.round(Math.random() * 100),
+      weight: Math.round(Math.random() * 100)
     },
-    images: [
-      "https://loremflickr.com/g/320/240/product",
-      "https://loremflickr.com/g/320/240/product",
-    ],
+    images: ["https://loremflickr.com/g/320/240/product", "https://loremflickr.com/g/320/240/product"]
   };
 
   productsData.push(product);
