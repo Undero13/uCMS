@@ -1,7 +1,7 @@
-import axios from "axios";
 import environment from "@/environment";
 import qs from "querystring";
 import { OperatorResponse } from "@/models/Operators.model";
+import AxiosService from "../AxiosService/AxiosService.service";
 
 export default class OperatorService {
   public static async create({
@@ -11,17 +11,11 @@ export default class OperatorService {
   }): Promise<OperatorResponse> {
     const url = `${environment.apiUrl}user/register`;
 
-    const config = {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-    };
-
     const resParam = qs.stringify({
       login: email,
     });
 
-    const { status, data } = await axios.post(url, resParam, config);
+    const { status, data } = await AxiosService.post(url, resParam);
 
     if (!status) throw Error("Cannot get data from api");
     return data;
@@ -43,11 +37,6 @@ export default class OperatorService {
     remindPassword: string
   ) {
     const url = `${environment.apiUrl}user/reset-password`;
-    const config = {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-    };
 
     const resParam = qs.stringify({
       token,
@@ -55,7 +44,7 @@ export default class OperatorService {
       remindPassword,
     });
 
-    const { status, data } = await axios.post(url, resParam, config);
+    const { status, data } = await AxiosService.patch(url, resParam);
 
     if (!status) throw Error("Cannot get data from api");
     return data;

@@ -1,7 +1,7 @@
 ## Start
 - docker-compose up --build -d
 - docker exec -it deno bash
-- deno run --allow-all --unstable generateData.ts
+- denon generate
 
 ## Stop
   - docker-compose down
@@ -28,7 +28,7 @@
 ### Backend
 
 - docker exec -it deno bash
-- deno test --allow-run --allow-read --allow-write --allow-net --unstable --allow-plugin
+- denon test
 
 ### Frontend
 - docker exec -it node bash

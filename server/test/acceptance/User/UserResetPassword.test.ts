@@ -9,19 +9,16 @@ Deno.test("[http] user.reset.password.valid", async () => {
   const requestArgument = {
     token: user.token,
     password: "testPassword1234",
-    remindPassword: "testPassword1234",
+    remindPassword: "testPassword1234"
   };
   const response = await fetch(baseUrl, {
-    method: "POST",
+    method: "PATCH",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(requestArgument),
+    body: JSON.stringify(requestArgument)
   });
 
   const data = await response.json();
 
   assertEquals(response.status, 200);
-  assertEquals(
-    data,
-    { status: true, error: "", data: [], pageCount: 0 },
-  );
+  assertEquals(data, { status: true, error: "", data: [], pageCount: 0 });
 });

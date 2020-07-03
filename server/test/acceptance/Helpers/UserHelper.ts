@@ -12,9 +12,7 @@ export default class UserHelper {
     const jwTokenService = new JWTokenService();
     const login = `test${Math.floor(Math.random() * 500)}@test.eu`;
 
-    await authService.createUser(
-      { login },
-    );
+    await authService.createUser({ login });
     return { login, token: await jwTokenService.makeJWToken(login) };
   }
 }
