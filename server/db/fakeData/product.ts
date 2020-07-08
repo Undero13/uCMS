@@ -22,6 +22,7 @@ for (let i = 0; i < iteration; i++) {
       color: faker.commerce.color(),
       weight: Math.round(Math.random() * 100)
     },
+    seo: {},
     images: ["https://loremflickr.com/g/320/240/product", "https://loremflickr.com/g/320/240/product"]
   };
 
