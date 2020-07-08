@@ -3,6 +3,7 @@ export {
   QueryParam,
   Post,
   Patch,
+  Put,
   Get,
   Body,
   Req,
