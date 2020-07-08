@@ -51,11 +51,11 @@ export default class UserModel {
   }
 
   public static async setPermission(login: string, permission: string[]) {
-    const { matchedCount, modifiedCount, upsertedId } = await users.updateOne({ login: { $eq: login } }, { $set: { permission } });
+    const { matchedCount, modifiedCount } = await users.updateOne({ login: { $eq: login } }, { $set: { permission } });
   }
 
   public static async setPassword(login: string, password: string): Promise<boolean> {
-    const { matchedCount, modifiedCount, upsertedId } = await users.updateOne({ login: { $eq: login } }, { $set: { password } });
+    const { matchedCount, modifiedCount } = await users.updateOne({ login: { $eq: login } }, { $set: { password } });
 
     if (matchedCount === modifiedCount) {
       return true;
