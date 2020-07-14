@@ -1,20 +1,22 @@
-import { Controller, QueryParam, Post, Get, Patch, Body, Req, Injectable, UseHook } from "../deno_modules.ts";
+import { Controller, Param, Post, Get, Patch, Body, Req, Injectable, UseHook } from "../deno_modules.ts";
 import { UserCredentials, UserRegister, UserResetPassword, UserPermission } from "../models/ApiUser.ts";
 import { Response, ResponseData } from "../models/ApiResponse.ts";
-import { AuthService } from "../services/AuthService.ts";
+import AuthService from "../services/AuthService.ts";
 import JWTokenService from "../services/JWTokenService.ts";
 import UserModel from "../db/UserModel.ts";
 import { PermissionHooks } from "../hooks/PermissionHooks.ts";
+import { environment } from "../environment.ts";
 
 @Injectable()
 @Controller("/api/user")
 export class UserController implements Response {
   constructor(private authService: AuthService, private jwtService: JWTokenService, private userModel: UserModel) {}
 
-  @Body()
   @Post("/login")
-  private async login(body: UserCredentials) {
-    if (!(await this.authService.validateCredentials(body))) {
+  private async login(@Body() body: UserCredentials) {
+    const isValid = await this.authService.validateCredentials(body);
+
+    if (!isValid) {
       return this.setResponse(false, this.authService.getMessage());
     }
 
@@ -22,30 +24,29 @@ export class UserController implements Response {
     return this.setResponse(true, "", [{ token }]);
   }
 
-  @Body()
   @Post("/register")
-  @UseHook(PermissionHooks, "operator")
-  private async register(body: UserRegister) {
-    if (!this.authService.validateRegisterData(body)) {
+  @UseHook(PermissionHooks, "operator.register")
+  private async register(@Body() body: UserRegister) {
+    const isValid = this.authService.validateRegisterData(body);
+
+    if (!isValid) {
       return this.setResponse(false, this.authService.getMessage());
     }
 
     const id = await this.authService.createUser(body);
-    return this.setResponse(true, "", [id]);
+    return this.setResponse(true, "", [{ id }]);
   }
 
-  @Body()
   @Patch("/reset-password")
-  private async resetPassword(body: UserResetPassword) {
+  private async resetPassword(@Body() body: UserResetPassword) {
     const { token, password, remindPassword } = body;
-    const tokenValid = await this.jwtService.validateJWToken(token);
-    const passwordValid = this.authService.validatePassword(password, remindPassword);
+    const isTokenValid = await this.jwtService.validateJWToken(token);
+    const isPasswordValid = this.authService.validatePassword(password, remindPassword);
 
     let success = false;
 
-    if (tokenValid && passwordValid) {
+    if (isTokenValid && isPasswordValid) {
       const { payload } = await this.jwtService.decodeJWT(token);
-
       success = await this.authService.setPassword((<any>payload).user, password);
     }
 
@@ -53,18 +54,15 @@ export class UserController implements Response {
     return this.setResponse(success, error);
   }
 
-  @Body()
   @Patch("/permission")
-  @UseHook(PermissionHooks, "operator")
-  private async setPermission(body: UserPermission) {
+  @UseHook(PermissionHooks, "operator.permission")
+  private async setPermission(@Body() body: UserPermission) {
     const status = await this.authService.setPermission(body);
     return this.setResponse(status, this.authService.getMessage());
   }
 
-  @Get("/list")
-  @QueryParam("skip")
-  @QueryParam("limit")
-  private async getList(limit: string = "10", skip: string = "0") {
+  @Get("/list/:limit/:skip")
+  private async getList(@Param("limit") limit: string = "10", @Param("skip") skip: string = "0") {
     const limitInt = parseInt(limit, 10);
     const skipInt = parseInt(skip, 10);
 
@@ -79,6 +77,12 @@ export class UserController implements Response {
   private async getSearchList({ url }: { url: string }) {
     const userList = await this.userModel.getUserByData(url);
     return this.setResponse(true, "", userList);
+  }
+
+  @Get("/list/permission")
+  @UseHook(PermissionHooks, "operator.permission")
+  private async getPermissionList() {
+    return this.setResponse(true, "", environment.permissionList);
   }
 
   public setResponse(status = false, error = "", data: unknown[] = [], pageCount: number = 0): ResponseData {
