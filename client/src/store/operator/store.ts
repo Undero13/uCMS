@@ -40,7 +40,7 @@ const getters = {
 const actions = {
   async fetchOperators() {
     const { limit = 10, skip = 0 } = router.currentRoute.value.query;
-    const url = `${environment.apiUrl}user/list?limit=${limit}&skip=${skip}`;
+    const url = `${environment.apiUrl}user/list/${limit}/${skip}`;
     const { status, data } = await AxiosService.get(url);
 
     if (!status) throw Error("Cannot get data from api");

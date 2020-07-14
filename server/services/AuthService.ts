@@ -3,7 +3,7 @@ import { bcrypt } from "../deno_modules.ts";
 import UserModel from "../db/UserModel.ts";
 import { environment } from "../environment.ts";
 
-export class AuthService {
+export default class AuthService {
   private msg: string;
 
   constructor() {

@@ -1,4 +1,4 @@
-import { AuthService } from "../../../services/AuthService.ts";
+import AuthService from "../../../services/AuthService.ts";
 import { assertEquals } from "../../../deno_modules.ts";
 import UserHelper from "../../acceptance/Helpers/UserHelper.ts";
 
