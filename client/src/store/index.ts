@@ -1,10 +1,10 @@
-import { createStore } from 'vuex';
-import operatorStore from './operator';
+import { createStore } from "vuex";
+import operatorStore from "./operator";
 
 const store = createStore({
   modules: {
-    operatorStore
-  }
+    operatorStore,
+  },
 });
 
 export default store;

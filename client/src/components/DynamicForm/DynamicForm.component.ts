@@ -10,7 +10,7 @@ export default defineComponent({
       required: true,
     },
   },
-  setup(props:any, context) {
+  setup(props: any, context) {
     const errorsMsg: string[] = reactive([]);
     const formElement: Ref<HTMLFormElement | undefined> = ref(undefined);
 

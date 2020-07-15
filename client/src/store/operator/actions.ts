@@ -1,12 +1,12 @@
 /* eslint-disable consistent-return */
-import environment from '@/environment';
-import router from '@/router';
-import { AxiosService } from '@/services/AxiosService/AxiosService.service';
-import CookieService from '@/services/CookieService/CookieService.service';
-import { Commit, Dispatch } from 'vuex';
+import environment from "@/environment";
+import router from "@/router";
+import { AxiosService } from "@/services/AxiosService/AxiosService.service";
+import CookieService from "@/services/CookieService/CookieService.service";
+import { Commit, Dispatch } from "vuex";
 
 const actions = {
-  async fetchOperators({ commit }: {commit: Commit}) {
+  async fetchOperators({ commit }: { commit: Commit }) {
     const { limit = 10, skip = 0 } = router.currentRoute.value.query;
     const url = `${environment.apiUrl}operator/list/${limit}/${skip}`;
     const { status, data } = await AxiosService.get(url);
@@ -17,7 +17,10 @@ const actions = {
     commit("FETCH_PAGECOUNT", data.pageCount);
   },
 
-  async searchOperatorsSearch({ commit, dispatch }: {commit: Commit, dispatch:Dispatch}, param: Object) {
+  async searchOperatorsSearch(
+    { commit, dispatch }: { commit: Commit; dispatch: Dispatch },
+    param: Object
+  ) {
     const args: any = {};
     const [key] = Object.keys(param);
     let [value] = Object.values(param);

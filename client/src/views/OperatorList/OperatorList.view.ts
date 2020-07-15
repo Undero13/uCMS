@@ -1,4 +1,9 @@
-import { defineComponent, onBeforeMount, ref, reactive } from "@vue/runtime-dom";
+import {
+  defineComponent,
+  onBeforeMount,
+  ref,
+  reactive,
+} from "@vue/runtime-dom";
 import Navigation from "@/components/Navigation/Navigation.component.vue";
 import Notification from "@/components/Notification/Notification.component.vue";
 import TableComponent from "@/components/TableComponent/TableComponent.component.vue";
@@ -9,7 +14,7 @@ import { OperatorTable, OperatorCreateData } from "@/models/Operators.model";
 import ValidatorService from "@/services/ValidatorService/ValidatorService.service";
 import { FormField } from "@/models/DynamicForm.model";
 import OperatorService from "@/services/OperatorService/OperatorService.service";
-import { useStore } from 'vuex';
+import { useStore } from "vuex";
 
 export default defineComponent({
   name: "OperatorList",
@@ -54,7 +59,7 @@ export default defineComponent({
 
     function onSearch(e: Object) {
       loading.value = true;
-        dispatch("searchOperatorsSearch", e)
+      dispatch("searchOperatorsSearch", e)
         .then(() => loadData())
         .catch((err) => (msg.value = err.message));
     }
@@ -67,7 +72,7 @@ export default defineComponent({
       } else {
         showModal.value = false;
         loading.value = true;
-          dispatch("fetchOperators")
+        dispatch("fetchOperators")
           .then(() => loadData())
           .catch((err) => (msg.value = err.message));
       }
