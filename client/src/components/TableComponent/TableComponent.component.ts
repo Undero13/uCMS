@@ -12,9 +12,9 @@ export default defineComponent({
       required: true,
     },
   },
-  setup() {
+  setup(props, context) {
     function emitSearch(e: any) {
-      this.$emit("setSearch", e);
+      context.emit("setSearch", e);
     }
 
     return {

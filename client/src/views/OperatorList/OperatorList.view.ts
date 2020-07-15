@@ -1,15 +1,15 @@
-import { defineComponent, onBeforeMount, ref, Ref } from "@vue/runtime-dom";
+import { defineComponent, onBeforeMount, ref, reactive } from "@vue/runtime-dom";
 import Navigation from "@/components/Navigation/Navigation.component.vue";
 import Notification from "@/components/Notification/Notification.component.vue";
 import TableComponent from "@/components/TableComponent/TableComponent.component.vue";
 import Modal from "@/components/Modal/Modal.component.vue";
 import Pagination from "@/components/Pagination/Pagination.component.vue";
-import storeOperator from "@/store/operator/store.ts";
 import DynamicForm from "@/components/DynamicForm/DynamicForm.component.vue";
 import { OperatorTable, OperatorCreateData } from "@/models/Operators.model";
-import ValidatorService from "@/services/ValidatorService/ValidatorService.service.ts";
+import ValidatorService from "@/services/ValidatorService/ValidatorService.service";
 import { FormField } from "@/models/DynamicForm.model";
 import OperatorService from "@/services/OperatorService/OperatorService.service";
+import { useStore } from 'vuex';
 
 export default defineComponent({
   name: "OperatorList",
@@ -22,11 +22,20 @@ export default defineComponent({
     DynamicForm,
   },
   setup() {
-    const operatorList: Ref<OperatorTable> = ref({});
+    const { dispatch, getters } = useStore();
+
+    const msg = ref("");
     const pageCount = ref(0);
+
     const loading = ref(true);
     const showModal = ref(false);
-    const msg = ref("");
+
+    const operatorList: OperatorTable = reactive({
+      caption: "Operator List",
+      headers: ["ID", "e-mail"],
+      rows: [],
+    });
+
     const formFields: FormField[] = [
       {
         type: "email",
@@ -38,22 +47,14 @@ export default defineComponent({
     ];
 
     function loadData() {
-      setTimeout(() => {
-        operatorList.value = {
-          caption: "Operator List",
-          headers: ["ID", "e-mail"],
-          rows: storeOperator.getters.getOperatorList,
-        };
-
-        pageCount.value = storeOperator.getters.getPageCount;
-        loading.value = false;
-      }, 1000);
+      operatorList.rows = getters.getOperatorList;
+      pageCount.value = getters.getPageCount;
+      loading.value = false;
     }
 
     function onSearch(e: Object) {
       loading.value = true;
-      storeOperator
-        .dispatch("searchOperatorsSearch", e)
+        dispatch("searchOperatorsSearch", e)
         .then(() => loadData())
         .catch((err) => (msg.value = err.message));
     }
@@ -66,24 +67,22 @@ export default defineComponent({
       } else {
         showModal.value = false;
         loading.value = true;
-        storeOperator
-          .dispatch("fetchOperators")
+          dispatch("fetchOperators")
           .then(() => loadData())
           .catch((err) => (msg.value = err.message));
       }
     }
 
     onBeforeMount(() => {
-      storeOperator
-        .dispatch("fetchOperators")
+      dispatch("fetchOperators")
         .then(() => loadData())
         .catch((err) => (msg.value = err.message));
     });
 
     return {
-      operatorList,
       createOperator,
       onSearch,
+      operatorList,
       pageCount,
       formFields,
       showModal,
