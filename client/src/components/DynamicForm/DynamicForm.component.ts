@@ -54,6 +54,7 @@ export default defineComponent({
       const fields: any = {
         input: [
           "text",
+          "file",
           "email",
           "number",
           "hidden",

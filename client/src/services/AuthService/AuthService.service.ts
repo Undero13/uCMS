@@ -5,7 +5,7 @@ import {
   LoginFormResponse,
 } from "@/models/LoginForm.model.ts";
 import qs from "querystring";
-import AxiosService from "../AxiosService/AxiosService.service";
+import { AxiosService } from "../AxiosService/AxiosService.service";
 
 export default class AuthService {
   private login: string;

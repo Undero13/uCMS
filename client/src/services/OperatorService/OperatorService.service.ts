@@ -1,7 +1,7 @@
 import environment from "@/environment";
 import qs from "querystring";
 import { OperatorResponse } from "@/models/Operators.model";
-import AxiosService from "../AxiosService/AxiosService.service";
+import { AxiosService } from "../AxiosService/AxiosService.service";
 
 export default class OperatorService {
   public static async create({
