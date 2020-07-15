@@ -33,7 +33,7 @@ export default class FileUploadService {
     }
 
     if (!acceptableType.includes(file.type)) {
-      throw Error("Incorrect file type!");
+      throw TypeError("Incorrect file type!");
     }
   }
 
