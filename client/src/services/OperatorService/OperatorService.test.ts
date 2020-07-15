@@ -1,4 +1,4 @@
-import OperatorService from "./OperatorService.service.ts";
+import OperatorService from "./OperatorService.service";
 
 test("it can return corect code", () => {
   expect(
