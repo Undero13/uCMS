@@ -1,6 +1,7 @@
 import { defineComponent, ref } from "@vue/runtime-dom";
 import Logo from "@/components/Logo/Logo.component.vue";
 import List from "@/components/List/List.component.vue";
+import CookieService from "@/services/CookieService/CookieService.service";
 
 export default defineComponent({
   name: "Navigation",
@@ -79,9 +80,15 @@ export default defineComponent({
       ],
     };
 
+    function logout() {
+      CookieService.deleteToken();
+      this.$router.push("login");
+    }
+
     return {
       showMenu,
       data,
+      logout,
     };
   },
 });

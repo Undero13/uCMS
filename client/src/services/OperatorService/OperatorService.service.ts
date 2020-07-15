@@ -1,7 +1,7 @@
 import environment from "@/environment";
 import qs from "querystring";
 import { OperatorResponse } from "@/models/Operators.model";
-import AxiosService from "../AxiosService/AxiosService.service";
+import { AxiosService } from "../AxiosService/AxiosService.service";
 
 export default class OperatorService {
   public static async create({
@@ -9,7 +9,7 @@ export default class OperatorService {
   }: {
     email: string;
   }): Promise<OperatorResponse> {
-    const url = `${environment.apiUrl}user/register`;
+    const url = `${environment.apiUrl}operator/register`;
 
     const resParam = qs.stringify({
       login: email,
@@ -24,7 +24,7 @@ export default class OperatorService {
   public static changeCodeToMessage(code: string) {
     let msg = "";
 
-    if (code === "user.register.wrong.email") {
+    if (code === "operator.register.wrong.email") {
       msg = "Wrong e-mail!";
     }
 
@@ -36,7 +36,7 @@ export default class OperatorService {
     password: string,
     remindPassword: string
   ) {
-    const url = `${environment.apiUrl}user/reset-password`;
+    const url = `${environment.apiUrl}operator/reset-password`;
 
     const resParam = qs.stringify({
       token,

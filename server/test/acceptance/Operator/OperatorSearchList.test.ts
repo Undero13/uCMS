@@ -1,8 +1,8 @@
 import { assertEquals } from "../../../deno_modules.ts";
 
-const baseUrl = "http://localhost:3000/api/user/search";
+const baseUrl = "http://localhost:3000/api/operator/search";
 
-Deno.test("[http] user search list success", async () => {
+Deno.test("[http] operator search list success", async () => {
   const requestArgument = {
     login: "admin@admin.com"
   };

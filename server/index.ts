@@ -1,10 +1,10 @@
 import { App, HttpError, Context, Content } from "./deno_modules.ts";
-import { UserArea } from "./area/UserArea.ts";
 import { ProductArea } from "./area/ProductArea.ts";
 import { environment } from "./environment.ts";
+import { OperatorArea } from "./area/OperatorController.ts";
 
 const app = new App({
-  areas: [UserArea, ProductArea]
+  areas: [OperatorArea, ProductArea]
 });
 
 app.error((context: Context<any>, error: Error) => {

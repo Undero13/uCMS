@@ -1,13 +1,13 @@
 import { assertEquals } from "../../../deno_modules.ts";
-import UserHelper from "../Helpers/UserHelper.ts";
+import OperatorHelper from "../Helpers/OperatorHelper.ts";
 
-const baseUrl = "http://localhost:3000/api/user/reset-password";
+const baseUrl = "http://localhost:3000/api/operator/reset-password";
 
-Deno.test("[http] user.reset.password.valid", async () => {
-  const user = await UserHelper.createRandomUser();
+Deno.test("[http] operator.reset.password.valid", async () => {
+  const operator = await OperatorHelper.createRandomOperator();
 
   const requestArgument = {
-    token: user.token,
+    token: operator.token,
     password: "testPassword1234",
     remindPassword: "testPassword1234"
   };

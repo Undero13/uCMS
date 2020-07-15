@@ -1,4 +1,4 @@
-import { usersData } from "./users.ts";
+import { operatorsData } from "./operator.ts";
 import { productsData } from "./product.ts";
 
-export { usersData, productsData };
+export { operatorsData, productsData };

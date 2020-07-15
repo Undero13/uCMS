@@ -1,5 +1,4 @@
 import { HookTarget, Context, Content } from "../deno_modules.ts";
-import { getCookies } from "https://deno.land/std/http/cookie.ts";
 import { environment } from "../environment.ts";
 import JWTokenService from "../services/JWTokenService.ts";
 

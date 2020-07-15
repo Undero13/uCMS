@@ -1,22 +1,22 @@
 import { assertEquals } from "../../../deno_modules.ts";
 
 const ContentTypeJson = "application/json; charset=utf-8";
-const baseUrl = "http://localhost:3000/api/user/login";
+const baseUrl = "http://localhost:3000/api/operator/login";
 
-Deno.test("[http] user login empty.credentials", async () => {
+Deno.test("[http] operator login empty.credentials", async () => {
   const response = await fetch(baseUrl, { method: "POST" });
   const data = await response.json();
 
   assertEquals(response.status, 200);
   assertEquals(data, {
     status: false,
-    error: "user.login.empty.credentials",
+    error: "operator.login.empty.credentials",
     data: [],
     pageCount: 0
   });
 });
 
-Deno.test("[http] user login user.not.exist", async () => {
+Deno.test("[http] operator login operator.not.exist", async () => {
   const requestArgument = {
     login: "test@test.pl",
     password: "123"
@@ -31,13 +31,13 @@ Deno.test("[http] user login user.not.exist", async () => {
   assertEquals(response.status, 200);
   assertEquals(data, {
     status: false,
-    error: "user.login.not.exist",
+    error: "operator.login.not.exist",
     data: [],
     pageCount: 0
   });
 });
 
-Deno.test("[http] user login wrong.password", async () => {
+Deno.test("[http] operator login wrong.password", async () => {
   const requestArgument = {
     login: "admin@admin.com",
     password: "fakePassword"
@@ -52,13 +52,13 @@ Deno.test("[http] user login wrong.password", async () => {
   assertEquals(response.status, 200);
   assertEquals(data, {
     status: false,
-    error: "user.login.wrong.password",
+    error: "operator.login.wrong.password",
     data: [],
     pageCount: 0
   });
 });
 
-Deno.test("[http] user correct login", async () => {
+Deno.test("[http] operator correct login", async () => {
   const requestArgument = {
     login: "admin@admin.com",
     password: "admin@admin.com"

@@ -20,10 +20,9 @@ export class ProductController implements Response {
     return this.setResponse(true, "", productList, Math.ceil(productCount / limitInt));
   }
 
-  @Body()
   @Post("/create")
   @UseHook(PermissionHooks, "product.create")
-  private async create(body: any) {
+  private async create(@Body() body: any) {
     let product: RawProductData;
 
     try {
@@ -36,10 +35,9 @@ export class ProductController implements Response {
     return this.setResponse(true, "", [{ id }]);
   }
 
-  @Body()
   @Put("/update")
   @UseHook(PermissionHooks, "product.update")
-  private async update(body: any) {
+  private async update(@Body() body: any) {
     let product: ProductDbRecord;
 
     try {

@@ -5,7 +5,7 @@ import {
   LoginFormResponse,
 } from "@/models/LoginForm.model.ts";
 import qs from "querystring";
-import AxiosService from "../AxiosService/AxiosService.service";
+import { AxiosService } from "../AxiosService/AxiosService.service";
 
 export default class AuthService {
   private login: string;
@@ -42,7 +42,7 @@ export default class AuthService {
   }
 
   public async loginRequest(): Promise<LoginFormResponse> {
-    const url = `${environment.apiUrl}user/login`;
+    const url = `${environment.apiUrl}operator/login`;
     const credentials = {
       login: this.login,
       password: this.password,
@@ -55,11 +55,11 @@ export default class AuthService {
   public changeCodeToMessage(code: string): string {
     let msg = "";
 
-    if (code === "user.login.empty.credentials") {
+    if (code === "operator.login.empty.credentials") {
       msg = "Login and password are required!";
-    } else if (code === "user.login.not.exist") {
-      msg = "User not exist!";
-    } else if (code === "user.login.wrong.password") {
+    } else if (code === "operator.login.not.exist") {
+      msg = "Operator not exist!";
+    } else if (code === "operator.login.wrong.password") {
       msg = "Password is not correct!";
     }
 
