@@ -1,7 +1,7 @@
 import { assertEquals } from "../../../deno_modules.ts";
 
 const ContentTypeJson = "application/json; charset=utf-8";
-const baseUrl = "http://localhost:3000/api/product/list";
+const baseUrl = "http://localhost:3000/api/product/list/10/0";
 
 Deno.test("[http] product list success", async () => {
   const response = await fetch(baseUrl);

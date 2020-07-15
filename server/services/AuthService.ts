@@ -1,6 +1,6 @@
-import { UserRegister, UserCredentials, UserPermission } from "../models/ApiUser.ts";
+import { OperatorRegister, OperatorCredentials, OperatorPermission } from "../models/ApiOperator.ts";
 import { bcrypt } from "../deno_modules.ts";
-import UserModel from "../db/UserModel.ts";
+import OperatorModel from "../db/OperatorModel.ts";
 import { environment } from "../environment.ts";
 
 export default class AuthService {
@@ -10,66 +10,66 @@ export default class AuthService {
     this.msg = "";
   }
 
-  public async validateCredentials(userData: UserCredentials): Promise<boolean> {
-    const { login, password } = userData;
+  public async validateCredentials(operatorData: OperatorCredentials): Promise<boolean> {
+    const { login, password } = operatorData;
 
     if (!login || !password) {
-      this.msg = "user.login.empty.credentials";
+      this.msg = "operator.login.empty.credentials";
       return !this.msg;
     }
 
-    const user = await UserModel.getUser(login);
+    const operator = await OperatorModel.getOperator(login);
 
-    if (user) {
-      this.msg = this.passwordVerify(password, user.password) ? "" : "user.login.wrong.password";
+    if (operator) {
+      this.msg = this.passwordVerify(password, operator.password) ? "" : "operator.login.wrong.password";
       return !this.msg;
     }
 
-    this.msg = "user.login.not.exist";
+    this.msg = "operator.login.not.exist";
     return !this.msg;
   }
 
-  public validateRegisterData(userData: UserRegister): boolean {
-    const { login } = userData;
+  public validateRegisterData(operatorData: OperatorRegister): boolean {
+    const { login } = operatorData;
 
     if (!this.validateEmail(login)) {
-      this.msg = "user.register.wrong.email";
+      this.msg = "operator.register.wrong.email";
       return false;
     }
 
     return true;
   }
 
-  public async setPermission(data: UserPermission) {
+  public async setPermission(data: OperatorPermission) {
     const { login, permission } = data;
-    const user = await UserModel.getUser(login);
+    const operator = await OperatorModel.getOperator(login);
 
-    if (user) {
+    if (operator) {
       const permissionArray = permission.split(",");
       const existingPermission = permissionArray.filter(name => environment.permissionList.includes(name));
 
-      UserModel.setPermission(login, existingPermission);
+      OperatorModel.setPermission(login, existingPermission);
       return true;
     }
 
-    this.msg = "user.not.exist";
+    this.msg = "operator.not.exist";
     return false;
   }
 
-  public async createUser(userData: UserRegister): Promise<string> {
-    const { login } = userData;
-    const user = await UserModel.getUser(login);
+  public async createOperator(operatorData: OperatorRegister): Promise<string> {
+    const { login } = operatorData;
+    const operator = await OperatorModel.getOperator(login);
 
-    if (user) {
-      throw Error("User already exists");
+    if (operator) {
+      throw Error("Operator already exists");
     }
 
-    return await UserModel.createUser(login, this.genPasswordHash(login));
+    return await OperatorModel.createOperator(login, this.genPasswordHash(login));
   }
 
   public async setPassword(login: string, password: string): Promise<boolean> {
     const hash = this.genPasswordHash(password);
-    return await UserModel.setPassword(login, hash);
+    return await OperatorModel.setPassword(login, hash);
   }
 
   public getMessage(): string {

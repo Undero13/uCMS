@@ -1,7 +1,7 @@
 import { makeJwt, setExpiration, Jose, Payload, validateJwt, parseAndDecode } from "../deno_modules.ts";
 import { environment } from "../environment.ts";
 import { Jwt } from "../models/ApiJwtToken.ts";
-import UserModel from "../db/UserModel.ts";
+import OperatorModel from "../db/OperatorModel.ts";
 
 export default class JWTokenService {
   private key: string;
@@ -10,13 +10,13 @@ export default class JWTokenService {
     this.key = environment.jwtSecretKey;
   }
 
-  public async makeJWToken(user: string): Promise<string> {
-    const permission = await UserModel.getUserPermission(user);
+  public async makeJWToken(operator: string): Promise<string> {
+    const permission = await OperatorModel.getOperatorPermission(operator);
 
     const payload: Payload = {
       iss: "joe",
       exp: setExpiration(new Date().getTime() + 6000000000),
-      user,
+      operator,
       permission
     };
     const header: Jose = { alg: "HS256", typ: "JWT" };

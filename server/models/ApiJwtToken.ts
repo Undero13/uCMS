@@ -3,7 +3,7 @@ import { Jose } from "../deno_modules.ts";
 export type CustomPayload = {
   iss?: string;
   exp?: number;
-  user?: string;
+  operator?: string;
   permission: string[];
 };
 

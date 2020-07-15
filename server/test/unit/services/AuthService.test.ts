@@ -1,6 +1,6 @@
 import AuthService from "../../../services/AuthService.ts";
 import { assertEquals } from "../../../deno_modules.ts";
-import UserHelper from "../../acceptance/Helpers/UserHelper.ts";
+import OperatorHelper from "../../acceptance/Helpers/OperatorHelper.ts";
 
 const authService = new AuthService();
 
@@ -12,7 +12,7 @@ Deno.test("[service] auth.service.empty.credentials", async () => {
   const message = authService.getMessage();
 
   assertEquals(status, false);
-  assertEquals(message, "user.login.empty.credentials");
+  assertEquals(message, "operator.login.empty.credentials");
 });
 
 Deno.test("[service] auth.service.not.exist", async () => {
@@ -23,7 +23,7 @@ Deno.test("[service] auth.service.not.exist", async () => {
   const message = authService.getMessage();
 
   assertEquals(status, false);
-  assertEquals(message, "user.login.not.exist");
+  assertEquals(message, "operator.login.not.exist");
 });
 
 Deno.test("[service] auth.service.credentials.valid", async () => {
@@ -35,7 +35,7 @@ Deno.test("[service] auth.service.credentials.valid", async () => {
 });
 
 Deno.test("[service] auth.service.password.set.valid", async () => {
-  const { login } = await UserHelper.createRandomUser();
+  const { login } = await OperatorHelper.createRandomOperator();
   const password = "superSecretPassword123";
   const status = await authService.setPassword(login, password);
 

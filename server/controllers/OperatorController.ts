@@ -1,19 +1,19 @@
 import { Controller, Param, Post, Get, Patch, Body, Req, Injectable, UseHook } from "../deno_modules.ts";
-import { UserCredentials, UserRegister, UserResetPassword, UserPermission } from "../models/ApiUser.ts";
+import { OperatorCredentials, OperatorRegister, OperatorResetPassword, OperatorPermission } from "../models/ApiOperator.ts";
 import { Response, ResponseData } from "../models/ApiResponse.ts";
 import AuthService from "../services/AuthService.ts";
 import JWTokenService from "../services/JWTokenService.ts";
-import UserModel from "../db/UserModel.ts";
+import OperatorModel from "../db/OperatorModel.ts";
 import { PermissionHooks } from "../hooks/PermissionHooks.ts";
 import { environment } from "../environment.ts";
 
 @Injectable()
-@Controller("/api/user")
-export class UserController implements Response {
-  constructor(private authService: AuthService, private jwtService: JWTokenService, private userModel: UserModel) {}
+@Controller("/api/operator")
+export class OperatorController implements Response {
+  constructor(private authService: AuthService, private jwtService: JWTokenService, private operatorModel: OperatorModel) {}
 
   @Post("/login")
-  private async login(@Body() body: UserCredentials) {
+  private async login(@Body() body: OperatorCredentials) {
     const isValid = await this.authService.validateCredentials(body);
 
     if (!isValid) {
@@ -26,19 +26,19 @@ export class UserController implements Response {
 
   @Post("/register")
   @UseHook(PermissionHooks, "operator.register")
-  private async register(@Body() body: UserRegister) {
+  private async register(@Body() body: OperatorRegister) {
     const isValid = this.authService.validateRegisterData(body);
 
     if (!isValid) {
       return this.setResponse(false, this.authService.getMessage());
     }
 
-    const id = await this.authService.createUser(body);
+    const id = await this.authService.createOperator(body);
     return this.setResponse(true, "", [{ id }]);
   }
 
   @Patch("/reset-password")
-  private async resetPassword(@Body() body: UserResetPassword) {
+  private async resetPassword(@Body() body: OperatorResetPassword) {
     const { token, password, remindPassword } = body;
     const isTokenValid = await this.jwtService.validateJWToken(token);
     const isPasswordValid = this.authService.validatePassword(password, remindPassword);
@@ -47,16 +47,16 @@ export class UserController implements Response {
 
     if (isTokenValid && isPasswordValid) {
       const { payload } = await this.jwtService.decodeJWT(token);
-      success = await this.authService.setPassword((<any>payload).user, password);
+      success = await this.authService.setPassword((<any>payload).operator, password);
     }
 
-    const error = success ? "" : "user.password.not.saved";
+    const error = success ? "" : "operator.password.not.saved";
     return this.setResponse(success, error);
   }
 
   @Patch("/permission")
   @UseHook(PermissionHooks, "operator.permission")
-  private async setPermission(@Body() body: UserPermission) {
+  private async setPermission(@Body() body: OperatorPermission) {
     const status = await this.authService.setPermission(body);
     return this.setResponse(status, this.authService.getMessage());
   }
@@ -66,17 +66,17 @@ export class UserController implements Response {
     const limitInt = parseInt(limit, 10);
     const skipInt = parseInt(skip, 10);
 
-    const userList = await this.userModel.getUserList(limitInt, skipInt);
-    const userCount = await this.userModel.getUserCount();
+    const operatorList = await this.operatorModel.getOperatorList(limitInt, skipInt);
+    const operatorCount = await this.operatorModel.getOperatorCount();
 
-    return this.setResponse(true, "", userList, Math.ceil(userCount / limitInt));
+    return this.setResponse(true, "", operatorList, Math.ceil(operatorCount / limitInt));
   }
 
   @Req()
   @Get("/search")
   private async getSearchList({ url }: { url: string }) {
-    const userList = await this.userModel.getUserByData(url);
-    return this.setResponse(true, "", userList);
+    const operatorList = await this.operatorModel.getOperatorByData(url);
+    return this.setResponse(true, "", operatorList);
   }
 
   @Get("/list/permission")

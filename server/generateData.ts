@@ -1,5 +1,5 @@
-import { usersData, productsData } from "./db/fakeData/index.ts";
-import { users, products } from "./db/connection.ts";
+import { operatorsData, productsData } from "./db/fakeData/index.ts";
+import { operators, products } from "./db/connection.ts";
 
-await users.insertMany([...usersData]);
+await operators.insertMany([...operatorsData]);
 await products.insertMany([...productsData]);

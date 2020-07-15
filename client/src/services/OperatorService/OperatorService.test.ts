@@ -1,7 +1,7 @@
-import OperatorService from "./OperatorService.service";
+import OperatorService from "./OperatorService.service.ts";
 
 test("it can return corect code", () => {
-  expect(OperatorService.changeCodeToMessage("user.register.wrong.email")).toBe(
+  expect(OperatorService.changeCodeToMessage("operator.register.wrong.email")).toBe(
     "Wrong e-mail!"
   );
 });

@@ -53,11 +53,11 @@ describe("change code to message", () => {
     password: "test123",
   };
   const authService = new AuthService(credentials);
-  const code1 = authService.changeCodeToMessage("user.login.empty.credentials");
-  const code2 = authService.changeCodeToMessage("user.login.not.exist");
-  const code3 = authService.changeCodeToMessage("user.login.wrong.password");
+  const code1 = authService.changeCodeToMessage("operator.login.empty.credentials");
+  const code2 = authService.changeCodeToMessage("operator.login.not.exist");
+  const code3 = authService.changeCodeToMessage("operator.login.wrong.password");
 
   expect(code1).toBe("Login and password are required!");
-  expect(code2).toBe("User not exist!");
+  expect(code2).toBe("Operator not exist!");
   expect(code3).toBe("Password is not correct!");
 });
