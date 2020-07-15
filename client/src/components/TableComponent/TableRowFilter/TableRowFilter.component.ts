@@ -8,14 +8,14 @@ export default defineComponent({
       type: String,
     },
   },
-  setup() {
+  setup(props, context) {
     function onChange(e: BlurEvent) {
       const { name, value } = e.target;
       const search = {
         [name]: value,
       };
 
-      this.$emit("onSearch", search);
+      context.emit("onSearch", search);
     }
 
     return {

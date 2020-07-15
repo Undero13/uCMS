@@ -2,12 +2,12 @@ import { defineComponent, ref, onUnmounted } from "@vue/runtime-dom";
 
 export default defineComponent({
   name: "Modal",
-  setup() {
+  setup(props, context) {
     const overlay = ref(true);
     onUnmounted(() => (overlay.value = false));
 
     function modalClose() {
-      return this.$emit("modalClose");
+      return context.emit("modalClose");
     }
 
     return {

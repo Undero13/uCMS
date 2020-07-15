@@ -5,7 +5,7 @@ import CookieService from "@/services/CookieService/CookieService.service";
 
 export default defineComponent({
   name: "LoginForm",
-  setup() {
+  setup(props, context) {
     const form: LoginFormData = reactive({
       login: "",
       password: "",
@@ -35,7 +35,7 @@ export default defineComponent({
       if (status === 200) {
         if (!data.status) {
           const msg = authService.changeCodeToMessage(data.error);
-          return this.$emit("showErrorMsg", msg);
+          return context.emit("showErrorMsg", msg);
         }
 
         const { token } = data.data[0];
@@ -44,7 +44,7 @@ export default defineComponent({
       }
 
       const msg = "Unexpected error, try later";
-      return this.$emit("showErrorMsg", msg);
+      return context.emit("showErrorMsg", msg);
     }
 
     return { form, validationError, onSubmit };

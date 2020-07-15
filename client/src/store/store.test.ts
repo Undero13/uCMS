@@ -1,5 +1,5 @@
 import { Operator } from "@/models/Operators.model.ts";
-import storeOperator from "./store";
+import store from "./index";
 
 test("it can storeData", () => {
   const fakeData: Operator[] = [
@@ -9,8 +9,8 @@ test("it can storeData", () => {
     },
   ];
 
-  storeOperator.commit("FETCH_OPERATORS", fakeData);
-  expect(storeOperator.getters.getOperatorList).toEqual({
+  store.commit("FETCH_OPERATORS", fakeData);
+  expect(store.getters.getOperatorList).toEqual({
     0: { id: "test", login: "test@test.com" },
   });
 });
