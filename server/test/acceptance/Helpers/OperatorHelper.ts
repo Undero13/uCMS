@@ -1,5 +1,5 @@
 import { operators } from "../../../db/connection.ts";
-import  AuthService  from "../../../services/AuthService.ts";
+import AuthService from "../../../services/AuthService.ts";
 import JWTokenService from "../../../services/JWTokenService.ts";
 
 export default class OperatorHelper {

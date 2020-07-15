@@ -17,14 +17,12 @@ const AxiosService = axios.create({
       photo
     });
  */
-const toBase64 = (file: Blob) => new Promise((resolve, reject) => {
-  const reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.onload = () => resolve(reader.result);
-  reader.onerror = (error) => reject(error);
-});
+const toBase64 = (file: Blob) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
 
-export {
-  AxiosService,
-  toBase64
-};
+export { AxiosService, toBase64 };
