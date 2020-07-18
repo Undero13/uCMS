@@ -1,4 +1,4 @@
-import state from './state';
+import state from "./state";
 
 const getters = {
   getProductList: () => state.products,
@@ -6,11 +6,12 @@ const getters = {
   getMapProductList: () => {
     const { products } = state;
 
-    return Object.values(products)
-    .map(({ id, name, price }) => ({
-      id, name, price
+    return Object.values(products).map(({ id, name, price }) => ({
+      id,
+      name,
+      price,
     }));
-  }
+  },
 };
 
 export default getters;

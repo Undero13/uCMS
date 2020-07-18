@@ -5,7 +5,7 @@ import productStore from "./product";
 const store = createStore({
   modules: {
     operatorStore,
-    productStore
+    productStore,
   },
 });
 

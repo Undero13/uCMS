@@ -21,7 +21,7 @@ describe("table component", () => {
   test("it can be mounted", () => expect(wrapper).toBeInstanceOf(Object));
   test("it can generate html", () => {
     expect(caption.text()).toBe("Test caption");
-    expect(thead.html()).toBe(
+    expect(thead.html()).toContain(
       "<thead><tr><th>test1 <table-row-filter-stub></table-row-filter-stub></th><th>test2 <table-row-filter-stub></table-row-filter-stub></th></tr></thead>"
     );
     expect(tbody.html()).toBe(

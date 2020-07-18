@@ -1,10 +1,10 @@
 /* eslint-disable consistent-return */
 
-import environment from '@/environment';
-import router from '@/router';
-import { AxiosService } from '@/services/AxiosService/AxiosService.service';
-import CookieService from '@/services/CookieService/CookieService.service';
-import { Commit, Dispatch } from 'vuex';
+import environment from "@/environment";
+import router from "@/router";
+import { AxiosService } from "@/services/AxiosService/AxiosService.service";
+import CookieService from "@/services/CookieService/CookieService.service";
+import { Commit, Dispatch } from "vuex";
 
 const actions = {
   async fetchProducts({ commit }: { commit: Commit }) {

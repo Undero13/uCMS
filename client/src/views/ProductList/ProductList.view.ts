@@ -1,10 +1,15 @@
-import { defineComponent, reactive, ref, onBeforeMount } from "@vue/runtime-dom";
+import {
+  defineComponent,
+  reactive,
+  ref,
+  onBeforeMount,
+} from "@vue/runtime-dom";
 import Navigation from "@/components/Navigation/Navigation.component.vue";
 import Notification from "@/components/Notification/Notification.component.vue";
 import TableComponent from "@/components/TableComponent/TableComponent.component.vue";
 import Pagination from "@/components/Pagination/Pagination.component.vue";
-import { useStore } from 'vuex';
-import { ProductTable } from '@/models/Products.model';
+import { useStore } from "vuex";
+import { ProductTable } from "@/models/Products.model";
 
 export default defineComponent({
   name: "ProductList",
@@ -12,7 +17,7 @@ export default defineComponent({
     Navigation,
     Notification,
     TableComponent,
-    Pagination
+    Pagination,
   },
   setup() {
     const { dispatch, getters } = useStore();
@@ -25,7 +30,7 @@ export default defineComponent({
       caption: "Product List",
       headers: ["ID", "Name", "Price"],
       rows: [],
-      editable: true
+      editable: true,
     });
 
     function loadData() {
@@ -52,7 +57,7 @@ export default defineComponent({
       productList,
       msg,
       loading,
-      onSearch
+      onSearch,
     };
-  }
+  },
 });
