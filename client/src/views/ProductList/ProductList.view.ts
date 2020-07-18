@@ -1,4 +1,4 @@
-import { defineComponent, reactive, ref } from "@vue/runtime-dom";
+import { defineComponent, reactive, ref, onBeforeMount } from "@vue/runtime-dom";
 import Navigation from "@/components/Navigation/Navigation.component.vue";
 import Notification from "@/components/Notification/Notification.component.vue";
 import TableComponent from "@/components/TableComponent/TableComponent.component.vue";
@@ -23,13 +23,14 @@ export default defineComponent({
 
     const productList: ProductTable = reactive({
       caption: "Product List",
-      headers: ["ID"],
+      headers: ["ID", "Name", "Price"],
       rows: [],
+      editable: true
     });
 
     function loadData() {
-      productList.rows = getters.getProductList;
-      pageCount.value = getters.getPageCount;
+      productList.rows = getters.getMapProductList;
+      pageCount.value = getters.getProductPageCount;
       loading.value = false;
     }
 
@@ -40,8 +41,15 @@ export default defineComponent({
         .catch((err) => (msg.value = err.message));
     }
 
+    onBeforeMount(() => {
+      dispatch("fetchProducts")
+        .then(() => loadData())
+        .catch((err) => (msg.value = err.message));
+    });
+
     return {
       pageCount,
+      productList,
       msg,
       loading,
       onSearch
