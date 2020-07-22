@@ -47,7 +47,7 @@ const router: Router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some((route) => route.meta.requiresAuth)) {
+  if (to.matched.some(route => route.meta.requiresAuth)) {
     if (CookieService.isLogged()) {
       next();
     } else {

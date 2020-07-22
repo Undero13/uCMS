@@ -7,12 +7,7 @@
   </button>
   <ul class="pagination-list">
     <li v-for="i in page">
-      <button
-        @click="changePage(i)"
-        class="pagination-link"
-        :class="{'is-current':curentPage === i}"
-        :title="'Goto page ' + i"
-      >
+      <button @click="changePage(i)" class="pagination-link" :class="{'is-current':curentPage === i}" :title="'Goto page ' + i">
         {{ i }}
       </button>
     </li>

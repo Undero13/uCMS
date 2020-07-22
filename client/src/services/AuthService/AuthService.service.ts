@@ -1,9 +1,5 @@
 import environment from "@/environment.ts";
-import {
-  LoginFormData,
-  LoginFromErrors,
-  LoginFormResponse,
-} from "@/models/LoginForm.model.ts";
+import { LoginFormData, LoginFromErrors, LoginFormResponse } from "@/models/LoginForm.model.ts";
 import qs from "querystring";
 import { AxiosService } from "../AxiosService/AxiosService.service";
 

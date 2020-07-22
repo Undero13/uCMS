@@ -17,10 +17,7 @@ const actions = {
     commit("FETCH_PAGECOUNT", data.pageCount);
   },
 
-  async searchOperatorsSearch(
-    { commit, dispatch }: { commit: Commit; dispatch: Dispatch },
-    param: Object
-  ) {
+  async searchOperatorsSearch({ commit, dispatch }: { commit: Commit; dispatch: Dispatch }, param: Object) {
     const args: any = {};
     const [key] = Object.keys(param);
     let [value] = Object.values(param);

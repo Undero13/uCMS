@@ -11,10 +11,7 @@
       <tr>
         <th v-for="header in data.headers">
           {{ header }}
-          <TableRowFilter
-            :name="header"
-            @onSearch="emitSearch"
-          ></TableRowFilter>
+          <TableRowFilter :name="header" @onSearch="emitSearch"></TableRowFilter>
         </th>
       </tr>
     </thead>

@@ -6,9 +6,7 @@ describe("cookie service", () => {
   });
 
   test("set operator token - cookie exist", () => {
-    const randomToken =
-      Math.random().toString(36).substring(2, 15) +
-      Math.random().toString(36).substring(2, 15);
+    const randomToken = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
     CookieService.setToken(randomToken);
     expect(CookieService.isLogged()).toBeTruthy();
   });

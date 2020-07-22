@@ -32,10 +32,8 @@ describe("dynamicForm component", () => {
   const wrapper = shallowMount(DynamicForm, { props: { fields } });
 
   test("it can be mount", () => expect(wrapper).toBeInstanceOf(Object));
-  test("it can generate input", () =>
-    expect(wrapper.find("#email").exists()).toBeTruthy());
-  test("it can generate textarea", () =>
-    expect(wrapper.find("#textarea-test").exists()).toBeTruthy());
+  test("it can generate input", () => expect(wrapper.find("#email").exists()).toBeTruthy());
+  test("it can generate textarea", () => expect(wrapper.find("#textarea-test").exists()).toBeTruthy());
   test("it can generate select", () => {
     expect(wrapper.find("#select-test").exists()).toBeTruthy();
     expect(wrapper.findAll("#select-test option").length).toBe(2);

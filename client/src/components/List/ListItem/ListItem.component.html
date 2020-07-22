@@ -13,12 +13,7 @@
   @mouseover="showDropdown = true"
   @mouseout="showDropdown = false"
 >
-  <button
-    class="button-menu"
-    aria-haspopup="true"
-    :aria-expanded="showDropdown"
-    @keydown.enter="showDropdown = !showDropdown"
-  >
+  <button class="button-menu" aria-haspopup="true" :aria-expanded="showDropdown" @keydown.enter="showDropdown = !showDropdown">
     {{ item.content }}
   </button>
   <ul class="navbar-dropdown" :class="{active: showDropdown}">

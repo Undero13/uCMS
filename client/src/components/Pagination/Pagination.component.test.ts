@@ -4,11 +4,7 @@ import { shallowMount } from "@vue/test-utils";
 import Pagination from "./Pagination.component.vue";
 
 const originalWarn = console.error.bind(console.error);
-beforeAll(
-  () =>
-    (console.error = (msg: string) =>
-      !msg.toString().includes("navigation") && originalWarn(msg))
-);
+beforeAll(() => (console.error = (msg: string) => !msg.toString().includes("navigation") && originalWarn(msg)));
 afterAll(() => (console.error = originalWarn));
 
 describe("pagination component", () => {

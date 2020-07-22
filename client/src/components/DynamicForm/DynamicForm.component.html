@@ -9,7 +9,7 @@
         :class="field.class"
         :placeholder="field.placeholder"
         v-if="checkType(field.type, 'input')"
-        @blur="validate($event ,field.name)"
+        @blur="validate($event, field.name)"
         @focus="clearErrorMsg"
       />
 
@@ -24,14 +24,16 @@
         @focus="clearErrorMsg"
       ></textarea>
 
+      <RichTextArea
+        :id="field.name"
+        :name="field.name"
+        v-if="checkType(field.type, 'RichTextArea')"
+        @blur="validate($event, field.name)"
+        @focus="clearErrorMsg"
+      ></RichTextArea>
+
       <div class="select" v-if="checkType(field.type, 'select')">
-        <select
-          :id="field.name"
-          :class="field.class"
-          :name="field.name"
-          @blur="validate($event, field.name)"
-          @focus="clearErrorMsg"
-        >
+        <select :id="field.name" :class="field.class" :name="field.name" @blur="validate($event, field.name)" @focus="clearErrorMsg">
           <option v-for="option in field.options">{{ option.name }}</option>
         </select>
       </div>

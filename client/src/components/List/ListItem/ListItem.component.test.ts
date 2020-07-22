@@ -46,20 +46,14 @@ describe("ListItem component", () => {
     expect(wrapper3).toBeInstanceOf(Object);
   });
   test("it can render html", () => {
-    expect(
-      wrapper1
-        .html()
-        .includes('<li class="navbar-item"><list-link-stub></list-link-stub>')
-    ).toBeTruthy();
-    expect(
-      wrapper2.html().includes('<li class="navbar-item">innerText')
-    ).toBeTruthy();
+    expect(wrapper1.html().includes('<li class="navbar-item"><list-link-stub></list-link-stub>')).toBeTruthy();
+    expect(wrapper2.html().includes('<li class="navbar-item">innerText')).toBeTruthy();
     expect(
       wrapper3
         .html()
         .includes(
-          '<li class="navbar-item has-dropdown is-hoverable"><button class="button-menu" aria-haspopup="true" aria-expanded="false"></button><ul class="navbar-dropdown"><li><list-link-stub></list-link-stub></li></ul></li>'
-        )
+          '<li class="navbar-item has-dropdown is-hoverable"><button class="button-menu" aria-haspopup="true" aria-expanded="false"></button><ul class="navbar-dropdown"><li><list-link-stub></list-link-stub></li></ul></li>',
+        ),
     ).toBeTruthy();
   });
 });
