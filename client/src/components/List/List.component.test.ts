@@ -26,8 +26,5 @@ test("it can be mount", () => {
 
 test("it can store html", () => {
   const wrapper = shallowMount(List, { props: { data } });
-
-  expect(wrapper.html()).toBe(
-    '<ul class="navbar-start"><list-item-stub></list-item-stub></ul>'
-  );
+  expect(wrapper.html()).toBe('<ul class="navbar-start"><list-item-stub></list-item-stub></ul>');
 });

@@ -16,11 +16,7 @@ module.exports = {
     "class-methods-use-this": "off",
     "no-return-assign": "off",
     "no-restricted-globals": ["error", "event", "fdescribe"],
-    "lines-between-class-members": [
-      "error",
-      "always",
-      { exceptAfterSingleLine: true },
-    ],
+    "lines-between-class-members": ["error", "always", { exceptAfterSingleLine: true }],
     //prettier work
     "comma-dangle": "off",
     "operator-linebreak": "off",
@@ -28,6 +24,8 @@ module.exports = {
     "@typescript-eslint/indent": "off",
     "implicit-arrow-linebreak": "off",
     "object-curly-newline": "off",
+    "end-of-line": "off",
     "max-len": "off",
+    "arrow-parens": "off"
   },
 };

@@ -2,7 +2,7 @@
 <Notification v-if="msg" :msg="msg" :type="'error'"></Notification>
 
 <template v-if="!loading">
-  <button class="button is-ucms" @click="showModal = true">
+  <button class="button is-ucms" @click="showModal = true" @keydown.enter="showModal = true">
     Add new operator
   </button>
   <TableComponent :data="operatorList" @setSearch="onSearch"></TableComponent>
@@ -18,9 +18,6 @@
   </template>
 
   <template v-slot:body>
-    <DynamicForm
-      :fields="formFields"
-      @formSubmit="createOperator($event)"
-    ></DynamicForm>
+    <DynamicForm :fields="formFields" @formSubmit="createOperator($event)"></DynamicForm>
   </template>
 </Modal>

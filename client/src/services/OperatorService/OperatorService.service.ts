@@ -4,11 +4,7 @@ import { OperatorResponse } from "@/models/Operators.model";
 import { AxiosService } from "../AxiosService/AxiosService.service";
 
 export default class OperatorService {
-  public static async create({
-    email,
-  }: {
-    email: string;
-  }): Promise<OperatorResponse> {
+  public static async create({ email }: { email: string }): Promise<OperatorResponse> {
     const url = `${environment.apiUrl}operator/register`;
 
     const resParam = qs.stringify({
@@ -31,11 +27,7 @@ export default class OperatorService {
     return msg;
   }
 
-  public static async changePassword(
-    token: string | null,
-    password: string,
-    remindPassword: string
-  ) {
+  public static async changePassword(token: string | null, password: string, remindPassword: string) {
     const url = `${environment.apiUrl}operator/reset-password`;
 
     const resParam = qs.stringify({

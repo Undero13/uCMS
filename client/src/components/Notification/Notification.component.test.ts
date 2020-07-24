@@ -16,7 +16,5 @@ test("it can use props", () => {
   const wrapper = shallowMount(Notification, { props });
 
   expect(wrapper.vm.$props).toEqual(props);
-  expect(wrapper.html()).toEqual(
-    '<div class="notification notification--position is-info">Test me!</div>'
-  );
+  expect(wrapper.html()).toEqual('<div class="notification notification--position is-info">Test me!</div>');
 });

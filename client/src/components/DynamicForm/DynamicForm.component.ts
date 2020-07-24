@@ -1,9 +1,13 @@
 import { defineComponent, reactive, Ref, ref } from "@vue/runtime-dom";
-import { FormField, BlurEvent } from "@/models/DynamicForm.model";
+import { FormField, BlurEvent, Fields } from "@/models/DynamicForm.model";
+import RichTextArea from "@/components/RichTextArea/RichTextArea.component.vue";
 import * as messager from "@/components/DynamicForm/DynamicForm.component.json";
 
 export default defineComponent({
   name: "DynamicForm",
+  components: {
+    RichTextArea,
+  },
   props: {
     fields: {
       type: Array,
@@ -22,7 +26,7 @@ export default defineComponent({
     }
 
     function changeErrorCodeToMsg(errorsCode: string[]) {
-      errorsCode.forEach((code) => {
+      errorsCode.forEach(code => {
         const messagerInstance: any = messager;
         errorsMsg.push(messagerInstance.default[code]);
       });
@@ -39,7 +43,7 @@ export default defineComponent({
       const fields: FormField[] = [...props.fields];
       const field = fields.find(({ name }) => name === inputName);
 
-      field?.validators?.forEach((validator) => {
+      field?.validators?.forEach(validator => {
         const validatorName = validator.name;
         const isValid = validator(value);
 
@@ -52,27 +56,14 @@ export default defineComponent({
     }
 
     function checkType(fieldType: string, inputType: string): boolean {
-      const fields: any = {
-        input: [
-          "text",
-          "file",
-          "email",
-          "number",
-          "hidden",
-          "password",
-          "tel",
-          "checkbox",
-          "radio",
-        ],
+      const fields: Fields = {
+        input: ["text", "file", "email", "number", "hidden", "password", "tel", "checkbox", "radio"],
         select: ["select"],
         textarea: ["textarea"],
+        RichTextArea: ["RichTextArea"],
       };
 
-      if (fields[inputType].includes(fieldType)) {
-        return true;
-      }
-
-      return false;
+      return fields[inputType].includes(fieldType);
     }
 
     return {

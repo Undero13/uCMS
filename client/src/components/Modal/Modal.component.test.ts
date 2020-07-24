@@ -10,8 +10,13 @@ describe("modal component", () => {
   const wrapper = shallowMount(Modal, { slots });
 
   test("it can be mounted", () => expect(wrapper).toBeInstanceOf(Object));
-  test("it can show overlay", () =>
-    expect(wrapper.find(".overlay").exists()).toBeTruthy());
+  test("it can show overlay", () => expect(wrapper.find(".overlay").exists()).toBeTruthy());
+
+  test("it can emit event", async () => {
+    await wrapper.find('.delete').trigger('click');
+    expect(wrapper.emitted()).toHaveProperty('modalClose');
+  });
+
   test("it can set slot", () => {
     expect(wrapper.find(".modal-card-head").text()).toBe("Test title");
     expect(wrapper.find(".modal-card-body").text()).toBe("Test desc");

@@ -4,7 +4,7 @@
   <div class="modal-content">
     <header class="modal-card-head">
       <slot name="header"></slot>
-      <button class="delete" aria-label="close" @click="modalClose"></button>
+      <button class="delete" aria-label="close" @keydown.enter="modalClose" @click="modalClose"></button>
     </header>
     <div class="modal-card-body">
       <slot name="body"></slot>

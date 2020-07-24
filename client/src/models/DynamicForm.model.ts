@@ -1,20 +1,14 @@
 export interface FormField {
   name: string;
-  type:
-    | "text"
-    | "email"
-    | "number"
-    | "hidden"
-    | "password"
-    | "tel"
-    | "checkbox"
-    | "radio"
-    | "textarea"
-    | "select";
+  type: "text" | "email" | "number" | "hidden" | "password" | "tel" | "checkbox" | "radio" | "textarea" | "select";
   label: string;
   placeholder?: string;
   class?: string;
   validators?: Function[];
+}
+
+export interface Fields {
+  [key: string]: string[];
 }
 
 export interface CustomTarger extends EventTarget {

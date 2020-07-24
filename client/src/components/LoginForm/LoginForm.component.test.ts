@@ -3,7 +3,6 @@ import LoginForm from "./LoginForm.component.vue";
 
 test("it can be mount", () => {
   const wrapper = shallowMount(LoginForm);
-
   expect(wrapper).toBeInstanceOf(Object);
 });
 
@@ -43,7 +42,7 @@ describe("it can show validate message", () => {
     await loginPassword.setValue("password123");
     await form.trigger("submit");
 
-    // element don't show is element valid
+    // element don't show if element valid
     expect(wrapper.find(".login-help").exists()).toBeFalsy();
     expect(wrapper.find(".password-help").exists()).toBeFalsy();
   });

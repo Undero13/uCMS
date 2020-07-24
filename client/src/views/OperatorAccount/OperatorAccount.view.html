@@ -4,24 +4,18 @@
 <section class="section">
   <div class="container">
     <h1 class="title">Operator Profile</h1>
-    <button @click="showPasswordChangeModal = true">
+    <button class="button-open" @click="showPasswordChangeModal = true" @keydown.enter="showPasswordChangeModal = true">
       Change operator password
     </button>
   </div>
 </section>
 
-<Modal
-  v-if="showPasswordChangeModal"
-  @modalClose="showPasswordChangeModal = false"
->
+<Modal v-if="showPasswordChangeModal" @modalClose="showPasswordChangeModal = false">
   <template v-slot:header>
     <p class="modal-card-title">Change operator password</p>
   </template>
 
   <template v-slot:body>
-    <DynamicForm
-      :fields="formFields"
-      @formSubmit="changePassword($event)"
-    ></DynamicForm>
+    <DynamicForm :fields="formFields" @formSubmit="changePassword($event)"></DynamicForm>
   </template>
 </Modal>

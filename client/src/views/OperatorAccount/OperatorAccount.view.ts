@@ -36,19 +36,9 @@ export default defineComponent({
       },
     ];
 
-    async function changePassword({
-      password,
-      remindPassword,
-    }: {
-      password: string;
-      remindPassword: string;
-    }) {
+    async function changePassword({ password, remindPassword }: { password: string; remindPassword: string }) {
       const token = CookieService.getJWToken();
-      const { status } = await OperatorService.changePassword(
-        token,
-        password,
-        remindPassword
-      );
+      const { status } = await OperatorService.changePassword(token, password, remindPassword);
 
       if (!status) {
         msg.value = "Somethink is wrong. Please try later";

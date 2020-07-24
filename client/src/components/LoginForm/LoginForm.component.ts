@@ -20,7 +20,7 @@ export default defineComponent({
     async function onSubmit() {
       const authService = new AuthService(form);
       const errors = authService.validateForm();
-      const result = Object.values(errors).some((item) => item === true);
+      const result = Object.values(errors).some(item => item === true);
 
       if (result) {
         validationError.emptyLogin = errors.emptyLogin;

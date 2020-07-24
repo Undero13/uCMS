@@ -1,9 +1,4 @@
-import {
-  defineComponent,
-  onBeforeMount,
-  ref,
-  reactive,
-} from "@vue/runtime-dom";
+import { defineComponent, onBeforeMount, ref, reactive } from "@vue/runtime-dom";
 import Navigation from "@/components/Navigation/Navigation.component.vue";
 import Notification from "@/components/Notification/Notification.component.vue";
 import TableComponent from "@/components/TableComponent/TableComponent.component.vue";
@@ -61,7 +56,7 @@ export default defineComponent({
       loading.value = true;
       dispatch("searchOperatorsSearch", e)
         .then(() => loadData())
-        .catch((err) => (msg.value = err.message));
+        .catch(err => (msg.value = err.message));
     }
 
     async function createOperator(data: OperatorCreateData) {
@@ -74,25 +69,25 @@ export default defineComponent({
         loading.value = true;
         dispatch("fetchOperators")
           .then(() => loadData())
-          .catch((err) => (msg.value = err.message));
+          .catch(err => (msg.value = err.message));
       }
     }
 
     onBeforeMount(() => {
       dispatch("fetchOperators")
         .then(() => loadData())
-        .catch((err) => (msg.value = err.message));
+        .catch(err => (msg.value = err.message));
     });
 
     return {
-      createOperator,
-      onSearch,
       operatorList,
       pageCount,
       formFields,
       showModal,
       loading,
       msg,
+      createOperator,
+      onSearch
     };
   },
 });
