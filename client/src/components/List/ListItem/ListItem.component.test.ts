@@ -45,6 +45,7 @@ describe("ListItem component", () => {
     expect(wrapper2).toBeInstanceOf(Object);
     expect(wrapper3).toBeInstanceOf(Object);
   });
+
   test("it can render html", () => {
     expect(wrapper1.html().includes('<li class="navbar-item"><list-link-stub></list-link-stub>')).toBeTruthy();
     expect(wrapper2.html().includes('<li class="navbar-item">innerText')).toBeTruthy();
@@ -55,5 +56,11 @@ describe("ListItem component", () => {
           '<li class="navbar-item has-dropdown is-hoverable"><button class="button-menu" aria-haspopup="true" aria-expanded="false"></button><ul class="navbar-dropdown"><li><list-link-stub></list-link-stub></li></ul></li>',
         ),
     ).toBeTruthy();
+  });
+
+  test("it can set aria-expanded", async () => {
+    expect(wrapper3.find("button").html().includes('aria-expanded="false"')).toBe(true);
+    await wrapper3.find("button").trigger("keydown", { key: "enter" });
+    expect(wrapper3.find("button").html().includes('aria-expanded="true"')).toBe(true);
   });
 });

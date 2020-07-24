@@ -4,7 +4,7 @@
 <section class="section">
   <div class="container">
     <h1 class="title">Operator Profile</h1>
-    <button @click="showPasswordChangeModal = true">
+    <button class="button-open" @click="showPasswordChangeModal = true" @keydown.enter="showPasswordChangeModal = true">
       Change operator password
     </button>
   </div>

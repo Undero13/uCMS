@@ -80,14 +80,14 @@ export default defineComponent({
     });
 
     return {
-      createOperator,
-      onSearch,
       operatorList,
       pageCount,
       formFields,
       showModal,
       loading,
       msg,
+      createOperator,
+      onSearch
     };
   },
 });
