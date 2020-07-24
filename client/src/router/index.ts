@@ -4,6 +4,7 @@ import Home from "@/views/Home/Home.view.vue";
 import Login from "@/views/Login/Login.view.vue";
 import OperatorList from "@/views/OperatorList/OperatorList.view.vue";
 import OperatorAccount from "@/views/OperatorAccount/OperatorAccount.view.vue";
+import ProductList from "@/views/ProductList/ProductList.view.vue";
 
 const routes = [
   {
@@ -35,6 +36,18 @@ const routes = [
     path: "/operator-account",
     component: OperatorAccount,
     name: "OperatorAccount",
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/product-list",
+    query: {
+      limit: 10,
+      skip: 0,
+    },
+    component: ProductList,
+    name: "productList",
     meta: {
       requiresAuth: true,
     },

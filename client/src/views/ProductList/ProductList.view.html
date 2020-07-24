@@ -1,0 +1,10 @@
+<Navigation></Navigation>
+<Notification v-if="msg" :msg="msg" :type="'error'"></Notification>
+
+<template v-if="!loading">
+  <TableComponent :data="productList" @setSearch="onSearch"></TableComponent>
+  <Pagination :page="pageCount"></Pagination>
+</template>
+<template v-else>
+  <div class="is-loading"></div>
+</template>

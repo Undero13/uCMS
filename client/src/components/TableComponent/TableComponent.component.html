@@ -13,11 +13,13 @@
           {{ header }}
           <TableRowFilter :name="header" @onSearch="emitSearch"></TableRowFilter>
         </th>
+        <th v-if="data.editable">Actions</th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="row in data.rows">
         <td v-for="attr in row">{{ attr }}</td>
+        <td v-if="data.editable"><a href="">Edit</a></td>
       </tr>
     </tbody>
   </table>
