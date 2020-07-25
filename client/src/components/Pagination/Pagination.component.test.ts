@@ -1,11 +1,8 @@
-/* eslint-disable no-console */
-/* eslint-disable prefer-destructuring */
 import { shallowMount } from "@vue/test-utils";
+import windowFix from "@/../testing-helper/window.helper";
 import Pagination from "./Pagination.component.vue";
 
-const originalWarn = console.error.bind(console.error);
-beforeAll(() => (console.error = (msg: string) => !msg.toString().includes("navigation") && originalWarn(msg)));
-afterAll(() => (console.error = originalWarn));
+beforeAll(() => windowFix());
 
 describe("pagination component", () => {
   const $routerMock = {
@@ -14,19 +11,14 @@ describe("pagination component", () => {
     },
   };
 
-  const mockWindow = {
-    location: {
-      href: null,
-    },
-  };
   const wrapper = shallowMount(Pagination, {
     props: { page: 2 },
-    global: { mocks: { $router: $routerMock, window: mockWindow } },
+    global: { mocks: { $router: $routerMock } },
   });
 
   test("it can be mount", () => expect(wrapper).toBeInstanceOf(Object));
   test("it can set default value", () => {
-    const page = wrapper.vm.page;
+    const { page } = wrapper.vm;
     expect(page).toBe(2);
   });
 

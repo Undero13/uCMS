@@ -1,9 +1,4 @@
-import {
-  defineComponent,
-  reactive,
-  ref,
-  onBeforeMount,
-} from "@vue/runtime-dom";
+import { defineComponent, reactive, ref, onBeforeMount } from "@vue/runtime-dom";
 import Navigation from "@/components/Navigation/Navigation.component.vue";
 import Notification from "@/components/Notification/Notification.component.vue";
 import TableComponent from "@/components/TableComponent/TableComponent.component.vue";
@@ -43,13 +38,13 @@ export default defineComponent({
       loading.value = true;
       dispatch("searchProductSearch", e)
         .then(() => loadData())
-        .catch((err) => (msg.value = err.message));
+        .catch(err => (msg.value = err.message));
     }
 
     onBeforeMount(() => {
       dispatch("fetchProducts")
         .then(() => loadData())
-        .catch((err) => (msg.value = err.message));
+        .catch(err => (msg.value = err.message));
     });
 
     return {

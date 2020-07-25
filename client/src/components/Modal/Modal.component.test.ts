@@ -13,8 +13,8 @@ describe("modal component", () => {
   test("it can show overlay", () => expect(wrapper.find(".overlay").exists()).toBeTruthy());
 
   test("it can emit event", async () => {
-    await wrapper.find('.delete').trigger('click');
-    expect(wrapper.emitted()).toHaveProperty('modalClose');
+    await wrapper.find(".delete").trigger("click");
+    expect(wrapper.emitted()).toHaveProperty("modalClose");
   });
 
   test("it can set slot", () => {

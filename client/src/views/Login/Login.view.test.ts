@@ -10,10 +10,10 @@ test("it have two children", async () => {
   const wrapper = shallowMount(Login, <{}>{
     data() {
       return {
-        msg: "test"
+        msg: "test",
       };
-    }
-   });
+    },
+  });
 
   expect(wrapper.html().includes("<logo-stub>")).toBeTruthy();
   expect(wrapper.html().includes("<login-form-stub>")).toBeTruthy();

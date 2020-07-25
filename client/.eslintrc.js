@@ -26,6 +26,6 @@ module.exports = {
     "object-curly-newline": "off",
     "end-of-line": "off",
     "max-len": "off",
-    "arrow-parens": "off"
+    "arrow-parens": "off",
   },
 };

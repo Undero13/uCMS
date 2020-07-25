@@ -1,9 +1,6 @@
 import { shallowMount } from "@vue/test-utils";
+import setupFix from "@/../testing-helper/setup.helper";
 import OperatorList from "./OperatorList.view.vue";
-
-const originalWarn = console.warn.bind(console.warn);
-beforeAll(() => (console.warn = (msg: string) => !msg.toString().includes(" ") && originalWarn(msg)));
-afterAll(() => (console.warn = originalWarn));
 
 test("it can be mount", () => {
   const operatorList = {
@@ -15,12 +12,14 @@ test("it can be mount", () => {
   const pageCount = 2;
   const showModal = false;
   const loading = false;
-  const msg = 'test';
+  const msg = "test";
+  const component = setupFix(OperatorList);
 
-  const wrapper = shallowMount(OperatorList, <{}>{
+  const wrapper = shallowMount(component, <{}>{
     data() {
       return { operatorList, pageCount, showModal, loading, msg };
     },
   });
+
   expect(wrapper).toBeInstanceOf(Object);
 });

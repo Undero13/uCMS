@@ -87,7 +87,7 @@ export default defineComponent({
       loading,
       msg,
       createOperator,
-      onSearch
+      onSearch,
     };
   },
 });
