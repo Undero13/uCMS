@@ -1,0 +1,52 @@
+{
+  "env": {
+    "PROD": "false",
+    "JWT_SECRET_KEY": "pomrukiStraconegoKota",
+    "JWT_COOKIE_NAME": "jwt-token-client",
+    "MONGO_USER": "root",
+    "MONGO_PASSWORD": "rootpassword",
+    "MONGO_PORT": "27017"
+  },
+  "watcher": {
+    "exts": ["js", "jsx", "ts", "tsx", "json"],
+    "match": ["**/*.*"]
+  },
+  "scripts": {
+    "start": {
+      "cmd": "./src/app.ts",
+      "desc": "Run backend app",
+      "tsconfig": "tsconfig.json",
+      "unstable": true,
+      "watch": true,
+      "allow": ["all"]
+    },
+    "migration": {
+      "cmd": "./migrations/index.ts",
+      "desc": "Genetare fake data for app",
+      "unstable": true,
+      "watch": false,
+      "tsconfig": "tsconfig.json",
+      "allow": ["all"]
+    },
+    "lint": {
+      "cmd": "deno lint --unstable",
+      "desc": "Lint application",
+      "watch": false
+    },
+    "fmt": {
+      "cmd": "deno fmt --check",
+      "desc": "Fmt application",
+      "watch": false
+    },
+    "fmt-fix": {
+      "cmd": "deno fmt",
+      "desc": "Fmt fix",
+      "watch": false
+    },
+    "test": {
+      "cmd": "deno test --allow-all --unstable",
+      "desc": "Run backend test",
+      "watch": false
+    }
+  }
+}

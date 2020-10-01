@@ -1,28 +1,15 @@
+## Install 
+#### For windows
+- ./script/install.bat 
+
+#### For linux/macOS
+- ./script/install.sh 
+
 ## Start
-- docker-compose up --build -d
-- docker exec -it deno bash
-- denon generate
+- ./script/start.bat or ./script/start.sh
 
 ## Stop
-  - docker-compose down
-
-## Staff
-
-* Docker
-* Webpack 
-* MongoDB
-* Typescript 
-* Vue 3 
-* Vue-router
-* Vuex
-* Jest
-* Deno
-* Alosaur
-* djwt
-
-## Todos
- - Product
- - Blog
+- ./script/stop.bat or ./script/stop.sh
 
 ## Test
 ### Backend

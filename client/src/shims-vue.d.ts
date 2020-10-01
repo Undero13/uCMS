@@ -1,8 +1,5 @@
 declare module "*.vue" {
-  import { ComponentOptionsWithObjectProps } from "vue";
-
-  const component: ComponentOptionsWithObjectProps;
+  import { defineComponent } from "vue";
+  const component: ReturnType<typeof defineComponent>;
   export default component;
 }
-
-declare module "querystring";

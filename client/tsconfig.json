@@ -1,34 +1,40 @@
 {
   "compilerOptions": {
-    "target": "ES6",
-    "module": "ES6",
+    "target": "esnext",
+    "module": "esnext",
     "strict": true,
     "jsx": "preserve",
-    "resolveJsonModule": true,
     "importHelpers": true,
     "moduleResolution": "node",
+    "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "noImplicitThis": false,
     "sourceMap": true,
     "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    },
-    "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
-    "typeRoots": ["./node_modules/@types"],
     "types": [
-      "@vue/compiler-core/dist/compiler-core",
-      "@vue/compiler-dom/dist/compiler-dom",
-      "@vue/compiler-sfc/dist/compiler-sfc",
-      "@vue/compiler-ssr/dist/compiler-ssr",
-      "@vue/reactivity/dist/reactivity",
-      "@vue/runtime-core/dist/runtime-core",
-      "@vue/runtime-dom/dist/runtime-dom",
-      "jest",
-      "node"
+      "webpack-env",
+      "jest"
+    ],
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable",
+      "scripthost"
     ]
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "testing-helper/**/*.ts"],
-  "exclude": ["node_modules", "**/*.spec.ts"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "tests/**/*.ts",
+    "tests/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
