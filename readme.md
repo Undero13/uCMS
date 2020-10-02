@@ -1,3 +1,5 @@
+DEPRECATED! VERSION 2 HERE: https://github.com/Undero13/ucms2
+
 ## Start
 - docker-compose up --build -d
 - docker exec -it deno bash
